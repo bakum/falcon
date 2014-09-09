@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:pageTemplateDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs" definition="private"
+                    xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component" xmlns:f="http://java.sun.com/jsf/core">
+    <af:xmlContent>
+        <afc:component>
+            <afc:display-name>templaddDostavka</afc:display-name>
+            <afc:facet>
+                <afc:facet-name>body</afc:facet-name>
+            </afc:facet>
+        </afc:component>
+    </af:xmlContent>
+    <af:panelStretchLayout id="pt_psl1">
+        <f:facet name="center">
+            <!-- id="af_one_column_stretched"   -->
+            <af:decorativeBox theme="dark" id="pt_db2">
+                <f:facet name="center">
+                    <af:decorativeBox theme="medium" id="pt_db1">
+                        <f:facet name="center">
+                            <af:decorativeBox id="pt_db3">
+                                <f:facet name="center">
+                                    <af:facetRef facetName="body"/>
+                                </f:facet>
+                                <f:facet name="top">
+                                    <af:train id="pt_t1"
+                                              value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"/>
+                                </f:facet>
+                            </af:decorativeBox>
+                        </f:facet>
+                    </af:decorativeBox>
+                </f:facet>
+            </af:decorativeBox>
+        </f:facet>
+    </af:panelStretchLayout>
+</af:pageTemplateDef>

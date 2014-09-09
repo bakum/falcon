@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OplataIschodTabPartView"
+  Version="11.1.2.62.94"
+  SelectList="OplataIschodTabPart.ID, 
+       OplataIschodTabPart.OPL_ID, 
+       OplataIschodTabPart.ORDER_ID, 
+       OplataIschodTabPart.KURS, 
+       OplataIschodTabPart.KRATNOST, 
+       OplataIschodTabPart.DOGOVOR_REF, 
+       OplataIschodTabPart.SUMMA"
+  FromList="DBA_FALCON.OPLATA_ISCHOD_TAB_PART OplataIschodTabPart"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <ViewAccessor
+    Name="OrdersView1"
+    ViewObjectName="falcon.view.OrdersView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_OrderId"
+    ListVOName="OrdersView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OrderId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Num"/>
+      <Item Value="Dat"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="OplataIschodTabPart"
+    Entity="falcon.entity.OplataIschodTabPart"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="OplataIschodTabPart"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="OplId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="OplId"
+    EntityUsage="OplataIschodTabPart"
+    AliasName="OPL_ID"/>
+  <ViewAttribute
+    Name="OrderId"
+    PrecisionRule="true"
+    EntityAttrName="OrderId"
+    EntityUsage="OplataIschodTabPart"
+    AliasName="ORDER_ID"
+    LOVName="LOV_OrderId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Kurs"
+    PrecisionRule="true"
+    EntityAttrName="Kurs"
+    EntityUsage="OplataIschodTabPart"
+    AliasName="KURS"/>
+  <ViewAttribute
+    Name="Kratnost"
+    PrecisionRule="true"
+    EntityAttrName="Kratnost"
+    EntityUsage="OplataIschodTabPart"
+    AliasName="KRATNOST"/>
+  <ViewAttribute
+    Name="DogovorRef"
+    PrecisionRule="true"
+    EntityAttrName="DogovorRef"
+    EntityUsage="OplataIschodTabPart"
+    AliasName="DOGOVOR_REF"/>
+  <ViewAttribute
+    Name="Summa"
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="OplataIschodTabPart"
+    AliasName="SUMMA"/>
+</ViewObject>

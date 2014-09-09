@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Falcon's store - Мои оплаты" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" value="#{bindings.ptb1}" id="pt1">
+                <f:facet name="body">
+                    <af:panelSplitter id="ps1" orientation="vertical" positionedFromEnd="true">
+                        <f:facet name="first">
+                            <af:panelStretchLayout id="psl1">
+                                <f:facet name="center">
+                                    <af:panelCollection id="pc1">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t3">
+                                                <af:commandToolbarButton actionListener="#{bindings.Delete.execute}"
+                                                                         text="Удалить"
+                                                                         disabled="#{!bindings.Delete.enabled}"
+                                                                         id="ctbDelete">
+                                                    <af:showPopupBehavior popupId=":::pDelete" align="afterEnd"/>
+                                                </af:commandToolbarButton>
+                                                <af:commandToolbarButton actionListener="#{bindings.Commit.execute}"
+                                                                         text="Сохранить"
+                                                                         disabled="#{!bindings.Commit.enabled}"
+                                                                         id="ctb2"/>
+                                                <af:commandToolbarButton actionListener="#{bindings.Rollback.execute}"
+                                                                         text="Отменить"
+                                                                         disabled="#{!bindings.Rollback.enabled}"
+                                                                         immediate="true" id="ctb3">
+                                                    <af:resetActionListener/>
+                                                </af:commandToolbarButton>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.OplataIschodView1.collectionModel}" var="row"
+                                                  rows="#{bindings.OplataIschodView1.rangeSize}"
+                                                  emptyText="#{bindings.OplataIschodView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                                  fetchSize="#{bindings.OplataIschodView1.rangeSize}"
+                                                  rowBandingInterval="0"
+                                                  filterModel="#{bindings.OplataIschodView1Query.queryDescriptor}"
+                                                  queryListener="#{bindings.OplataIschodView1Query.processQuery}"
+                                                  filterVisible="true" varStatus="vs"
+                                                  selectedRowKeys="#{bindings.OplataIschodView1.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.OplataIschodView1.collectionModel.makeCurrent}"
+                                                  rowSelection="single" id="t1" partialTriggers="::ctbDelete"
+                                                  binding="#{OplatyBeans.featureTable}">
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.Id.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.Id.label}"
+                                                       id="c1" visible="false">
+                                                <af:outputText value="#{row.Id}" id="ot1"/>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.Num.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.Num.label}"
+                                                       id="c2" width="200">
+                                                <af:outputText value="#{row.Num}" id="ot2"/>
+                                                <f:facet name="filter">
+                                                    <af:group id="g2">
+                                                        <af:toolbar id="t9">
+                                                            <af:commandToolbarButton id="ctb1"
+                                                                                     actionListener="#{OplatyBeans.resetTableFilter}"
+                                                                                     icon="/images/refresh.png"
+                                                                                     shortDesc="Сбросить все фильтры"/>
+                                                        </af:toolbar>
+                                                    </af:group>
+                                                </f:facet>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.Dat.name}"
+                                                       filterable="false" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.Dat.label}"
+                                                       id="c3" width="200">
+                                                <f:facet name="filter">
+                                                    <af:inputDate value="#{vs.filterCriteria.Dat}" id="id1">
+                                                        <af:convertDateTime pattern="#{bindings.OplataIschodView1.hints.Dat.format}"/>
+                                                    </af:inputDate>
+                                                </f:facet>
+                                                <af:outputText value="#{row.Dat}" id="ot3">
+                                                    <af:convertDateTime pattern="#{bindings.OplataIschodView1.hints.Dat.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.OplataIschodView1.hints.OrdrId.label}"
+                                                       id="c14" width="270"
+                                                       sortProperty="#{bindings.OplataIschodView1.hints.OrdrId.name}"
+                                                       filterable="true" sortable="true">
+                                                <af:selectOneChoice value="#{row.bindings.OrdrId.inputValue}"
+                                                                    label="#{row.bindings.OrdrId.label}"
+                                                                    required="#{bindings.OplataIschodView1.hints.OrdrId.mandatory}"
+                                                                    shortDesc="#{bindings.OplataIschodView1.hints.OrdrId.tooltip}"
+                                                                    readOnly="true" id="soc8">
+                                                    <f:selectItems value="#{row.bindings.OrdrId.items}" id="si8"/>
+                                                </af:selectOneChoice>
+                                                <f:facet name="filter">
+                                                    <af:selectOneChoice id="soc9" value="#{vs.filterCriteria.OrdrId}"
+                                                                        autoSubmit="true" label="Договор">
+                                                        <f:selectItem itemValue="" itemLabel="" id="si10"/>
+                                                        <af:forEach var="listrow"
+                                                                    items="#{bindings.VwOrderView1.rangeSet}">
+                                                            <f:selectItem id="si11" itemLabel="#{listrow.Num}"
+                                                                          itemValue="#{listrow.Id}"/>
+                                                        </af:forEach>
+                                                    </af:selectOneChoice>
+                                                </f:facet>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.KontragId.name}" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.KontragId.label}"
+                                                       id="c4" width="200">
+                                                <af:selectOneChoice value="#{row.bindings.KontragId.inputValue}"
+                                                                    label="#{row.bindings.KontragId.label}"
+                                                                    required="#{bindings.OplataIschodView1.hints.KontragId.mandatory}"
+                                                                    shortDesc="#{bindings.OplataIschodView1.hints.KontragId.tooltip}"
+                                                                    readOnly="true" id="soc1">
+                                                    <f:selectItems value="#{row.bindings.KontragId.items}" id="si1"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.Summa.name}"
+                                                       filterable="false" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.Summa.label}"
+                                                       id="c5" align="right">
+                                                <af:outputText value="#{row.Summa}" id="ot4"/>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.CurrId.name}"
+                                                       filterable="false" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.CurrId.label}"
+                                                       id="c6">
+                                                <af:selectOneChoice value="#{row.bindings.CurrId.inputValue}"
+                                                                    label="#{row.bindings.CurrId.label}"
+                                                                    required="#{bindings.OplataIschodView1.hints.CurrId.mandatory}"
+                                                                    shortDesc="#{bindings.OplataIschodView1.hints.CurrId.tooltip}"
+                                                                    readOnly="true" id="soc2">
+                                                    <f:selectItems value="#{row.bindings.CurrId.items}" id="si2"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.UserId.name}"
+                                                       filterable="false" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.UserId.label}"
+                                                       id="c7" width="200">
+                                                <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                    label="#{row.bindings.UserId.label}"
+                                                                    required="#{bindings.OplataIschodView1.hints.UserId.mandatory}"
+                                                                    shortDesc="#{bindings.OplataIschodView1.hints.UserId.tooltip}"
+                                                                    readOnly="true" id="soc3">
+                                                    <f:selectItems value="#{row.bindings.UserId.items}" id="si3"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.DivisionId.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.DivisionId.label}"
+                                                       id="c8" width="200">
+                                                <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                                    label="#{row.bindings.DivisionId.label}"
+                                                                    required="#{bindings.OplataIschodView1.hints.DivisionId.mandatory}"
+                                                                    shortDesc="#{bindings.OplataIschodView1.hints.DivisionId.tooltip}"
+                                                                    readOnly="true" id="soc4">
+                                                    <f:selectItems value="#{row.bindings.DivisionId.items}" id="si4"/>
+                                                </af:selectOneChoice>
+                                                <f:facet name="filter">
+                                                    <af:selectOneChoice id="soc12"
+                                                                        value="#{vs.filterCriteria.DivisionId}"
+                                                                        autoSubmit="true" label="Подразделение">
+                                                        <f:selectItem itemValue="" itemLabel="" id="si15"/>
+                                                        <af:forEach var="listrow"
+                                                                    items="#{bindings.DivisionsView1.rangeSet}">
+                                                            <f:selectItem id="si16" itemLabel="#{listrow.Fullname}"
+                                                                          itemValue="#{listrow.Id}"/>
+                                                        </af:forEach>
+                                                    </af:selectOneChoice>
+                                                </f:facet>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OplataIschodView1.hints.KassaId.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OplataIschodView1.hints.KassaId.label}"
+                                                       id="c9" width="200" visible="false">
+                                                <af:selectOneChoice value="#{row.bindings.KassaId.inputValue}"
+                                                                    label="#{row.bindings.KassaId.label}"
+                                                                    required="#{bindings.OplataIschodView1.hints.KassaId.mandatory}"
+                                                                    shortDesc="#{bindings.OplataIschodView1.hints.KassaId.tooltip}"
+                                                                    readOnly="true" id="soc5">
+                                                    <f:selectItems value="#{row.bindings.KassaId.items}" id="si5"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </f:facet>
+                            </af:panelStretchLayout>
+                        </f:facet>
+                        <f:facet name="second">
+                            <af:panelTabbed id="pt2">
+                                <af:showDetailItem text="Оплата" id="sdi1">
+                                    <af:panelStretchLayout id="psl2" inlineStyle="width:auto;">
+                                        <f:facet name="center">
+                                            <af:table value="#{bindings.OplataIschodTabPartView2.collectionModel}"
+                                                      var="row" rows="#{bindings.OplataIschodTabPartView2.rangeSize}"
+                                                      emptyText="#{bindings.OplataIschodTabPartView2.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                                      fetchSize="#{bindings.OplataIschodTabPartView2.rangeSize}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.OplataIschodTabPartView2.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.OplataIschodTabPartView2.collectionModel.makeCurrent}"
+                                                      rowSelection="single" id="t2" editingMode="clickToEdit"
+                                                      partialTriggers="::pc1:ctb1">
+                                                <af:column sortProperty="#{bindings.OplataIschodTabPartView2.hints.Id.name}"
+                                                           sortable="true"
+                                                           headerText="#{bindings.OplataIschodTabPartView2.hints.Id.label}"
+                                                           id="c10" width="120" visible="false">
+                                                    <af:outputText value="#{row.Id}" id="ot5"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.OplataIschodTabPartView2.hints.OplId.name}"
+                                                           sortable="true"
+                                                           headerText="#{bindings.OplataIschodTabPartView2.hints.OplId.label}"
+                                                           id="c11" width="120">
+                                                    <af:outputText value="#{row.OplId}" id="ot6"/>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.OplataIschodTabPartView2.hints.OrderId.name}"
+                                                           sortable="true"
+                                                           headerText="#{bindings.OplataIschodTabPartView2.hints.OrderId.label}"
+                                                           id="c12" width="232">
+                                                    <af:selectOneChoice value="#{row.bindings.OrderId.inputValue}"
+                                                                        label="#{row.bindings.OrderId.label}"
+                                                                        required="#{bindings.OplataIschodTabPartView2.hints.OrderId.mandatory}"
+                                                                        shortDesc="#{bindings.OplataIschodTabPartView2.hints.OrderId.tooltip}"
+                                                                        readOnly="true" id="soc6">
+                                                        <f:selectItems value="#{row.bindings.OrderId.items}" id="si6"/>
+                                                    </af:selectOneChoice>
+                                                </af:column>
+                                                <af:column sortProperty="#{bindings.OplataIschodTabPartView2.hints.Summa.name}"
+                                                           sortable="true"
+                                                           headerText="#{bindings.OplataIschodTabPartView2.hints.Summa.label}"
+                                                           id="c13" width="255" align="right">
+                                                    <af:commandButton text="#{row.bindings.Summa.inputValue}" id="cb1"
+                                                                      inlineStyle="width:150px;">
+                                                        <af:showPopupBehavior popupId=":::p1" align="afterEnd"/>
+                                                    </af:commandButton>
+                                                </af:column>
+                                            </af:table>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:showDetailItem>
+                            </af:panelTabbed>
+                        </f:facet>
+                    </af:panelSplitter>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                <af:dialog id="d3" dialogListener="#{OplatyBeans.OplatyDialogListener}" title="Оплата">
+                    <f:facet name="buttonBar"/>
+                    <af:inputDate value="#{bindings.Dat.inputValue}" label="#{bindings.Dat.hints.label}"
+                                  required="#{bindings.Dat.hints.mandatory}"
+                                  columns="#{bindings.Dat.hints.displayWidth}" shortDesc="#{bindings.Dat.hints.tooltip}"
+                                  id="id2">
+                        <f:validator binding="#{bindings.Dat.validator}"/>
+                        <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                    </af:inputDate>
+                    <af:selectOneChoice value="#{bindings.OrderId.inputValue}" label="#{bindings.OrderId.label}"
+                                        required="#{bindings.OrderId.hints.mandatory}"
+                                        shortDesc="#{bindings.OrderId.hints.tooltip}" id="soc7" disabled="true">
+                        <f:selectItems value="#{bindings.OrderId.items}" id="si7"/>
+                    </af:selectOneChoice>
+                    <af:inputNumberSpinbox value="#{bindings.Summa.inputValue}" label="#{bindings.Summa.hints.label}"
+                                           required="#{bindings.Summa.hints.mandatory}"
+                                           columns="#{bindings.Summa.hints.displayWidth}"
+                                           shortDesc="#{bindings.Summa.hints.tooltip}" id="it1">
+                        <f:validator binding="#{bindings.Summa.validator}"/>
+                    </af:inputNumberSpinbox>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete" contentDelivery="lazyUncached"
+                      popupFetchListener="#{OplatyBeans.DeleteFetchListener}"
+                      popupCanceledListener="#{OplatyBeans.DeleteCancelListener}">
+                <af:dialog id="d4" title="Внимание!" dialogListener="#{OplatyBeans.DeleteDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Вы действительно хотите удалить запись?" id="ol1"/>
+                </af:dialog>
+            </af:popup>
+        </af:form>
+    </af:document>
+</f:view>

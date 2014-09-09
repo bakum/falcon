@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <exception-handler>exeption</exception-handler>
+  <view id="reports">
+    <page>/reports.jsf</page>
+  </view>
+  <view id="sales_rep">
+    <page>/sales_rep.jsf</page>
+  </view>
+  <view id="zatr_rep">
+    <page>/zatr_rep.jsf</page>
+  </view>
+  <view id="wallet">
+    <page>/wallet.jsf</page>
+  </view>
+  <view id="analyze">
+    <page>/analyze.jsf</page>
+  </view>
+  <view id="ur_fiz">
+    <page>/ur_fiz.jsf</page>
+  </view>
+  <view id="exeption">
+    <page>/exeption.jsf</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id>*</from-activity-id>
+    <control-flow-case id="__2">
+      <from-outcome>adfMenu_reports</from-outcome>
+      <to-activity-id>reports</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__3">
+      <from-outcome>adfMenu_sales_rep</from-outcome>
+      <to-activity-id>sales_rep</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__4">
+      <from-outcome>adfMenu_zatr_rep</from-outcome>
+      <to-activity-id>zatr_rep</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__9">
+      <from-outcome>adfMenu_wallet</from-outcome>
+      <to-activity-id>wallet</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__12">
+      <from-outcome>adfMenu_analyze</from-outcome>
+      <to-activity-id>analyze</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__14">
+      <from-outcome>adfMenu_ur_fiz</from-outcome>
+      <to-activity-id>ur_fiz</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__5">
+    <description>Menu Model Managed Bean</description>
+    <managed-bean-name>rep_menu</managed-bean-name>
+    <managed-bean-class>oracle.adf.view.rich.model.MDSMenuModel</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property id="__6">
+      <property-name>createHiddenNodes</property-name>
+      <value>false</value>
+    </managed-property>
+    <managed-property id="__7">
+      <property-name>source</property-name>
+      <property-class>java.lang.String</property-class>
+      <value>/WEB-INF/rep_menu.xml</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__8">
+    <managed-bean-name>ReportBean</managed-bean-name>
+    <managed-bean-class>view.ReportBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__10">
+    <managed-bean-name>wallet</managed-bean-name>
+    <managed-bean-class>view.WalletBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__11">
+    <managed-bean-name>acc_currency</managed-bean-name>
+    <managed-bean-class>view.AccCurrencyBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__13">
+    <managed-bean-name>analyze</managed-bean-name>
+    <managed-bean-class>view.AnalyzeBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__15">
+    <managed-bean-name>ur_fiz</managed-bean-name>
+    <managed-bean-class>view.Ur_fizBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

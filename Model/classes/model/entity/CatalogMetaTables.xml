@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CatalogMetaTables"
+  Version="11.1.2.62.94"
+  DBObjectType="table"
+  DBObjectName="CATALOG_META_TABLES"
+  AliasName="CatalogMetaTables"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="CATALOG_META_TABLES"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="MainName"
+    IsNotNull="true"
+    Precision="100"
+    ColumnName="MAIN_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CATALOG_META_TABLES">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ThisName"
+    IsNotNull="true"
+    Precision="100"
+    ColumnName="THIS_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CATALOG_META_TABLES">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Ordr"
+    IsNotNull="true"
+    ColumnName="ORDR"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="CATALOG_META_TABLES"/>
+  <Attribute
+    Name="XmlStr"
+    IsNotNull="true"
+    Precision="1000"
+    ColumnName="XML_STR"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CATALOG_META_TABLES">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MasterKey"
+    ColumnName="MASTER_KEY"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="CATALOG_META_TABLES"/>
+  <Attribute
+    Name="MasterFld"
+    Precision="100"
+    ColumnName="MASTER_FLD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CATALOG_META_TABLES">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Category"
+    IsNotNull="true"
+    Precision="3"
+    ColumnName="CATEGORY"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CATALOG_META_TABLES">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SqlIns"
+    ColumnName="SQL_INS"
+    SQLType="LONGVARCHAR"
+    Type="java.lang.String"
+    ColumnType="LONG"
+    TableName="CATALOG_META_TABLES"/>
+  <AccessorAttribute
+    Name="CatalogMetaFields"
+    Association="model.entity.CatalogMetaFieldsCatalFk1Assoc"
+    AssociationEnd="model.entity.CatalogMetaFieldsCatalFk1Assoc.CatalogMetaFields"
+    AssociationOtherEnd="model.entity.CatalogMetaFieldsCatalFk1Assoc.CatalogMetaTables"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="CatalogMetaInsTable"
+    Association="model.entity.CatalogMetaInsTableCaFk1Assoc"
+    AssociationEnd="model.entity.CatalogMetaInsTableCaFk1Assoc.CatalogMetaInsTable"
+    AssociationOtherEnd="model.entity.CatalogMetaInsTableCaFk1Assoc.CatalogMetaTables"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="CatalogMetaUpdTable"
+    Association="model.entity.CatalogMetaUpdTableCaFk1Assoc"
+    AssociationEnd="model.entity.CatalogMetaUpdTableCaFk1Assoc.CatalogMetaUpdTable"
+    AssociationOtherEnd="model.entity.CatalogMetaUpdTableCaFk1Assoc.CatalogMetaTables"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="CatalogMetaPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="CATALOG_META_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.entity.CatalogMetaTables.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="CatalogMetaTablesChk1">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="CATALOG_META_TABLES_CHK1"/>
+      <Attr Name="_checkCondition" Value="CATEGORY IN ('cat', 'doc', 'inf', 'acc', 'tab')"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+</Entity>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="startDostavkaPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DostavkaView1" RangeSize="25" DataControl="AppModuleDataControl" id="DostavkaView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="DostavkaView1Iterator" Uses="LOV_IdBase" id="IdBase"/>
+    <list IterBinding="DostavkaView1Iterator" StaticList="false" Uses="LOV_IdBase" id="IdBase1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

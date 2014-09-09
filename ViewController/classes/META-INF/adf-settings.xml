@@ -1,0 +1,18 @@
+<adf-config xmlns="http://xmlns.oracle.com/adf/config" xmlns:config="http://xmlns.oracle.com/bc4j/configuration">
+   <adfc-controller-config xmlns="http://xmlns.oracle.com/adf/controller/config">
+      <lifecycle>
+         <phase-listener>
+            <listener-id>myListener</listener-id>
+            <class>view.listener.FalconPagePhaseListener</class>
+         </phase-listener>
+      </lifecycle>
+   </adfc-controller-config>
+   <adf-adfm-config xmlns="http://xmlns.oracle.com/adfm/config">
+      <defaults changeEventPolicy="none"/>
+      <startup>
+         <amconfig-overrides>
+            <config:Database jbo.locking.mode="optimistic"/>
+         </amconfig-overrides>
+      </startup>
+   </adf-adfm-config>
+</adf-config>

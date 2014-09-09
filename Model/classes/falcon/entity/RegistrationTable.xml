@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RegistrationTable"
+  Version="11.1.2.62.94"
+  DBObjectType="TABLE"
+  DBObjectName="DBA_FALCON.REGISTRATION_TABLE"
+  AliasName="RegistrationTable"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <Attribute
+    Name="IdNode"
+    IsNotNull="true"
+    ColumnName="ID_NODE"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.REGISTRATION_TABLE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.RegistrationTable.IdNode_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="IdObj"
+    IsNotNull="true"
+    Precision="100"
+    ColumnName="ID_OBJ"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DBA_FALCON.REGISTRATION_TABLE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.RegistrationTable.IdObj_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Messnum"
+    ColumnName="MESSNUM"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.REGISTRATION_TABLE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.RegistrationTable.Messnum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.REGISTRATION_TABLE"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="IdTable"
+    IsNotNull="true"
+    ColumnName="ID_TABLE"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.REGISTRATION_TABLE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.RegistrationTable.IdTable_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="IdRec"
+    IsNotNull="true"
+    ColumnName="ID_REC"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.REGISTRATION_TABLE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.RegistrationTable.IdRec_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="ObmenSettings"
+    Association="falcon.entity.RegistrationTableFk1Assoc"
+    AssociationEnd="falcon.entity.RegistrationTableFk1Assoc.ObmenSettings"
+    AssociationOtherEnd="falcon.entity.RegistrationTableFk1Assoc.RegistrationTable"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="RegistrationTablePk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="REGISTRATION_TABLE_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.RegistrationTable.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="RegistrationTableFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="OBMEN_SETTINGS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="REGISTRATION_TABLE_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.RegistrationTable.IdNode"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

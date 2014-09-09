@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <groupNode id="itemNode_reports" label="Отчеты" idref="itemNode_sales_rep"
+             rendered="#{securityContext.userInRole['EnterpriseManager'] == false}">
+    <itemNode id="itemNode_sales_rep" label="Продажи" action="adfMenu_sales_rep" focusViewId="/sales_rep"/>
+    <itemNode id="itemNode_zatr_rep" label="Затраты" action="adfMenu_zatr_rep" focusViewId="/zatr_rep"/>
+    <itemNode id="itemNode_wallet" label="Кошелёк" action="adfMenu_wallet" focusViewId="/wallet"/>
+    <itemNode id="itemNode_ur_fiz" label="Физ.лица" action="adfMenu_ur_fiz" focusViewId="/ur_fiz"/>
+    <itemNode id="itemNode_analyze" label="Анализ" action="adfMenu_analyze" focusViewId="/analyze"/>
+  </groupNode>
+</menu>

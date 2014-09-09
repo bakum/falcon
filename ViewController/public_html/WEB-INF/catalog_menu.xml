@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <groupNode id="itemNode_directories" label="Справочники" idref="itemNode_cat_zatraty"
+             rendered="#{securityContext.userInRole['EnterpriseManager'] == false}">
+    <itemNode id="itemNode_cat_zatraty" label="Статьи затрат" action="adfMenu_cat_zatraty" focusViewId="/cat_zatraty"/>
+    <itemNode id="itemNode_users" label="Пользователи" action="adfMenu_users" focusViewId="/users"
+              rendered="#{securityContext.userInRole['EnterpriseDirector'] == false}"/>
+    <itemNode id="itemNode_konsult_name" label="Консультанты" action="adfMenu_konsult_name"
+              focusViewId="/konsult_name"/>
+    <itemNode focusViewId="/monrag_name" id="itemNode_montag_name" label="Монтажники" action="adfMenu_montag_name"/>
+    <itemNode focusViewId="/zamer_name" id="itemNode_zamer_name" label="Замерщики" action="adfMenu_zamer_name"/>
+  </groupNode>
+</menu>

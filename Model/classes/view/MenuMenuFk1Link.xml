@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MenuMenuFk1Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="model.entity.MenuMenuFk1Assoc">
+  <ViewLinkDefEnd
+    Name="ParentIdMenuView"
+    Cardinality="1"
+    Source="true"
+    Owner="view.MenuView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="ParentIdMenuView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.MenuView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MenuView"
+    Cardinality="-1"
+    Owner="view.MenuView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MenuView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.MenuView.ParentId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

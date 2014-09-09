@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UsersRoleFk1Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="model.entity.UsersRoleFk1Assoc">
+  <ViewLinkDefEnd
+    Name="RolesView"
+    Cardinality="1"
+    Source="true"
+    Owner="view.RolesView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="RolesView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.RolesView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="UsersView"
+    Cardinality="-1"
+    Owner="view.UsersView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="UsersView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.UsersView.RoleId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

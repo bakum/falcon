@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CatalogMetaFieldsView"
+  Version="11.1.2.62.94"
+  SelectList="CatalogMetaFields.ID, 
+       CatalogMetaFields.TBL_ID, 
+       CatalogMetaFields.MAIN_FLD, 
+       CatalogMetaFields.THIS_FLD, 
+       CatalogMetaFields.REF_TBL, 
+       CatalogMetaFields.REF_FLD, 
+       CatalogMetaFields.BOOL_TP"
+  FromList="CATALOG_META_FIELDS CatalogMetaFields"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="CatalogMetaFields"
+    Entity="model.entity.CatalogMetaFields"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="CatalogMetaFields"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="TblId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="TblId"
+    EntityUsage="CatalogMetaFields"
+    AliasName="TBL_ID"/>
+  <ViewAttribute
+    Name="MainFld"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MainFld"
+    EntityUsage="CatalogMetaFields"
+    AliasName="MAIN_FLD"/>
+  <ViewAttribute
+    Name="ThisFld"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ThisFld"
+    EntityUsage="CatalogMetaFields"
+    AliasName="THIS_FLD"/>
+  <ViewAttribute
+    Name="RefTbl"
+    PrecisionRule="true"
+    EntityAttrName="RefTbl"
+    EntityUsage="CatalogMetaFields"
+    AliasName="REF_TBL"/>
+  <ViewAttribute
+    Name="RefFld"
+    PrecisionRule="true"
+    EntityAttrName="RefFld"
+    EntityUsage="CatalogMetaFields"
+    AliasName="REF_FLD"/>
+  <ViewAttribute
+    Name="BoolTp"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="BoolTp"
+    EntityUsage="CatalogMetaFields"
+    AliasName="BOOL_TP"/>
+</ViewObject>

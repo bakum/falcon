@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CatalogMetaInsTableView"
+  Version="11.1.2.62.94"
+  SelectList="CatalogMetaInsTable.ID, 
+       CatalogMetaInsTable.ID_TABLE, 
+       CatalogMetaInsTable.INS_SQL"
+  FromList="DBA_FALCON.CATALOG_META_INS_TABLE CatalogMetaInsTable"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="CatalogMetaInsTable"
+    Entity="falcon.entity.CatalogMetaInsTable"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="CatalogMetaInsTable"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="IdTable"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdTable"
+    EntityUsage="CatalogMetaInsTable"
+    AliasName="ID_TABLE"/>
+  <ViewAttribute
+    Name="InsSql"
+    PrecisionRule="true"
+    EntityAttrName="InsSql"
+    EntityUsage="CatalogMetaInsTable"
+    AliasName="INS_SQL"/>
+</ViewObject>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OplataIschodTabPartOrFk1Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="falcon.entity.OplataIschodTabPartOrFk1Assoc">
+  <ViewLinkDefEnd
+    Name="OrdersView"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.view.OrdersView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OrdersView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.OrdersView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OplataIschodTabPartView"
+    Cardinality="-1"
+    Owner="falcon.view.OplataIschodTabPartView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OplataIschodTabPartView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.OplataIschodTabPartView.OrderId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

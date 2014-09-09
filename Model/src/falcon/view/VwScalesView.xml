@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwScalesView"
+  Version="11.1.2.62.94"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  SelectList="VwScales.ID, 
+       VwScales.USE_R, 
+       VwScales.ZATRATY, 
+       VwScales.NAME, 
+       VwScales.NAL, 
+       VwScales.BEZNAL"
+  FromList="DBA_FALCON.VW_SCALES VwScales"
+  ComponentClass="falcon.view.VwScalesViewImpl"
+  Where="upper(use_r) like :u_name">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.object.viewObject.u_nameBindParam]]></TransientExpression>
+  </Variable>
+  <EntityUsage
+    Name="VwScales"
+    Entity="falcon.entity.VwScales"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="VwScales"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Use_R"
+    PrecisionRule="true"
+    EntityAttrName="UseR1"
+    EntityUsage="VwScales"
+    AliasName="USE_R"/>
+  <ViewAttribute
+    Name="Zatraty"
+    PrecisionRule="true"
+    EntityAttrName="Zatraty"
+    EntityUsage="VwScales"
+    AliasName="ZATRATY"/>
+  <ViewAttribute
+    Name="Name"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="VwScales"
+    AliasName="NAME"/>
+  <ViewAttribute
+    Name="Nal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Nal"
+    EntityUsage="VwScales"
+    AliasName="NAL"/>
+  <ViewAttribute
+    Name="Beznal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Beznal"
+    EntityUsage="VwScales"
+    AliasName="BEZNAL"/>
+</ViewObject>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="zatr_repPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="DivisionsView1" RangeSize="-1" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+    <iterator Binds="ReportsView1" RangeSize="25" DataControl="AppModuleDataControl" id="ReportsView1Iterator"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="u_name"
+                     Name="setRangeForDetailVwZatratyPerMonthAccessorViewObject_u_name" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="u_dat"
+                     Name="setRangeForDetailVwZatratyPerMonthAccessorViewObject_u_dat" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10"
+                      TargetIterator="${bindings.ExecuteWithParams}">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="Total_Jan"/>
+          <Item Value="Total_Feb"/>
+          <Item Value="Total_Mar"/>
+          <Item Value="Total_Apr"/>
+          <Item Value="Total_May"/>
+          <Item Value="Total_Jun"/>
+          <Item Value="Total_Jul"/>
+          <Item Value="Total_Aug"/>
+          <Item Value="Total_Sep"/>
+          <Item Value="Total_Oct"/>
+          <Item Value="Total_Nov"/>
+          <Item Value="Total_Dec"/>
+          <Item Value="Total_Summ"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwZatratyPerMonthView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="falcon.view.VwZatratyPerMonthView" Name="DivisionsView11"
+                      TargetIterator="${bindings.ExecuteWithParams}">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Apr"/>
+          <Item Value="Aug"/>
+          <Item Value="Dec"/>
+          <Item Value="Div"/>
+          <Item Value="Feb"/>
+          <Item Value="Jan"/>
+          <Item Value="Jul"/>
+          <Item Value="Jun"/>
+          <Item Value="Mar"/>
+          <Item Value="May"/>
+          <Item Value="Nov"/>
+          <Item Value="Oct"/>
+          <Item Value="Sep"/>
+          <Item Value="Summ"/>
+          <Item Value="Zatr"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="ReportsView1Iterator" id="Total_Summ">
+      <AttrNames>
+        <Item Value="Total_Summ"/>
+      </AttrNames>
+    </attributeValues>
+    <graph IterBinding="DivisionsView1Iterator" id="DivisionsView11" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="BAR_VERT_CLUST">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Total_Jan"/>
+            <item value="Total_Feb"/>
+            <item value="Total_Mar"/>
+            <item value="Total_Apr"/>
+            <item value="Total_May"/>
+            <item value="Total_Jun"/>
+            <item value="Total_Jul"/>
+            <item value="Total_Aug"/>
+            <item value="Total_Sep"/>
+            <item value="Total_Oct"/>
+            <item value="Total_Nov"/>
+            <item value="Total_Dec"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Fullname"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="setRangeForDetailVwZatratyPerMonthAccessorViewObject" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="setRangeForDetailVwZatratyPerMonthAccessorViewObject"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.DivisionsView1">
+      <NamedData NDName="u_name" NDType="java.lang.String"
+                 NDValue="${bindings.setRangeForDetailVwZatratyPerMonthAccessorViewObject_u_name}"/>
+      <NamedData NDName="u_dat" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.setRangeForDetailVwZatratyPerMonthAccessorViewObject_u_dat}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="u_name">
+      <AttrNames>
+        <Item Value="setRangeForDetailVwZatratyPerMonthAccessorViewObject_u_name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="u_dat">
+      <AttrNames>
+        <Item Value="setRangeForDetailVwZatratyPerMonthAccessorViewObject_u_dat"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

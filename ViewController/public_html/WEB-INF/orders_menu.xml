@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <itemNode id="itemNode_orders" label="Сделки" action="adfMenu_orders" focusViewId="/orders">
+    <itemNode id="itemNode_dostavka" label="Доставки" action="adfMenu_dostavka" focusViewId="/dostavka"/>
+    <itemNode id="itemNode_oplaty" label="Мои оплаты" action="adfMenu_oplaty" focusViewId="/oplaty"/>
+  </itemNode>
+</menu>

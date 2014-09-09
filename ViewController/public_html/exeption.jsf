@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="exeption.jsf" id="d1">
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" value="#{bindings.ptb1}" id="pt1">
+                <f:facet name="body">
+                    <af:panelFormLayout id="pfl1">
+                        <af:outputText value="Произошла ошибка!" inlineStyle="color:Red; font-size:large;" id="ot1"/>
+                        <af:commandButton text="Отправить в поддержку" action="#{exeption.sendMail}" id="cb1"/>
+                        <af:inputText label="Описание"
+                                      value="#{controllerContext.currentViewPort.exceptionData.message}"
+                                      rendered="#{controllerContext.currentViewPort.exceptionPresent}" id="it1"/>
+                        <af:inputText label="Трассировка стека" value="#{exeption.stacktrace}" rows="20"
+                                      readOnly="true" rendered="#{controllerContext.currentViewPort.exceptionPresent}"
+                                      columns="150" id="it2"/>
+                    </af:panelFormLayout>
+                </f:facet>
+                <f:facet name="graph"/>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>

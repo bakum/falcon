@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.98" id="analyzePageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <iterator Binds="DivisionsView1" RangeSize="-1" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+    <variableIterator id="variables">
+      <variable Type="void" Name="setRangeForBepAccessorViewObject_return" IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.setRangeForBepAccessorViewObject.result}"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="u_dat" Name="setRangeForBepAccessorViewObject_u_dat"
+                     IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwBepView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="falcon.view.VwBepView" Name="DivisionsView11">
+        <AttrNames>
+          <Item Value="BrEp"/>
+          <Item Value="Doh"/>
+          <Item Value="IdDiv"/>
+          <Item Value="Perem"/>
+          <Item Value="Postoyan"/>
+          <Item Value="PrOch"/>
+          <Item Value="RyChag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="setRangeForBepAccessorViewObject" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="setRangeForBepAccessorViewObject" IsViewObjectMethod="true"
+                  DataControl="AppModuleDataControl" InstanceName="data.AppModuleDataControl.DivisionsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.setRangeForBepAccessorViewObject_AppModuleDataControl_DivisionsView1_setRangeForBepAccessorViewObject_result">
+      <NamedData NDName="u_dat" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.setRangeForBepAccessorViewObject_u_dat}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="u_dat">
+      <AttrNames>
+        <Item Value="setRangeForBepAccessorViewObject_u_dat"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

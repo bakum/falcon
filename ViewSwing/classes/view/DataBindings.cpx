@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="11.1.2.62.94" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="JClient">
+  <pageMap>
+    <page path="view.Form" usageId="view_FormPageDef"/>
+    <page path="view.PanelVwOrderView1Helper" usageId="view_PanelVwOrderView1HelperPageDef"/>
+    <page path="view.PanelVwOrderView1Helper1" usageId="view_PanelVwOrderView1Helper1PageDef"/>
+    <page path="view.PanelOrdersTabPartOplatyView3Helper" usageId="view_PanelOrdersTabPartOplatyView3HelperPageDef"/>
+    <page path="view.PanelAccCostView7Helper" usageId="view_PanelAccCostView7HelperPageDef"/>
+    <page path="view.PanelDetailsContainerHelper" usageId="view_PanelDetailsContainerHelperPageDef"/>
+    <page path="view.MDVwOrderView1DetailsHelper" usageId="view_MDVwOrderView1DetailsHelperPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_FormPageDef" path="view.pageDefs.FormPageDef"/>
+    <page id="view_PanelVwOrderView1HelperPageDef" path="view.pageDefs.PanelVwOrderView1HelperPageDef"/>
+    <page id="view_PanelVwOrderView1Helper1PageDef" path="view.pageDefs.PanelVwOrderView1Helper1PageDef"/>
+    <page id="view_PanelOrdersTabPartOplatyView3HelperPageDef"
+          path="view.pageDefs.PanelOrdersTabPartOplatyView3HelperPageDef"/>
+    <page id="view_PanelAccCostView7HelperPageDef" path="view.pageDefs.PanelAccCostView7HelperPageDef"/>
+    <page id="view_PanelDetailsContainerHelperPageDef" path="view.pageDefs.PanelDetailsContainerHelperPageDef"/>
+    <page id="view_MDVwOrderView1DetailsHelperPageDef" path="view.pageDefs.MDVwOrderView1DetailsHelperPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="AppModuleDataControl" Package="falcon.app_module"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     ExceptionMode="Immediate" xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

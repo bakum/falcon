@@ -1,0 +1,454 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <af:document title="Falcon's store - Настройки" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" id="pt1" value="#{bindings.ptb1}">
+                <f:facet name="body">
+                    <af:panelTabbed id="pt2" position="both">
+                        <af:showDetailItem text="Сессии" id="sdi3" stretchChildren="first">
+                            <af:panelCollection id="pc3">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t7">
+                                        <af:commandToolbarButton text="Обновить" id="ctb6" icon="/images/refresh.png"
+                                                                 action="#{ses.RefreshSes}"/>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.SessionsView1.collectionModel}" var="row"
+                                          rows="#{bindings.SessionsView1.rangeSize}"
+                                          emptyText="#{bindings.SessionsView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          fetchSize="#{bindings.SessionsView1.rangeSize}" rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.SessionsView1.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.SessionsView1.collectionModel.makeCurrent}"
+                                          rowSelection="single" id="t6">
+                                    <af:column id="c24" width="50">
+                                        <af:toolbar id="t8">
+                                            <af:commandToolbarButton id="ctb7" icon="/images/delete.png"/>
+                                        </af:toolbar>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Id.name}" sortable="true"
+                                               headerText="#{bindings.SessionsView1.hints.Id.label}" id="c15"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Id}" id="ot8"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.InstId.name}"
+                                               sortable="true" headerText="#{bindings.SessionsView1.hints.InstId.label}"
+                                               id="c16"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.InstId}" id="ot11"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Sid.name}" sortable="true"
+                                               headerText="#{bindings.SessionsView1.hints.Sid.label}" id="c17"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Sid}" id="ot17"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Serial.name}"
+                                               sortable="true" headerText="#{bindings.SessionsView1.hints.Serial.label}"
+                                               id="c18"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Serial}" id="ot18"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Spid.name}" sortable="true"
+                                               headerText="#{bindings.SessionsView1.hints.Spid.label}" id="c19"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Spid}" id="ot19"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Username.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.SessionsView1.hints.Username.label}" id="c20"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Username}" id="ot20"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Status.name}"
+                                               sortable="true" headerText="#{bindings.SessionsView1.hints.Status.label}"
+                                               id="c21"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Status}" id="ot21"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Machine.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.SessionsView1.hints.Machine.label}" id="c22"
+                                               width="200"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Machine}" id="ot22"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SessionsView1.hints.Program.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.SessionsView1.hints.Program.label}" id="c23"
+                                               width="200"
+                                               inlineStyle="#{row.bindings.Status.inputValue == 'INACTIVE' ? 'color:red' : 'color:green'}">
+                                        <af:outputText value="#{row.Program}" id="ot23"/>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="Обмен" id="sdi1">
+                            <af:panelGroupLayout layout="vertical" id="pgl2">
+                                <af:panelHeader text="Настройки обмена" id="ph1">
+                                    <af:panelFormLayout id="pfl1">
+                                        <af:panelLabelAndMessage label="#{bindings.Id.hints.label}" id="plam1"
+                                                                 visible="false">
+                                            <af:outputText value="#{bindings.Id.inputValue}" id="ot1"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.Fullname.hints.label}" id="plam2">
+                                            <af:inputText value="#{bindings.Fullname.inputValue}" id="ot2"
+                                                          readOnly="true"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.ServerFtp.hints.label}" id="plam3">
+                                            <af:inputText value="#{bindings.ServerFtp.inputValue}" id="ot3"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.UserFtp.hints.label}" id="plam4">
+                                            <af:inputText value="#{bindings.UserFtp.inputValue}" id="ot4"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.PassWd.hints.label}" id="plam5">
+                                            <af:inputText value="#{bindings.PassWd.inputValue}" id="ot5" secret="true"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.MainNode.hints.label}" id="plam6">
+                                            <af:inputText value="#{bindings.MainNode.inputValue}" id="ot6"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.ThisNode.hints.label}" id="plam7">
+                                            <af:inputText value="#{bindings.ThisNode.inputValue}" id="ot7"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.SentMess.hints.label}" id="plam9">
+                                            <af:outputText value="#{bindings.SentMess.inputValue}" id="ot9"/>
+                                        </af:panelLabelAndMessage>
+                                         
+                                        <af:panelLabelAndMessage label="#{bindings.RecMess.hints.label}" id="plam10">
+                                            <af:outputText value="#{bindings.RecMess.inputValue}" id="ot10"/>
+                                        </af:panelLabelAndMessage>
+                                        <f:facet name="footer">
+                                            <af:toolbar id="t2" inlineStyle="width:auto;">
+                                                <af:panelFormLayout id="pfl2" inlineStyle="width:177px; height:27px;">
+                                                    <af:inputText value="#{bindings.id.inputValue}"
+                                                                  label="#{bindings.id.hints.label}"
+                                                                  required="#{bindings.id.hints.mandatory}"
+                                                                  columns="#{bindings.id.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.id.hints.precision}"
+                                                                  shortDesc="#{bindings.id.hints.tooltip}" id="it1"
+                                                                  visible="false">
+                                                        <f:validator binding="#{bindings.id.validator}"/>
+                                                    </af:inputText>
+                                                    <af:commandButton actionListener="#{bindings.doSynchronization.execute}"
+                                                                      text="Синхронизировать"
+                                                                      disabled="#{bindings.Commit.enabled}"
+                                                                      id="cb1" action="#{pref.execureRefreshSync}"/>
+                                                </af:panelFormLayout>
+                                                <af:commandToolbarButton actionListener="#{bindings.Commit.execute}"
+                                                                         text="Сохранить"
+                                                                         disabled="#{!bindings.Commit.enabled}"
+                                                                         id="ctb1" action="#{pref.commitPrefer}"/>
+                                                <af:commandToolbarButton actionListener="#{bindings.Rollback.execute}"
+                                                                         text="Отменить"
+                                                                         disabled="#{!bindings.Rollback.enabled}"
+                                                                         immediate="true" id="ctb2">
+                                                    <af:resetActionListener/>
+                                                </af:commandToolbarButton>
+                                                <af:commandToolbarButton text="Обновить" id="ctb3"
+                                                                         action="#{pref.refreshPrefer}"/>
+                                            </af:toolbar>
+                                        </f:facet>
+                                    </af:panelFormLayout>
+                                    <f:facet name="context">
+                                        <dvt:horizontalBarGraph id="graph1"
+                                                                value="#{bindings.ObmenSettingsView1.graphModel}"
+                                                                subType="BAR_HORIZ_CLUST"
+                                                                inlineStyle="width:528px; height:43px;">
+                                            <dvt:background>
+                                                <dvt:specialEffects/>
+                                            </dvt:background>
+                                            <dvt:graphPlotArea/>
+                                            <dvt:seriesSet>
+                                                <dvt:series/>
+                                            </dvt:seriesSet>
+                                            <dvt:o1Axis/>
+                                            <dvt:y1Axis/>
+                                            <dvt:legendArea rendered="false"/>
+                                            <dvt:y1MajorTick tickStyle="GS_NONE"/>
+                                        </dvt:horizontalBarGraph>
+                                    </f:facet>
+                                </af:panelHeader>
+                                <af:panelHeader text="Таблица регистрации изменений" id="ph2">
+                                    <af:panelStretchLayout id="psl1" inlineStyle="width:auto;" topHeight="34px">
+                                        <f:facet name="center">
+                                            <af:panelCollection id="pc1">
+                                                <f:facet name="menus"/>
+                                                <f:facet name="toolbar"/>
+                                                <f:facet name="statusbar"/>
+                                                <af:table rows="#{bindings.RegistrationTableView2.rangeSize}"
+                                                          fetchSize="#{bindings.RegistrationTableView2.rangeSize}"
+                                                          emptyText="#{bindings.RegistrationTableView2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                          var="row"
+                                                          value="#{bindings.RegistrationTableView2.collectionModel}"
+                                                          rowBandingInterval="0"
+                                                          selectedRowKeys="#{bindings.RegistrationTableView2.collectionModel.selectedRow}"
+                                                          selectionListener="#{bindings.RegistrationTableView2.collectionModel.makeCurrent}"
+                                                          rowSelection="single" id="t1" inlineStyle="height:183px;">
+                                                    <af:column headerText="#{bindings.RegistrationTableView2.hints.IdNode.label}"
+                                                               sortProperty="#{bindings.RegistrationTableView2.hints.IdNode.name}"
+                                                               sortable="false" id="c1" width="105">
+                                                        <af:outputText value="#{row.IdNode}" id="ot12"/>
+                                                    </af:column>
+                                                     
+                                                    <af:column headerText="#{bindings.RegistrationTableView2.hints.IdObj.label}"
+                                                               sortProperty="#{bindings.RegistrationTableView2.hints.IdObj.name}"
+                                                               sortable="false" id="c2" width="255">
+                                                        <af:outputText value="#{row.IdObj}" id="ot13"/>
+                                                    </af:column>
+                                                      
+                                                    <af:column headerText="#{bindings.RegistrationTableView2.hints.Id.label}"
+                                                               sortProperty="#{bindings.RegistrationTableView2.hints.Id.name}"
+                                                               sortable="false" id="c4" visible="false">
+                                                        <af:outputText value="#{row.Id}" id="ot15"/>
+                                                    </af:column>
+                                                     
+                                                    <af:column headerText="#{bindings.RegistrationTableView2.hints.IdTable.label}"
+                                                               sortProperty="#{bindings.RegistrationTableView2.hints.IdTable.name}"
+                                                               sortable="false" id="c5" width="155">
+                                                        <af:selectOneChoice value="#{row.bindings.IdTable.inputValue}"
+                                                                            label="#{row.bindings.IdTable.label}"
+                                                                            required="#{bindings.RegistrationTableView2.hints.IdTable.mandatory}"
+                                                                            shortDesc="#{bindings.RegistrationTableView2.hints.IdTable.tooltip}"
+                                                                            readOnly="true" id="soc1">
+                                                            <f:selectItems value="#{row.bindings.IdTable.items}"
+                                                                           id="si1"/>
+                                                        </af:selectOneChoice>
+                                                    </af:column>
+                                                     
+                                                    <af:column headerText="#{bindings.RegistrationTableView2.hints.IdRec.label}"
+                                                               sortProperty="#{bindings.RegistrationTableView2.hints.IdRec.name}"
+                                                               sortable="false" id="c6" width="105">
+                                                        <af:outputText value="#{row.IdRec}" id="ot16"/>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.RegistrationTableView2.hints.Messnum.label}"
+                                                               sortProperty="#{bindings.RegistrationTableView2.hints.Messnum.name}"
+                                                               sortable="false" id="c3" width="107">
+                                                        <af:outputText value="#{row.Messnum}" id="ot14"/>
+                                                    </af:column>
+                                                </af:table>
+                                            </af:panelCollection>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:panelHeader>
+                            </af:panelGroupLayout>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="Таблицы обмена" id="sdi2">
+                            <af:panelGroupLayout id="pgl3" layout="vertical">
+                                <af:panelHeader text="Определения" id="ph3">
+                                    <f:facet name="context"/>
+                                    <f:facet name="menuBar"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="legend"/>
+                                    <f:facet name="info"/>
+                                    <af:panelCollection id="pc2" inlineStyle="width:auto; height:238px;">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t4">
+                                                <af:commandToolbarButton actionListener="#{bindings.Commit.execute}"
+                                                                         text="Сохранить"
+                                                                         disabled="#{!bindings.Commit.enabled}"
+                                                                         id="ctb4"/>
+                                                <af:commandToolbarButton actionListener="#{bindings.Rollback.execute}"
+                                                                         text="Отменить"
+                                                                         disabled="#{!bindings.Rollback.enabled}"
+                                                                         immediate="true" id="ctb5">
+                                                    <af:resetActionListener/>
+                                                </af:commandToolbarButton>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.CatalogMetaTablesView1.collectionModel}" var="row"
+                                                  rows="#{bindings.CatalogMetaTablesView1.rangeSize}"
+                                                  emptyText="#{bindings.CatalogMetaTablesView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  fetchSize="#{bindings.CatalogMetaTablesView1.rangeSize}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.CatalogMetaTablesView1.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.CatalogMetaTablesView1.collectionModel.makeCurrent}"
+                                                  rowSelection="single" id="t3" editingMode="clickToEdit"
+                                                  columnSelection="single">
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.Id.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.Id.label}"
+                                                       id="c7" width="50"
+                                                       inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.Id.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.Id.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.Id.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.Id.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.Id.tooltip}"
+                                                              id="it2" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.Id.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.MainName.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.MainName.label}"
+                                                       id="c8" width="200"
+                                                       inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.MainName.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.MainName.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.MainName.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.MainName.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.MainName.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.MainName.tooltip}"
+                                                              id="it3">
+                                                    <f:validator binding="#{row.bindings.MainName.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.ThisName.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.ThisName.label}"
+                                                       id="c9" width="200"
+                                                       inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.ThisName.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.ThisName.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.ThisName.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.ThisName.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.ThisName.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.ThisName.tooltip}"
+                                                              id="it4">
+                                                    <f:validator binding="#{row.bindings.ThisName.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.Ordr.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.Ordr.label}"
+                                                       id="c10" width="50"
+                                                       inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.Ordr.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.Ordr.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.Ordr.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.Ordr.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.Ordr.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.Ordr.tooltip}"
+                                                              id="it5">
+                                                    <f:validator binding="#{row.bindings.Ordr.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.XmlStr.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.XmlStr.label}"
+                                                       id="c11" width="300"
+                                                       inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.XmlStr.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.XmlStr.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.XmlStr.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.XmlStr.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.XmlStr.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.XmlStr.tooltip}"
+                                                              id="it6">
+                                                    <f:validator binding="#{row.bindings.XmlStr.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.MasterKey.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.MasterKey.label}"
+                                                       id="c12" inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.MasterKey.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.MasterKey.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.MasterKey.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.MasterKey.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.MasterKey.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.MasterKey.tooltip}"
+                                                              id="it7">
+                                                    <f:validator binding="#{row.bindings.MasterKey.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.MasterFld.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.MasterFld.label}"
+                                                       id="c13" inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.MasterFld.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.MasterFld.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.MasterFld.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.MasterFld.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.MasterFld.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.MasterFld.tooltip}"
+                                                              id="it8">
+                                                    <f:validator binding="#{row.bindings.MasterFld.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.CatalogMetaTablesView1.hints.Category.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.CatalogMetaTablesView1.hints.Category.label}"
+                                                       id="c14" inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                <af:inputText value="#{row.bindings.Category.inputValue}"
+                                                              label="#{bindings.CatalogMetaTablesView1.hints.Category.label}"
+                                                              required="#{bindings.CatalogMetaTablesView1.hints.Category.mandatory}"
+                                                              columns="#{bindings.CatalogMetaTablesView1.hints.Category.displayWidth}"
+                                                              maximumLength="#{bindings.CatalogMetaTablesView1.hints.Category.precision}"
+                                                              shortDesc="#{bindings.CatalogMetaTablesView1.hints.Category.tooltip}"
+                                                              id="it9">
+                                                    <f:validator binding="#{row.bindings.Category.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </af:panelHeader>
+                            </af:panelGroupLayout>
+                            <af:panelDashboard id="pd1" inlineStyle="width:auto;" rowHeight="210px">
+                                <af:panelBox text="Insert statement" id="pb1">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t5">
+                                            <af:commandToolbarButton text="Редактировать" id="ctbEditInsSQL" selected="false">
+                                                <af:showPopupBehavior popupId="::pInsSql" align="afterEnd"/>
+                                            </af:commandToolbarButton>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:inputText value="#{bindings.InsSql.inputValue}" simple="true"
+                                                  required="#{bindings.InsSql.hints.mandatory}"
+                                                  columns="#{bindings.InsSql.hints.displayWidth}"
+                                                  maximumLength="#{bindings.InsSql.hints.precision}"
+                                                  shortDesc="#{bindings.InsSql.hints.tooltip}" id="it10" rows="11"
+                                                  styleClass="AFStretchWidth" readOnly="true">
+                                        <f:validator binding="#{bindings.InsSql.validator}"/>
+                                    </af:inputText>
+                                </af:panelBox>
+                                <af:panelBox text="Update statement" id="pb2">
+                                    <f:facet name="toolbar"/>
+                                    <af:inputText value="#{bindings.UpdSql.inputValue}" simple="true"
+                                                  required="#{bindings.UpdSql.hints.mandatory}"
+                                                  columns="#{bindings.UpdSql.hints.displayWidth}"
+                                                  maximumLength="#{bindings.UpdSql.hints.precision}"
+                                                  shortDesc="#{bindings.UpdSql.hints.tooltip}" id="it11" rows="11" styleClass="AFStretchWidth"
+                                                  readOnly="true">
+                                        <f:validator binding="#{bindings.UpdSql.validator}"/>
+                                    </af:inputText>
+                                </af:panelBox>
+                                <af:panelBox text="XML statement" id="pb3">
+                                    <f:facet name="toolbar"/>
+                                    <af:inputText value="#{bindings.XmlStr.inputValue}" simple="true"
+                                                  required="#{bindings.XmlStr.hints.mandatory}"
+                                                  columns="#{bindings.XmlStr.hints.displayWidth}"
+                                                  maximumLength="#{bindings.XmlStr.hints.precision}"
+                                                  shortDesc="#{bindings.XmlStr.hints.tooltip}" id="it12" rows="11" styleClass="AFStretchWidth"
+                                                  readOnly="true">
+                                        <f:validator binding="#{bindings.XmlStr.validator}"/>
+                                    </af:inputText>
+                                </af:panelBox>
+                            </af:panelDashboard>
+                        </af:showDetailItem>
+                    </af:panelTabbed>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pInsSql" contentDelivery="lazyUncached">
+                <af:dialog id="d3" title="Insert SQL">
+                    <f:facet name="buttonBar"/>
+                    <af:inputText value="#{bindings.InsSql.inputValue}" label="#{bindings.InsSql.hints.label}"
+                                  required="#{bindings.InsSql.hints.mandatory}"
+                                  columns="#{bindings.InsSql.hints.displayWidth}"
+                                  shortDesc="#{bindings.InsSql.hints.tooltip}" id="it13" simple="true" rows="20"
+                                  contentStyle="width:600px;">
+                        <f:validator binding="#{bindings.InsSql.validator}"/>
+                    </af:inputText>
+                </af:dialog>
+            </af:popup>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="tab_partPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DostavkaTabPartOrdersView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="DostavkaTabPartOrdersView2Iterator"/>
+    <iterator Binds="VwUdevordersView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="VwUdevordersView1Iterator"/>
+    <searchRegion Binds="VwUdevordersView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="VwUdevordersView1Query"/>
+    <iterator Binds="DostavkaView1" RangeSize="10" DataControl="AppModuleDataControl" id="DostavkaView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DostavkaTabPartOrdersView2Iterator" id="DostavkaTabPartOrdersView2">
+      <nodeDefinition DefName="falcon.view.DostavkaTabPartOrdersView" Name="DostavkaTabPartOrdersView20">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="Summa"/>
+          <Item Value="DopSumma"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VwUdevordersView1Iterator" id="VwUdevordersView1">
+      <nodeDefinition DefName="falcon.view.VwUdevordersView" Name="VwUdevordersView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Num"/>
+          <Item Value="Dat"/>
+          <Item Value="Kontrag"/>
+          <Item Value="UserS"/>
+          <Item Value="Division"/>
+          <Item Value="Val"/>
+          <Item Value="Summa"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

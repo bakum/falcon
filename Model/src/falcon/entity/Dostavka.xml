@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Dostavka"
+  Version="11.1.2.62.94"
+  DBObjectType="table"
+  DBObjectName="DOSTAVKA"
+  AliasName="Dostavka"
+  BindingStyle="OracleName"
+  UseGlueCode="false"
+  RowClass="falcon.entity.DostavkaImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    Precision="10"
+    Scale="0"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.DBSequence"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"
+    PrimaryKey="true"
+    IsUpdateable="while_insert"
+    DefaultValue="@0"
+    Domain="oracle.jbo.domain.DBSequence"
+    RetrievedOnInsert="true"/>
+  <Attribute
+    Name="SyncStr"
+    IsUnique="true"
+    Precision="150"
+    ColumnName="SYNC_STR"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DOSTAVKA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="IdBase"
+    IsNotNull="true"
+    Precision="10"
+    Scale="0"
+    ColumnName="ID_BASE"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA">
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
+    <TransientExpression><![CDATA[21]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.Dostavka.IdBase_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.Dostavka.IdBase_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="10"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="SyncKey"
+    Precision="10"
+    Scale="0"
+    ColumnName="SYNC_KEY"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="Dat"
+    IsNotNull="true"
+    ColumnName="DAT"
+    SQLType="DATE"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="DATE"
+    TableName="DOSTAVKA">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.Dostavka.Dat_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.Dostavka.Dat_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Num"
+    Precision="50"
+    ColumnName="NUM"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DOSTAVKA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.Dostavka.Num_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.Dostavka.Num_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Deleted"
+    Precision="10"
+    Scale="0"
+    ColumnName="DELETED"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="Posted"
+    Precision="10"
+    Scale="0"
+    ColumnName="POSTED"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="OrganisationRef"
+    Precision="50"
+    ColumnName="ORGANISATION_REF"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DOSTAVKA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UserId"
+    Precision="10"
+    Scale="0"
+    ColumnName="USER_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="DivisionId"
+    Precision="10"
+    Scale="0"
+    ColumnName="DIVISION_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="Summa"
+    IsNotNull="true"
+    Precision="38"
+    Scale="2"
+    ColumnName="SUMMA"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.Dostavka.Summa_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.Dostavka.Summa_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Comments"
+    Precision="255"
+    ColumnName="COMMENTS"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DOSTAVKA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="255"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.Dostavka.Comments_LABEL"/>
+        <DISPLAYWIDTH
+          Value="100"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="CurrId"
+    Precision="10"
+    Scale="0"
+    ColumnName="CURR_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="Kurs"
+    Precision="38"
+    Scale="2"
+    ColumnName="KURS"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="Krantost"
+    Precision="10"
+    Scale="0"
+    ColumnName="KRANTOST"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="DOSTAVKA"/>
+  <Attribute
+    Name="Version"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="DOSTAVKA"/>
+  <AccessorAttribute
+    Name="BaseOfClassification"
+    Association="falcon.entity.DostavkaBaseOfClassifiFk1Assoc"
+    AssociationEnd="falcon.entity.DostavkaBaseOfClassifiFk1Assoc.BaseOfClassification"
+    AssociationOtherEnd="falcon.entity.DostavkaBaseOfClassifiFk1Assoc.Dostavka"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Currency"
+    Association="falcon.entity.DostavkaCurrencyFk1Assoc"
+    AssociationEnd="falcon.entity.DostavkaCurrencyFk1Assoc.Currency"
+    AssociationOtherEnd="falcon.entity.DostavkaCurrencyFk1Assoc.Dostavka"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Divisions"
+    Association="falcon.entity.DostavkaDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.DostavkaDivisionsFk1Assoc.Divisions"
+    AssociationOtherEnd="falcon.entity.DostavkaDivisionsFk1Assoc.Dostavka"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="DostavkaTabPartOrders"
+    Association="falcon.entity.DostavkaTabPartOrdersFk1Assoc"
+    AssociationEnd="falcon.entity.DostavkaTabPartOrdersFk1Assoc.DostavkaTabPartOrders"
+    AssociationOtherEnd="falcon.entity.DostavkaTabPartOrdersFk1Assoc.Dostavka"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Users"
+    Association="falcon.entity.DostavkaUsersFk1Assoc"
+    AssociationEnd="falcon.entity.DostavkaUsersFk1Assoc.Users"
+    AssociationOtherEnd="falcon.entity.DostavkaUsersFk1Assoc.Dostavka"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="DostavkaPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DOSTAVKA_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Dostavka.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DostavkaUk1">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DOSTAVKA_UK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Dostavka.SyncStr"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DostavkaBaseOfClassifiFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="BASE_OF_CLASSIFICATION_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DOSTAVKA_BASE_OF_CLASSIFI_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Dostavka.IdBase"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DostavkaCurrencyFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="CURRENCY_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DOSTAVKA_CURRENCY_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Dostavka.CurrId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DostavkaDivisionsFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="DIVISIONS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DOSTAVKA_DIVISIONS_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Dostavka.DivisionId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DostavkaUsersFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="USERS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DOSTAVKA_USERS_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Dostavka.UserId"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

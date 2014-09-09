@@ -1,0 +1,123 @@
+<wsdl:definitions
+     name="FalconService"
+     targetNamespace="/falcon/app_module/common/"
+     xmlns:errors="http://xmlns.oracle.com/adf/svc/errors/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="/falcon/app_module/common/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:types="/falcon/app_module/common/types/"
+    >
+    <wsdl:import namespace="http://xmlns.oracle.com/adf/svc/errors/" location="classpath:/META-INF/wsdl/ServiceException.wsdl"/>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="/falcon/app_module/common/types/" schemaLocation="FalconService.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="FalconService_getVwOrderView1">
+        <wsdl:part name="parameters" element="types:getVwOrderView1"/>
+    </wsdl:message>
+    <wsdl:message name="FalconService_getVwOrderView1Response">
+        <wsdl:part name="parameters" element="types:getVwOrderView1Response"/>
+    </wsdl:message>
+    <wsdl:message name="FalconService_updateVwOrderView1">
+        <wsdl:part name="parameters" element="types:updateVwOrderView1"/>
+    </wsdl:message>
+    <wsdl:message name="FalconService_updateVwOrderView1Response">
+        <wsdl:part name="parameters" element="types:updateVwOrderView1Response"/>
+    </wsdl:message>
+    <wsdl:message name="FalconService_createVwOrderView1">
+        <wsdl:part name="parameters" element="types:createVwOrderView1"/>
+    </wsdl:message>
+    <wsdl:message name="FalconService_createVwOrderView1Response">
+        <wsdl:part name="parameters" element="types:createVwOrderView1Response"/>
+    </wsdl:message>
+    <wsdl:message name="FalconService_findVwOrderView1">
+        <wsdl:part name="parameters" element="types:findVwOrderView1"/>
+    </wsdl:message>
+    <wsdl:message name="FalconService_findVwOrderView1Response">
+        <wsdl:part name="parameters" element="types:findVwOrderView1Response"/>
+    </wsdl:message>
+    <wsdl:portType name="FalconService">
+        <wsdl:documentation>
+            <ViewInstance xmlns="http://xmlns.oracle.com/adf/svc/metadata/" Name="VwOrderView1" xmlns:ns0="/falcon/view/common/"
+                 SDOName="ns0:VwOrderViewSDO" CreateOpName="createVwOrderView1" UpdateOpName="updateVwOrderView1"
+                 GetOpName="getVwOrderView1" FindOpName="findVwOrderView1"/>
+        </wsdl:documentation>
+        <wsdl:operation name="getVwOrderView1">
+            <wsdl:input message="tns:FalconService_getVwOrderView1"/>
+            <wsdl:output message="tns:FalconService_getVwOrderView1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateVwOrderView1">
+            <wsdl:input message="tns:FalconService_updateVwOrderView1"/>
+            <wsdl:output message="tns:FalconService_updateVwOrderView1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createVwOrderView1">
+            <wsdl:input message="tns:FalconService_createVwOrderView1"/>
+            <wsdl:output message="tns:FalconService_createVwOrderView1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="findVwOrderView1">
+            <wsdl:input message="tns:FalconService_findVwOrderView1"/>
+            <wsdl:output message="tns:FalconService_findVwOrderView1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="FalconServiceSoapHttp" type="tns:FalconService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getVwOrderView1">
+            <soap:operation soapAction="/falcon/app_module/common/getVwOrderView1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateVwOrderView1">
+            <soap:operation soapAction="/falcon/app_module/common/updateVwOrderView1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createVwOrderView1">
+            <soap:operation soapAction="/falcon/app_module/common/createVwOrderView1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findVwOrderView1">
+            <soap:operation soapAction="/falcon/app_module/common/findVwOrderView1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="FalconService">
+        <wsdl:port name="FalconServiceSoapHttpPort" binding="tns:FalconServiceSoapHttp">
+            <soap:address location="http://localhost:7101/falcon_app-Model-context-root/FalconService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

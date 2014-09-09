@@ -1,0 +1,46 @@
+<xsd:schema xmlns:sdoJava="commonj.sdo/java" xmlns:ns0="http://xmlns.oracle.com/adf/svc/types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:sdoXML="commonj.sdo/xml" targetNamespace="/falcon/view/common/" xmlns="/falcon/view/common/"
+     elementFormDefault="qualified" sdoJava:package="falcon.view.common">
+    <xsd:import schemaLocation="classpath:/META-INF/wsdl/BC4JService.xsd" namespace="http://xmlns.oracle.com/adf/svc/types/"/>
+    <xsd:import schemaLocation="classpath:/xml/sdoJava.xsd" namespace="commonj.sdo/java"/>
+    <xsd:import schemaLocation="classpath:/xml/sdoXML.xsd" namespace="commonj.sdo/xml"/>
+    <xsd:complexType name="VwOrderViewSDO">
+        <xsd:annotation>
+            <xsd:appinfo source="http://xmlns.oracle.com/adf/svc/metadata/">
+                <key xmlns="http://xmlns.oracle.com/adf/svc/metadata/">
+                    <attribute>Id</attribute>
+                </key>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Id" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="Num" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Dat" type="ns0:dateTime-Timestamp" minOccurs="0"/>
+            <xsd:element name="Kontrag" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="UserS" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="Division" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="Kassa" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="Kredit" type="xsd:int" minOccurs="0" sdoXML:dataType="sdoJava:IntObject"/>
+            <xsd:element name="Metrag" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="Summa" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="ZakSumm" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="DolgKlienta" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Zamer" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Konsult" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Montag" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Dostavka" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Bank" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="KonsultName" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="MontagName" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="ZamerName" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="Returned" type="xsd:int" minOccurs="0" nillable="true"/>
+            <xsd:element name="KonsulrId" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="MontagId" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="ZamerId" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="Total_Cost" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Total_Summa" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="KreditBoolean" type="xsd:boolean" minOccurs="0" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="vwOrderViewSDO" type="VwOrderViewSDO"/>
+</xsd:schema>

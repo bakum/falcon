@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="FormPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VwOrderView1" RangeSize="25" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
+  </executables>
+  <bindings>
+    <table ColumnSort="entireCollection" IterBinding="VwOrderView1Iterator" id="VwOrderView1"
+           xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Id"/>
+        <Item Value="Num"/>
+        <Item Value="Dat"/>
+        <Item Value="Kontrag"/>
+        <Item Value="UserS"/>
+        <Item Value="Division"/>
+        <Item Value="Kassa"/>
+        <Item Value="Kredit"/>
+        <Item Value="Metrag"/>
+        <Item Value="Summa"/>
+        <Item Value="ZakSumm"/>
+        <Item Value="DolgKlienta"/>
+        <Item Value="Zamer"/>
+        <Item Value="Konsult"/>
+        <Item Value="Montag"/>
+        <Item Value="Dostavka"/>
+        <Item Value="Bank"/>
+        <Item Value="KreditBoolean"/>
+        <Item Value="Total_Cost"/>
+      </AttrNames>
+    </table>
+  </bindings>
+</pageDefinition>

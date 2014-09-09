@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwTurnoverWeekView"
+  Version="11.1.2.62.94"
+  SelectList="VwTurnoverWeek.ID, 
+       VwTurnoverWeek.COMMENTS, 
+       VwTurnoverWeek.VALUTA, 
+       VwTurnoverWeek.SUMMA"
+  FromList="DBA_FALCON.VW_TURNOVER_WEEK VwTurnoverWeek"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="VwTurnoverWeek"
+    Entity="model.entity.VwTurnoverWeek"/>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="VwTurnoverWeek"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Comments"
+    PrecisionRule="true"
+    EntityAttrName="Comments"
+    EntityUsage="VwTurnoverWeek"
+    AliasName="COMMENTS"/>
+  <ViewAttribute
+    Name="Valuta"
+    PrecisionRule="true"
+    EntityAttrName="Valuta"
+    EntityUsage="VwTurnoverWeek"
+    AliasName="VALUTA"/>
+  <ViewAttribute
+    Name="Summa"
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="VwTurnoverWeek"
+    AliasName="SUMMA"/>
+</ViewObject>

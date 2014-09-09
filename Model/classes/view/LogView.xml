@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LogView"
+  Version="11.1.2.62.94"
+  SelectList="Log.ID, 
+       Log.LOGMESSAGE, 
+       Log.LOGLEVEL, 
+       Log.LOGTIME, 
+       Log.STACK, 
+       Log.REQUEST"
+  FromList="LOG Log"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="Log"
+    Entity="model.entity.Log"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Log"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Logmessage"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="Logmessage"
+    EntityUsage="Log"
+    AliasName="LOGMESSAGE"/>
+  <ViewAttribute
+    Name="Loglevel"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Loglevel"
+    EntityUsage="Log"
+    AliasName="LOGLEVEL"/>
+  <ViewAttribute
+    Name="Logtime"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Logtime"
+    EntityUsage="Log"
+    AliasName="LOGTIME"/>
+  <ViewAttribute
+    Name="Stack"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="Stack"
+    EntityUsage="Log"
+    AliasName="STACK"/>
+  <ViewAttribute
+    Name="Request"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="Request"
+    EntityUsage="Log"
+    AliasName="REQUEST"/>
+</ViewObject>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwUdevordersView"
+  Version="11.1.2.62.98"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  ComponentClass="falcon.view.VwUdevordersViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.object.viewObject.u_name]]></TransientExpression>
+  </Variable>
+  <SQLQuery><![CDATA[SELECT VwUdevorders.ID, 
+       VwUdevorders.NUM, 
+       VwUdevorders.DAT, 
+       VwUdevorders.KONTRAG, 
+       VwUdevorders.USER_S, 
+       VwUdevorders.DIVISION, 
+       VwUdevorders.VAL, 
+       VwUdevorders.SUMMA
+FROM DBA_FALCON.VW_UDEVORDERS VwUdevorders
+WHERE upper(user_s) in (select u_name from table(cast(get_users(:u_name) as userTable))) and
+upper(division) in (select u_name from table(cast(get_divisions(:u_name) as divisionTable)))]]></SQLQuery>
+  <EntityUsage
+    Name="VwUdevorders"
+    Entity="falcon.entity.VwUdevorders"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="VwUdevorders"
+    AliasName="ID"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="Num"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Num"
+    EntityUsage="VwUdevorders"
+    AliasName="NUM"/>
+  <ViewAttribute
+    Name="Dat"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Dat"
+    EntityUsage="VwUdevorders"
+    AliasName="DAT"/>
+  <ViewAttribute
+    Name="Kontrag"
+    PrecisionRule="true"
+    EntityAttrName="Kontrag"
+    EntityUsage="VwUdevorders"
+    AliasName="KONTRAG"/>
+  <ViewAttribute
+    Name="UserS"
+    PrecisionRule="true"
+    EntityAttrName="UserS"
+    EntityUsage="VwUdevorders"
+    AliasName="USER_S"/>
+  <ViewAttribute
+    Name="Division"
+    PrecisionRule="true"
+    EntityAttrName="Division"
+    EntityUsage="VwUdevorders"
+    AliasName="DIVISION"/>
+  <ViewAttribute
+    Name="Val"
+    PrecisionRule="true"
+    EntityAttrName="Val"
+    EntityUsage="VwUdevorders"
+    AliasName="VAL"/>
+  <ViewAttribute
+    Name="Summa"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="VwUdevorders"
+    AliasName="SUMMA"/>
+</ViewObject>

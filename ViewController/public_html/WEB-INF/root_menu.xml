@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <itemNode id="itemNode_home" label="Главная" action="goHome" focusViewId="/index">
+    <sharedNode ref="#{orders_menu}"/>
+    <itemNode id="itemNode_zatraty" label="Затраты" action="goZatraty" focusViewId="/zatraty"/>
+    <sharedNode ref="#{rep_menu}"/>
+  </itemNode>
+  <sharedNode ref="#{catalog_menu}"/>
+  <itemNode id="itemNode_preferences" label="Настройки" action="goPreferences" focusViewId="/preferences"
+            rendered="#{securityContext.userInRole['EnterpriseManager'] == false &amp;&amp; securityContext.userInRole['EnterpriseDirector'] == false}"/>
+</menu>

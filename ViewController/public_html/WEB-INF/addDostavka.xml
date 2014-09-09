@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="addDostavka">
+    <default-activity>startDostavka</default-activity>
+    <transaction>
+      <requires-transaction/>
+    </transaction>
+    <no-save-point/>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <managed-bean id="__6">
+      <managed-bean-name>DnDBean</managed-bean-name>
+      <managed-bean-class>view.DnDBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="startDostavka">
+      <page>/startDostavka.jsff</page>
+      <train-stop>
+        <display-name>Основные реквизиты</display-name>
+      </train-stop>
+    </view>
+    <view id="tab_part">
+      <page>/tab_part.jsff</page>
+      <train-stop>
+        <display-name>Табличная часть</display-name>
+      </train-stop>
+    </view>
+    <view id="summary_dostavka">
+      <page>/summary_dostavka.jsff</page>
+      <train-stop>
+        <display-name>Итог</display-name>
+      </train-stop>
+    </view>
+    <task-flow-return id="ok">
+      <outcome>
+        <name>ok</name>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="cancel">
+      <outcome>
+        <name>cancel</name>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <train/>
+    <control-flow-rule id="__3">
+      <from-activity-id>summary_dostavka</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>ok</from-outcome>
+        <to-activity-id>ok</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__5">
+        <from-outcome>cancel</from-outcome>
+        <to-activity-id>cancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

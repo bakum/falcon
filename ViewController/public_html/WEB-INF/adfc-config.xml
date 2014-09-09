@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <metadata-resource id="__7">/WEB-INF/adfc-orders.xml</metadata-resource>
+  <metadata-resource id="__11">/WEB-INF/adfc-catalog.xml</metadata-resource>
+  <metadata-resource id="__12">/WEB-INF/adfc-report.xml</metadata-resource>
+  <exception-handler>exeption</exception-handler>
+  <view id="index">
+    <page>/home.jsf</page>
+  </view>
+  <view id="zatraty">
+    <page>/zatraty.jsf</page>
+  </view>
+  <view id="preferences">
+    <page>/preferences.jsf</page>
+  </view>
+  <view id="exeption">
+    <page>/exeption.jsf</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id>*</from-activity-id>
+    <control-flow-case id="__2">
+      <from-outcome>goHome</from-outcome>
+      <to-activity-id>index</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__3">
+      <from-outcome>goZatraty</from-outcome>
+      <to-activity-id>zatraty</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__6">
+      <from-outcome>goPreferences</from-outcome>
+      <to-activity-id>preferences</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__4">
+    <description>Menu Model Managed Bean</description>
+    <managed-bean-name>root_menu</managed-bean-name>
+    <managed-bean-class>oracle.adf.view.rich.model.MDSMenuModel</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property id="__8">
+      <property-name>createHiddenNodes</property-name>
+      <value>false</value>
+    </managed-property>
+    <managed-property id="__9">
+      <property-name>source</property-name>
+      <property-class>java.lang.String</property-class>
+      <value>/WEB-INF/root_menu.xml</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__10">
+    <managed-bean-name>OtherBean</managed-bean-name>
+    <managed-bean-class>view.OtherBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__5">
+    <managed-bean-name>login</managed-bean-name>
+    <managed-bean-class>view.LoginBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__13">
+    <managed-bean-name>HomeBean</managed-bean-name>
+    <managed-bean-class>view.HomeManagedBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__14">
+    <managed-bean-name>pref</managed-bean-name>
+    <managed-bean-class>view.PreferBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__15">
+    <managed-bean-name>prefer_listen</managed-bean-name>
+    <managed-bean-class>view.Preferences</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__16">
+    <managed-bean-name>exeption</managed-bean-name>
+    <managed-bean-class>view.ExeptionBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__18">
+    <managed-bean-name>ses</managed-bean-name>
+    <managed-bean-class>view.SesBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

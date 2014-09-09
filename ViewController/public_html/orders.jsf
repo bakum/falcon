@@ -1,0 +1,998 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <af:document title="Falcon's store - Сделки" id="d1" uncommittedDataWarning="on">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" id="pt1" value="#{bindings.ptb1}">
+                <f:facet name="body">
+                    <af:panelSplitter id="ps1" splitterPosition="336" collapsed="true">
+                        <f:facet name="first"/>
+                        <f:facet name="second">
+                            <af:panelSplitter id="ps2" orientation="vertical" splitterPosition="200"
+                                              positionedFromEnd="true">
+                                <f:facet name="first">
+                                    <af:panelStretchLayout id="psl1">
+                                        <f:facet name="center">
+                                            <af:panelCollection id="pc1" featuresOff="formatMenu">
+                                                <f:facet name="menus">
+                                                    <af:menu text="Операции" id="m2">
+                                                        <af:commandMenuItem actionListener="#{bindings.Delete.execute}"
+                                                                            text="Удалить текущую сделку"
+                                                                            disabled="#{bindings.Commit.enabled}"
+                                                                            id="cmiDelete">
+                                                            <af:showPopupBehavior popupId=":::pDel"/>
+                                                        </af:commandMenuItem>
+                                                        <af:commandMenuItem text="Настройки пользователя" id="cmi1"
+                                                                            disabled="#{bindings.Commit.enabled}">
+                                                            <af:showPopupBehavior popupId=":::pSettings"/>
+                                                        </af:commandMenuItem>
+                                                    </af:menu>
+                                                </f:facet>
+                                                <f:facet name="toolbar">
+                                                    <af:toolbar id="t2">
+                                                        <af:commandButton actionListener="#{bindings.CreateInsert.execute}"
+                                                                          text="Новая сделка"
+                                                                          disabled="#{bindings.Commit.enabled}"
+                                                                          id="cb1"/>
+                                                        <af:commandButton actionListener="#{bindings.CreateInsert2.execute}"
+                                                                          text="Новая доставка"
+                                                                          disabled="#{bindings.Commit.enabled}"
+                                                                          id="cbInsertDostavka">
+                                                            <af:showPopupBehavior popupId=":::p2"/>
+                                                        </af:commandButton>
+                                                        <af:commandButton text="Сохранить"
+                                                                          disabled="#{!bindings.Commit.enabled}"
+                                                                          id="cb2" action="#{OrdrBean.commitOrder}"/>
+                                                        <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                                                                          text="Отменить"
+                                                                          disabled="#{!bindings.Rollback.enabled}"
+                                                                          immediate="true" id="cb3">
+                                                            <af:resetActionListener/>
+                                                        </af:commandButton>
+                                                        <af:commandButton text="Обновить" id="cb7"
+                                                                          action="#{OrdrBean.refreshOrders}"
+                                                                          disabled="#{bindings.Commit.enabled}"/>
+                                                    </af:toolbar>
+                                                </f:facet>
+                                                <f:facet name="statusbar"/>
+                                                <af:table value="#{bindings.VwOrderView1.collectionModel}" var="row"
+                                                          rows="#{bindings.VwOrderView1.rangeSize}"
+                                                          emptyText="#{bindings.VwOrderView1.viewable ? 'Данные для отображения отсутствуют.' : 'В доступе отказано.'}"
+                                                          fetchSize="#{bindings.VwOrderView1.rangeSize}"
+                                                          rowBandingInterval="0"
+                                                          filterModel="#{bindings.VwOrderView1Query.queryDescriptor}"
+                                                          filterVisible="true" varStatus="vs"
+                                                          selectedRowKeys="#{bindings.VwOrderView1.collectionModel.selectedRow}"
+                                                          selectionListener="#{bindings.VwOrderView1.collectionModel.makeCurrent}"
+                                                          id="t1" editingMode="clickToEdit"
+                                                          partialTriggers="::cmiDelete ::cb1" columnSelection="single"
+                                                          rowSelection="single"
+                                                          queryListener="#{ordr_quey.onTableQueryExecuted}"
+                                                          binding="#{ordr_quey.featureTable}">
+                                                    <af:column id="c37" width="35" filterable="true">
+                                                        <af:toolbar id="t7">
+                                                            <af:commandToolbarButton id="cbInsertOplata"
+                                                                                     icon="/images/pay.jpg"
+                                                                                     actionListener="#{bindings.CreateInsert1.execute}"
+                                                                                     disabled="#{bindings.Commit.enabled}">
+                                                                <af:showPopupBehavior popupId="::::p1"
+                                                                                      align="afterEnd"/>
+                                                            </af:commandToolbarButton>
+                                                        </af:toolbar>
+                                                        <f:facet name="filter">
+                                                            <af:group id="g2">
+                                                                <af:toolbar id="t9">
+                                                                    <af:commandToolbarButton id="ctb2"
+                                                                                             actionListener="#{ordr_quey.resetTableFilter}"
+                                                                                             icon="/images/refresh.png"
+                                                                                             shortDesc="Сбросить все фильтры"/>
+                                                                </af:toolbar>
+                                                            </af:group>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Id.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Id.label}"
+                                                               id="c1" visible="false"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.Id.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Id.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Id.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.Id.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.Id.tooltip}"
+                                                                      id="it1">
+                                                            <f:validator binding="#{row.bindings.Id.validator}"/>
+                                                        </af:inputText>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Dat.name}"
+                                                               sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Dat.label}"
+                                                               id="c3" width="130"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               filterable="true">
+                                                        <af:inputDate value="#{row.bindings.Dat.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.Dat.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Dat.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Dat.displayWidth}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.Dat.tooltip}"
+                                                                      id="id2">
+                                                            <f:validator binding="#{row.bindings.Dat.validator}"/>
+                                                            <af:convertDateTime pattern="#{bindings.VwOrderView1.hints.Dat.format}"/>
+                                                        </af:inputDate>
+                                                        <f:facet name="filter">
+                                                            <af:panelGroupLayout id="pgl14" layout="vertical">
+                                                                <af:panelLabelAndMessage label="От:" id="plam9">
+                                                                    <af:inputDate label="От" id="id1"
+                                                                                  value="#{vs.filterCriteria.f_dat}">
+                                                                        <af:convertDateTime pattern="#{bindings.VwOrderView1.hints.Dat.format}"/>
+                                                                        <f:validator binding="#{bindings.Dat.validator}"/>
+                                                                    </af:inputDate>
+                                                                    <f:facet name="end"/>
+                                                                </af:panelLabelAndMessage>
+                                                                <af:spacer width="5" height="5" id="s6"/>
+                                                                <af:panelLabelAndMessage label="До:" id="plam10">
+                                                                    <af:inputDate label="До" id="id5"
+                                                                                  value="#{vs.filterCriteria.l_dat}"
+                                                                                  autoSubmit="true">
+                                                                        <af:convertDateTime pattern="#{bindings.VwOrderView1.hints.Dat.format}"/>
+                                                                        <f:validator binding="#{bindings.Dat.validator}"/>
+                                                                    </af:inputDate>
+                                                                    <f:facet name="end"/>
+                                                                </af:panelLabelAndMessage>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <f:facet name="footer"/>
+                                                        <f:facet name="header"/>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.VwOrderView1.hints.Num.label}"
+                                                               id="c26"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               width="75"
+                                                               sortProperty="#{bindings.VwOrderView1.hints.Num.name}"
+                                                               sortable="true" filterable="true">
+                                                        <af:inputText value="#{row.bindings.Num.inputValue}" id="ot5"
+                                                                      label="#{bindings.VwOrderView1.hints.Num.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Num.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Num.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.Num.precision}">
+                                                            <f:validator binding="#{row.bindings.Num.validator}"/>
+                                                        </af:inputText>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Kontrag.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Kontrag.label}"
+                                                               id="c4" width="180"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:inputText value="#{row.bindings.Kontrag.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.Kontrag.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Kontrag.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Kontrag.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.Kontrag.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.Kontrag.tooltip}"
+                                                                      id="it3">
+                                                            <f:validator binding="#{row.bindings.Kontrag.validator}"/>
+                                                        </af:inputText>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.KreditBoolean.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.KreditBoolean.label}"
+                                                               id="c5" width="45"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:selectBooleanCheckbox value="#{row.bindings.KreditBoolean.inputValue}"
+                                                                                  label="#{row.bindings.KreditBoolean.label}"
+                                                                                  shortDesc="#{bindings.VwOrderView1.hints.KreditBoolean.tooltip}"
+                                                                                  id="sbc1"/>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Metrag.name}"
+                                                               filterable="false" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Metrag.label}"
+                                                               id="c6" width="60"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <af:inputText value="#{row.bindings.Metrag.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.Metrag.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Metrag.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Metrag.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.Metrag.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.Metrag.tooltip}"
+                                                                      id="it4">
+                                                            <f:validator binding="#{row.bindings.Metrag.validator}"/>
+                                                        </af:inputText>
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl15" layout="horizontal"
+                                                                                 halign="right">
+                                                                <af:outputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['Metrag']}"
+                                                                               id="ot13"
+                                                                               inlineStyle="font-weight:bold;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Summa.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Summa.label}"
+                                                               id="c7" width="60"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <af:inputText value="#{row.bindings.Summa.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.Summa.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Summa.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Summa.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.Summa.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.Summa.tooltip}"
+                                                                      id="it5">
+                                                            <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                                        </af:inputText>
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl2" halign="right"
+                                                                                 layout="horizontal"
+                                                                                 inlineStyle="font-weight:bold;">
+                                                                <af:inputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['Summa']}"
+                                                                              required="#{bindings.Summa.hints.mandatory}"
+                                                                              columns="#{bindings.Summa.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.Summa.hints.precision}"
+                                                                              shortDesc="#{bindings.Summa.hints.tooltip}"
+                                                                              id="it22" readOnly="true"
+                                                                              inlineStyle="font-weight:bold;">
+                                                                    <f:validator binding="#{bindings.Summa.validator}"/>
+                                                                </af:inputText>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.ZakSumm.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.ZakSumm.label}"
+                                                               id="c8" width="70"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl8" layout="horizontal"
+                                                                                 halign="right">
+                                                                <af:outputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['ZakSumm']}"
+                                                                               id="ot12"
+                                                                               inlineStyle="font-weight:bold;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <af:panelGroupLayout id="pgl9" halign="right"
+                                                                             layout="horizontal">
+                                                            <af:inputText value="#{row.bindings.ZakSumm.inputValue}"
+                                                                          label="#{bindings.VwOrderView1.hints.ZakSumm.label}"
+                                                                          required="#{bindings.VwOrderView1.hints.ZakSumm.mandatory}"
+                                                                          columns="#{bindings.VwOrderView1.hints.ZakSumm.displayWidth}"
+                                                                          maximumLength="#{bindings.VwOrderView1.hints.ZakSumm.precision}"
+                                                                          shortDesc="#{bindings.VwOrderView1.hints.ZakSumm.tooltip}"
+                                                                          id="it6"
+                                                                          visible="#{row.bindings.ZakSumm.attributeValue&lt;=0 ? false : true}">
+                                                                <f:validator binding="#{row.bindings.ZakSumm.validator}"/>
+                                                            </af:inputText>
+                                                            <af:spacer width="10" height="10" id="s1"/>
+                                                            <af:commandButton text="#{row.bindings.ZakSumm.inputValue}"
+                                                                              id="cbZakSumm"
+                                                                              inlineStyle="#{row.bindings.ZakSumm.inputValue &lt; 0 ? 'width:60px;color:red' : 'width:60px;color:green'}"
+                                                                              disabled="#{row.bindings.ZakSumm.attributeValue&lt;0 ? false : true}"
+                                                                              visible="#{empty row.bindings.ZakSumm.attributeValue ? false : true}">
+                                                                <af:showPopupBehavior align="afterEnd"
+                                                                                      popupId="::::pZakSumm"/>
+                                                            </af:commandButton>
+                                                        </af:panelGroupLayout>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Total_Cost.name}"
+                                                               sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Total_Cost.label}"
+                                                               id="c2" width="100" visible="false">
+                                                        <af:outputText value="#{row.Total_Cost}" id="ot4">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.VwOrderView1.hints.Total_Cost.format}"/>
+                                                        </af:outputText>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.DolgKlienta.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.DolgKlienta.label}"
+                                                               id="c9" width="60"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="center">
+                                                        <af:inputText value="#{row.bindings.DolgKlienta.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.DolgKlienta.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.DolgKlienta.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.DolgKlienta.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.DolgKlienta.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.DolgKlienta.tooltip}"
+                                                                      id="it7"
+                                                                      inlineStyle="#{row.bindings.DolgKlienta.inputValue &lt; 0 ? 'color:red' : 'color:black'}">
+                                                            <f:validator binding="#{row.bindings.DolgKlienta.validator}"/>
+                                                        </af:inputText>
+                                                        <f:facet name="footer">
+                                                            <af:group id="g1">
+                                                                <af:panelGroupLayout id="pgl1" halign="right"
+                                                                                     layout="horizontal">
+                                                                    <af:inputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['DolgKlienta']}"
+                                                                                  simple="true"
+                                                                                  required="#{bindings.Dolg.hints.mandatory}"
+                                                                                  columns="#{bindings.Dolg.hints.displayWidth}"
+                                                                                  maximumLength="#{bindings.Dolg.hints.precision}"
+                                                                                  shortDesc="#{bindings.Dolg.hints.tooltip}"
+                                                                                  id="it21" readOnly="true"
+                                                                                  label="#{bindings.Dolg.hints.label}"
+                                                                                  inlineStyle="font-weight:bold;">
+                                                                        <f:validator binding="#{bindings.Dolg.validator}"/>
+                                                                    </af:inputText>
+                                                                </af:panelGroupLayout>
+                                                            </af:group>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Zamer.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Zamer.label}"
+                                                               id="c10" width="70"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl3" layout="horizontal"
+                                                                                 halign="right">
+                                                                <af:outputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['Zamer']}"
+                                                                               id="ot7"
+                                                                               inlineStyle="font-weight:bold;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <af:panelGroupLayout id="pgl11" layout="horizontal">
+                                                            <af:inputText value="#{row.bindings.Zamer.inputValue}"
+                                                                          label="#{bindings.VwOrderView1.hints.Zamer.label}"
+                                                                          required="#{bindings.VwOrderView1.hints.Zamer.mandatory}"
+                                                                          columns="#{bindings.VwOrderView1.hints.Zamer.displayWidth}"
+                                                                          maximumLength="#{bindings.VwOrderView1.hints.Zamer.precision}"
+                                                                          shortDesc="#{bindings.VwOrderView1.hints.Zamer.tooltip}"
+                                                                          id="it9"
+                                                                          visible="#{row.bindings.Zamer.attributeValue&lt;=0 ? false : true}">
+                                                                <f:validator binding="#{row.bindings.Zamer.validator}"/>
+                                                            </af:inputText>
+                                                            <af:spacer width="10" height="10" id="s3"/>
+                                                            <af:commandButton text="#{row.bindings.Zamer.inputValue}"
+                                                                              id="cb9"
+                                                                              inlineStyle="#{row.bindings.Zamer.inputValue &lt; 0 ? 'width:60px;color:red' : 'width:60px;color:green'}"
+                                                                              disabled="#{row.bindings.Zamer.inputValue&lt;0 ? false : true}"
+                                                                              visible="#{empty row.bindings.Zamer.attributeValue ? false : true}">
+                                                                <af:showPopupBehavior popupId="::::pZamer"
+                                                                                      align="afterEnd"/>
+                                                            </af:commandButton>
+                                                        </af:panelGroupLayout>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.VwOrderView1.hints.ZamerId.label}"
+                                                               id="c39"
+                                                               sortProperty="#{bindings.VwOrderView1.hints.ZamerId.name}"
+                                                               sortable="true" filterable="true" width="110"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:selectOneChoice value="#{row.bindings.ZamerId.inputValue}"
+                                                                            label="#{row.bindings.ZamerId.label}"
+                                                                            required="#{bindings.VwOrderView1.hints.ZamerId.mandatory}"
+                                                                            shortDesc="#{bindings.VwOrderView1.hints.ZamerId.tooltip}"
+                                                                            id="soc13">
+                                                            <f:selectItems value="#{row.bindings.ZamerId.items}"
+                                                                           id="si17"/>
+                                                        </af:selectOneChoice>
+                                                        <f:facet name="filter">
+                                                            <af:selectOneChoice id="soc14"
+                                                                                value="#{vs.filterCriteria.ZamerId}"
+                                                                                autoSubmit="true" label="Имя замерщика">
+                                                                <f:selectItem itemValue="" itemLabel="" id="si18"/>
+                                                                <af:forEach var="listrow"
+                                                                            items="#{bindings.ZamerNameViewActive1.rangeSet}">
+                                                                    <f:selectItem id="si19" itemLabel="#{listrow.Name}"
+                                                                                  itemValue="#{listrow.Id}"/>
+                                                                </af:forEach>
+                                                            </af:selectOneChoice>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Konsult.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Konsult.label}"
+                                                               id="c11" width="70"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                                                                 halign="right">
+                                                                <af:outputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['Konsult']}"
+                                                                               id="ot8"
+                                                                               inlineStyle="font-weight:bold;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <af:panelGroupLayout id="pgl12" layout="horizontal">
+                                                            <af:inputText value="#{row.bindings.Konsult.inputValue}"
+                                                                          label="#{bindings.VwOrderView1.hints.Konsult.label}"
+                                                                          required="#{bindings.VwOrderView1.hints.Konsult.mandatory}"
+                                                                          columns="#{bindings.VwOrderView1.hints.Konsult.displayWidth}"
+                                                                          maximumLength="#{bindings.VwOrderView1.hints.Konsult.precision}"
+                                                                          shortDesc="#{bindings.VwOrderView1.hints.Konsult.tooltip}"
+                                                                          id="it10"
+                                                                          visible="#{row.bindings.Konsult.attributeValue&lt;=0 ? false : true}">
+                                                                <f:validator binding="#{row.bindings.Konsult.validator}"/>
+                                                            </af:inputText>
+                                                            <af:spacer width="10" height="10" id="s4"/>
+                                                            <af:commandButton text="#{row.bindings.Konsult.inputValue}"
+                                                                              id="cb11"
+                                                                              inlineStyle="#{row.bindings.Konsult.inputValue &lt; 0 ? 'width:60px;color:red' : 'width:60px;color:green'}"
+                                                                              disabled="#{row.bindings.Konsult.attributeValue&lt;0 ? false : true}"
+                                                                              visible="#{empty row.bindings.Konsult.attributeValue ? false : true}">
+                                                                <af:showPopupBehavior popupId="::::pKonsult"
+                                                                                      align="afterEnd"/>
+                                                            </af:commandButton>
+                                                        </af:panelGroupLayout>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.VwOrderView1.hints.KonsulrId.label}"
+                                                               id="c40" width="110"
+                                                               sortProperty="#{bindings.VwOrderView1.hints.KonsulrId.name}"
+                                                               sortable="true" filterable="true"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:selectOneChoice value="#{row.bindings.KonsulrId.inputValue}"
+                                                                            label="#{row.bindings.KonsulrId.label}"
+                                                                            required="#{bindings.VwOrderView1.hints.KonsulrId.mandatory}"
+                                                                            shortDesc="#{bindings.VwOrderView1.hints.KonsulrId.tooltip}"
+                                                                            id="soc15">
+                                                            <f:selectItems value="#{row.bindings.KonsulrId.items}"
+                                                                           id="si20"/>
+                                                        </af:selectOneChoice>
+                                                        <f:facet name="filter">
+                                                            <af:selectOneChoice id="soc16"
+                                                                                value="#{vs.filterCriteria.KonsulrId}"
+                                                                                autoSubmit="true"
+                                                                                label="Имя консультанта">
+                                                                <f:selectItem itemValue="" itemLabel="" id="si21"/>
+                                                                <af:forEach var="listrow"
+                                                                            items="#{bindings.KonsultNameActiveView1.rangeSet}">
+                                                                    <f:selectItem id="si22" itemLabel="#{listrow.Name}"
+                                                                                  itemValue="#{listrow.Id}"/>
+                                                                </af:forEach>
+                                                            </af:selectOneChoice>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Montag.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Montag.label}"
+                                                               id="c12" width="70"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl5" halign="right"
+                                                                                 layout="horizontal">
+                                                                <af:outputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['Montag']}"
+                                                                               id="ot9"
+                                                                               inlineStyle="font-weight:bold;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <af:panelGroupLayout id="pgl10" layout="horizontal">
+                                                            <af:inputText label="#{bindings.VwOrderView1.hints.Montag.label}"
+                                                                          id="it8"
+                                                                          value="#{row.bindings.Montag.inputValue}"
+                                                                          columns="#{bindings.VwOrderView1.hints.Montag.displayWidth}"
+                                                                          maximumLength="#{bindings.VwOrderView1.hints.Montag.precision}"                                                                          
+                                                                          visible="#{row.bindings.Montag.attributeValue&lt;=0 ? false : true}"
+                                                                          shortDesc="#{bindings.VwOrderView1.hints.Montag.label}">
+                                                                <f:validator binding="#{row.bindings.Montag.validator}"/>
+                                                            </af:inputText>
+                                                            <af:spacer width="10" height="10" id="s2"/>
+                                                            <af:commandButton text="#{row.bindings.Montag.inputValue}"
+                                                                              id="cb10"
+                                                                              inlineStyle="#{row.bindings.Montag.inputValue &lt; 0 ? 'width:60px;color:red' : 'width:60px;color:green'}"
+                                                                              disabled="#{row.bindings.Montag.inputValue &lt; 0 ? false : true}"
+                                                                              visible="#{empty row.bindings.Montag.attributeValue ? false : true}">
+                                                                <af:showPopupBehavior popupId="::::pMontag"
+                                                                                      align="afterEnd"/>
+                                                            </af:commandButton>
+                                                        </af:panelGroupLayout>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.VwOrderView1.hints.MontagId.label}"
+                                                               id="c41"
+                                                               sortProperty="#{bindings.VwOrderView1.hints.MontagId.name}"
+                                                               sortable="true" filterable="true" width="110"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:selectOneChoice value="#{row.bindings.MontagId.inputValue}"
+                                                                            label="#{row.bindings.MontagId.label}"
+                                                                            required="#{bindings.VwOrderView1.hints.MontagId.mandatory}"
+                                                                            shortDesc="#{bindings.VwOrderView1.hints.MontagId.tooltip}"
+                                                                            id="soc17">
+                                                            <f:selectItems value="#{row.bindings.MontagId.items}"
+                                                                           id="si23"/>
+                                                        </af:selectOneChoice>
+                                                        <f:facet name="filter">
+                                                            <af:selectOneChoice id="soc18"
+                                                                                value="#{vs.filterCriteria.MontagId}"
+                                                                                autoSubmit="true"
+                                                                                label="Имя монтажника">
+                                                                <f:selectItem itemValue="" itemLabel="" id="si24"/>
+                                                                <af:forEach var="listrow"
+                                                                            items="#{bindings.MontagNameActive1.rangeSet}">
+                                                                    <f:selectItem id="si25" itemLabel="#{listrow.Name}"
+                                                                                  itemValue="#{listrow.Id}"/>
+                                                                </af:forEach>
+                                                            </af:selectOneChoice>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Dostavka.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Dostavka.label}"
+                                                               id="c13" width="75"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl6" halign="right"
+                                                                                 layout="horizontal">
+                                                                <af:outputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['Dostavka']}"
+                                                                               id="ot10"
+                                                                               inlineStyle="font-weight:bold;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <af:commandButton text="#{row.bindings.Dostavka.inputValue}"
+                                                                          id="cb12"
+                                                                          inlineStyle="#{row.bindings.Dostavka.inputValue &lt; 0 ? 'width:80px;color:red' : 'width:80px;color:green'}"
+                                                                          disabled="#{row.bindings.Dostavka.inputValue &lt; 0 ? false : true}"
+                                                                          visible="#{empty row.bindings.Dostavka.attributeValue ? false : true}">
+                                                            <af:showPopupBehavior popupId="::::pDostavka"
+                                                                                  align="afterEnd"/>
+                                                        </af:commandButton>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Bank.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Bank.label}"
+                                                               id="c14" width="70"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               align="right">
+                                                        <f:facet name="footer">
+                                                            <af:panelGroupLayout id="pgl7" halign="right"
+                                                                                 layout="horizontal">
+                                                                <af:outputText value="#{bindings.VwOrderView1Iterator.viewObject.sum['Bank']}"
+                                                                               id="ot11"
+                                                                               inlineStyle="font-weight:bold;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <af:panelGroupLayout id="pgl13" layout="horizontal">
+                                                            <af:inputText value="#{row.bindings.Bank.inputValue}"
+                                                                          label="#{bindings.VwOrderView1.hints.Bank.label}"
+                                                                          required="#{bindings.VwOrderView1.hints.Bank.mandatory}"
+                                                                          columns="#{bindings.VwOrderView1.hints.Bank.displayWidth}"
+                                                                          maximumLength="#{bindings.VwOrderView1.hints.Bank.precision}"
+                                                                          shortDesc="#{bindings.VwOrderView1.hints.Bank.tooltip}"
+                                                                          id="it11"
+                                                                          visible="#{row.bindings.Bank.attributeValue&lt;=0 ? false : true}">
+                                                                <f:validator binding="#{row.bindings.Bank.validator}"/>
+                                                            </af:inputText>
+                                                            <af:spacer width="10" height="10" id="s5"/>
+                                                            <af:commandButton text="#{row.bindings.Bank.inputValue}"
+                                                                              id="cb13"
+                                                                              inlineStyle="#{row.bindings.Bank.inputValue &lt; 0 ? 'width:60px;color:red' : 'width:60px;color:green'}"
+                                                                              disabled="#{row.bindings.Bank.inputValue &lt; 0 ? false : true}"
+                                                                              visible="#{empty row.bindings.Bank.attributeValue ? false : true}">
+                                                                <af:showPopupBehavior popupId="::::pBank"
+                                                                                      align="afterEnd"/>
+                                                            </af:commandButton>
+                                                        </af:panelGroupLayout>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Kassa.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Kassa.label}"
+                                                               id="c15" visible="false"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:inputText value="#{row.bindings.Kassa.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.Kassa.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Kassa.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Kassa.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.Kassa.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.Kassa.tooltip}"
+                                                                      id="it13">
+                                                            <f:validator binding="#{row.bindings.Kassa.validator}"/>
+                                                        </af:inputText>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.UserS.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.UserS.label}"
+                                                               id="c16" visible="false"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                        <af:inputText value="#{row.bindings.UserS.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.UserS.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.UserS.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.UserS.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.UserS.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.UserS.tooltip}"
+                                                                      id="it14">
+                                                            <f:validator binding="#{row.bindings.UserS.validator}"/>
+                                                        </af:inputText>
+                                                    </af:column>
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Division.name}"
+                                                               filterable="true" sortable="true"
+                                                               headerText="#{bindings.VwOrderView1.hints.Division.label}"
+                                                               id="c17" visible="false"
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               width="150">
+                                                        <af:inputText value="#{row.bindings.Division.inputValue}"
+                                                                      label="#{bindings.VwOrderView1.hints.Division.label}"
+                                                                      required="#{bindings.VwOrderView1.hints.Division.mandatory}"
+                                                                      columns="#{bindings.VwOrderView1.hints.Division.displayWidth}"
+                                                                      maximumLength="#{bindings.VwOrderView1.hints.Division.precision}"
+                                                                      shortDesc="#{bindings.VwOrderView1.hints.Division.tooltip}"
+                                                                      id="it15">
+                                                            <f:validator binding="#{row.bindings.Division.validator}"/>
+                                                        </af:inputText>
+                                                        <f:facet name="filter">
+                                                            <af:selectOneChoice id="soc12"
+                                                                                value="#{vs.filterCriteria.Division}"
+                                                                                autoSubmit="true" label="Подразделение">
+                                                                <f:selectItem itemValue="" itemLabel="" id="si15"/>
+                                                                <af:forEach var="listrow"
+                                                                            items="#{bindings.DivisionsView1.rangeSet}">
+                                                                    <f:selectItem id="si16"
+                                                                                  itemLabel="#{listrow.Fullname}"
+                                                                                  itemValue="#{listrow.Fullname}"/>
+                                                                </af:forEach>
+                                                            </af:selectOneChoice>
+                                                        </f:facet>
+                                                    </af:column>
+                                                    <f:facet name="header"/>
+                                                </af:table>
+                                            </af:panelCollection>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </f:facet>
+                                <f:facet name="second">
+                                    <af:panelTabbed id="pt2">
+                                        <af:showDetailItem text="Оплаты" id="sdi1" stretchChildren="first">
+                                            <af:panelStretchLayout id="psl2" inlineStyle="width:auto;">
+                                                <f:facet name="center">
+                                                    <af:table value="#{bindings.OrdersTabPartOplatyView3.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.OrdersTabPartOplatyView3.rangeSize}"
+                                                              emptyText="#{bindings.OrdersTabPartOplatyView3.viewable ? 'Данные для отображения отсутствуют.' : 'В доступе отказано.'}"
+                                                              fetchSize="#{bindings.OrdersTabPartOplatyView3.rangeSize}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.OrdersTabPartOplatyView3.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.OrdersTabPartOplatyView3.collectionModel.makeCurrent}"
+                                                              rowSelection="single" id="t3"
+                                                              partialTriggers="::pc1:t1:cbInsertOplata">
+                                                        <af:column sortProperty="#{bindings.OrdersTabPartOplatyView3.hints.Id.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OrdersTabPartOplatyView3.hints.Id.label}"
+                                                                   id="c18" width="110" visible="true">
+                                                            <af:commandButton text="#{row.bindings.Id.inputValue}"
+                                                                              id="cb4" inlineStyle="width:80px;">
+                                                                <af:showPopupBehavior popupId=":::p1"/>
+                                                            </af:commandButton>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.OrdersTabPartOplatyView3.hints.OrderId.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OrdersTabPartOplatyView3.hints.OrderId.label}"
+                                                                   id="c19" width="110" visible="false">
+                                                            <af:outputText value="#{row.bindings.OrderId.inputValue}"
+                                                                           shortDesc="#{bindings.OrdersTabPartOplatyView3.hints.OrderId.tooltip}"
+                                                                           id="it17"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.OrdersTabPartOplatyView3.hints.DatOpl.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OrdersTabPartOplatyView3.hints.DatOpl.label}"
+                                                                   id="c20" width="180">
+                                                            <af:outputText value="#{row.bindings.DatOpl.inputValue}"
+                                                                           shortDesc="#{bindings.OrdersTabPartOplatyView3.hints.DatOpl.tooltip}"
+                                                                           id="id3"/>
+                                                        </af:column>
+                                                        <af:column headerText="#{bindings.OrdersTabPartOplatyView3.hints.Num.label}"
+                                                                   id="c34">
+                                                            <af:outputText value="#{row.bindings.Num.inputValue}"
+                                                                           id="ot21"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.OrdersTabPartOplatyView3.hints.Summ.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OrdersTabPartOplatyView3.hints.Summ.label}"
+                                                                   id="c21" width="169">
+                                                            <af:outputText value="#{row.bindings.Summ.inputValue}"
+                                                                           shortDesc="#{bindings.OrdersTabPartOplatyView3.hints.Summ.tooltip}"
+                                                                           id="it18"/>
+                                                        </af:column>
+                                                    </af:table>
+                                                </f:facet>
+                                            </af:panelStretchLayout>
+                                        </af:showDetailItem>
+                                        <af:showDetailItem text="Себестоимость" id="sdi2" stretchChildren="first">
+                                            <af:panelStretchLayout id="psl3" inlineStyle="width:auto;">
+                                                <f:facet name="center">
+                                                    <af:table value="#{bindings.AccCostView7.collectionModel}" var="row"
+                                                              rows="#{bindings.AccCostView7.rangeSize}"
+                                                              emptyText="#{bindings.AccCostView7.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                              fetchSize="#{bindings.AccCostView7.rangeSize}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.AccCostView7.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.AccCostView7.collectionModel.makeCurrent}"
+                                                              rowSelection="single" id="t4">
+                                                        <af:column id="c38" width="40">
+                                                            <af:toolbar id="t8">
+                                                                <af:commandToolbarButton id="ctb1"
+                                                                                         icon="/images/mini-edit.png">
+                                                                    <af:showPopupBehavior popupId=":::pEditCost"
+                                                                                          align="afterEnd"/>
+                                                                </af:commandToolbarButton>
+                                                            </af:toolbar>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.AccCostView7.hints.Id.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.AccCostView7.hints.Id.label}"
+                                                                   id="c22" width="110" visible="false">
+                                                            <af:outputText value="#{row.Id}" id="ot1"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.AccCostView7.hints.IdOrder.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.AccCostView7.hints.IdOrder.label}"
+                                                                   id="c23" width="110" visible="false">
+                                                            <af:outputText value="#{row.IdOrder}" id="ot2"/>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.AccCostView7.hints.IdZatr.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.AccCostView7.hints.IdZatr.label}"
+                                                                   id="c24" width="192">
+                                                            <af:selectOneChoice value="#{row.bindings.IdZatr.inputValue}"
+                                                                                label="#{row.bindings.IdZatr.label}"
+                                                                                required="#{bindings.AccCostView7.hints.IdZatr.mandatory}"
+                                                                                shortDesc="#{bindings.AccCostView7.hints.IdZatr.tooltip}"
+                                                                                readOnly="true" id="soc1">
+                                                                <f:selectItems value="#{row.bindings.IdZatr.items}"
+                                                                               id="si1"/>
+                                                            </af:selectOneChoice>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.AccCostView7.hints.Summa.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.AccCostView7.hints.Summa.label}"
+                                                                   id="c25" width="223">
+                                                            <af:outputText value="#{row.Summa}" id="ot3"/>
+                                                            <f:facet name="header">
+                                                                <af:inputText value="#{bindings.Total_Cost.inputValue}"
+                                                                              label="#{bindings.Total_Cost.hints.label}"
+                                                                              required="#{bindings.Total_Cost.hints.mandatory}"
+                                                                              columns="#{bindings.Total_Cost.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.Total_Cost.hints.precision}"
+                                                                              shortDesc="#{bindings.Total_Cost.hints.tooltip}"
+                                                                              id="it23" readOnly="true"
+                                                                              inlineStyle="font-style:italic;">
+                                                                    <f:validator binding="#{bindings.Total_Cost.validator}"/>
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.Total_Cost.format}"/>
+                                                                </af:inputText>
+                                                            </f:facet>
+                                                        </af:column>
+                                                    </af:table>
+                                                </f:facet>
+                                            </af:panelStretchLayout>
+                                        </af:showDetailItem>
+                                    </af:panelTabbed>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </f:facet>
+                    </af:panelSplitter>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached"
+                      popupFetchListener="#{OrdrBean.OplatyFetchListener}"
+                      popupCanceledListener="#{OrdrBean.OplatyCancelListener}">
+                <af:resetListener type="popupCanceled"/>
+                <af:dialog id="d2" dialogListener="#{OrdrBean.OplatyDialogListener}" title="Оплата">
+                    <f:facet name="buttonBar"/>
+                    <af:panelFormLayout id="pfl1">
+                        <af:inputText value="#{bindings.OrderId.inputValue}" label="#{bindings.OrderId.hints.label}"
+                                      required="#{bindings.OrderId.hints.mandatory}"
+                                      columns="#{bindings.OrderId.hints.displayWidth}"
+                                      maximumLength="#{bindings.OrderId.hints.precision}"
+                                      shortDesc="#{bindings.OrderId.hints.tooltip}" id="it19">
+                            <f:validator binding="#{bindings.OrderId.validator}"/>
+                        </af:inputText>
+                        <af:inputDate value="#{bindings.DatOpl.inputValue}" label="#{bindings.DatOpl.hints.label}"
+                                      required="#{bindings.DatOpl.hints.mandatory}"
+                                      columns="#{bindings.DatOpl.hints.displayWidth}"
+                                      shortDesc="#{bindings.DatOpl.hints.tooltip}" id="id4">
+                            <f:validator binding="#{bindings.DatOpl.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.DatOpl.format}"/>
+                        </af:inputDate>
+                        <af:inputText value="#{bindings.Num.inputValue}" label="#{bindings.Num.hints.label}"
+                                      required="#{bindings.Num.hints.mandatory}"
+                                      columns="#{bindings.Num.hints.displayWidth}"
+                                      maximumLength="#{bindings.Num.hints.precision}"
+                                      shortDesc="#{bindings.Num.hints.tooltip}" id="it12">
+                            <f:validator binding="#{bindings.Num.validator}"/>
+                        </af:inputText>
+                        <af:inputNumberSpinbox value="#{bindings.Summ.inputValue}" label="#{bindings.Summ.hints.label}"
+                                               required="#{bindings.Summ.hints.mandatory}"
+                                               columns="#{bindings.Summ.hints.displayWidth}"
+                                               shortDesc="#{bindings.Summ.hints.tooltip}" id="it20">
+                            <f:validator binding="#{bindings.Summ.validator}"/>
+                        </af:inputNumberSpinbox>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p2" contentDelivery="lazyUncached"
+                      popupCanceledListener="#{OrdrBean.OplatyCancelListener}"
+                      popupFetchListener="#{OrdrBean.DostavkaFetchListener}">
+                <af:resetListener type="popupCanceled"/>
+                <af:dialog id="d3" dialogListener="#{OrdrBean.OplatyDialogListener}" resize="on" title="Доставка"
+                           stretchChildren="first" contentWidth="900" contentHeight="500">
+                    <f:facet name="buttonBar"/>
+                    <af:region value="#{bindings.addDostavka1.regionModel}" id="r1"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pDel" contentDelivery="lazyUncached"
+                      popupFetchListener="#{OrdrBean.DeleteFetchListener}"
+                      popupCanceledListener="#{OrdrBean.DeleteCancelListener}">
+                <af:dialog id="d4" dialogListener="#{OrdrBean.DeleteDialogListener}" title="Внимание!">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Вы действительно хотите удалить запись?" id="ol1"
+                                    inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pSettings" contentDelivery="lazyUncached">
+                <af:panelWindow id="pw1" title="Настройки">
+                    <af:panelStretchLayout id="psl4" inlineStyle="width:775px; height:297px;">
+                        <f:facet name="center">
+                            <af:panelCollection id="pc2">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t6">
+                                        <af:commandButton text="Сохранить" disabled="#{!bindings.Commit.enabled}"
+                                                          id="cb5" action="#{OrdrBean.commitSetting}"/>
+                                        <af:commandButton actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                          disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                          id="cb6">
+                                            <af:resetActionListener/>
+                                        </af:commandButton>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.ScalesZatratView1.collectionModel}" var="row"
+                                          rows="#{bindings.ScalesZatratView1.rangeSize}"
+                                          emptyText="#{bindings.ScalesZatratView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          fetchSize="#{bindings.ScalesZatratView1.rangeSize}" rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.ScalesZatratView1.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.ScalesZatratView1.collectionModel.makeCurrent}"
+                                          rowSelection="single" id="t5" editingMode="clickToEdit">
+                                    <af:column sortProperty="#{bindings.ScalesZatratView1.hints.UserId.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.ScalesZatratView1.hints.UserId.label}" id="c27"
+                                               width="201">
+                                        <af:column headerText="#{bindings.ScalesZatratView1.hints.Id.label}" id="c32"
+                                                   visible="false">
+                                            <af:outputText value="#{row.Id}" id="ot6"/>
+                                        </af:column>
+                                        <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                            label="#{row.bindings.UserId.label}"
+                                                            required="#{bindings.ScalesZatratView1.hints.UserId.mandatory}"
+                                                            shortDesc="#{bindings.ScalesZatratView1.hints.UserId.tooltip}"
+                                                            id="soc2" readOnly="true">
+                                            <f:selectItems value="#{row.bindings.UserId.items}" id="si2"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ScalesZatratView1.hints.ZatratyId.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.ScalesZatratView1.hints.ZatratyId.label}" id="c28"
+                                               width="197">
+                                        <af:selectOneChoice value="#{row.bindings.ZatratyId.inputValue}"
+                                                            label="#{row.bindings.ZatratyId.label}"
+                                                            required="#{bindings.ScalesZatratView1.hints.ZatratyId.mandatory}"
+                                                            shortDesc="#{bindings.ScalesZatratView1.hints.ZatratyId.tooltip}"
+                                                            id="soc3" readOnly="true">
+                                            <f:selectItems value="#{row.bindings.ZatratyId.items}" id="si3"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ScalesZatratView1.hints.BaseOfCalcId.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.ScalesZatratView1.hints.BaseOfCalcId.label}"
+                                               id="c29" width="178">
+                                        <af:selectOneChoice value="#{row.bindings.BaseOfCalcId.inputValue}"
+                                                            label="#{row.bindings.BaseOfCalcId.label}"
+                                                            required="#{bindings.ScalesZatratView1.hints.BaseOfCalcId.mandatory}"
+                                                            shortDesc="#{bindings.ScalesZatratView1.hints.BaseOfCalcId.tooltip}"
+                                                            id="soc4">
+                                            <f:selectItems value="#{row.bindings.BaseOfCalcId.items}" id="si4"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ScalesZatratView1.hints.Nal.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.ScalesZatratView1.hints.Nal.label}" id="c30"
+                                               width="80">
+                                        <af:inputText value="#{row.bindings.Nal.inputValue}"
+                                                      label="#{bindings.ScalesZatratView1.hints.Nal.label}"
+                                                      required="#{bindings.ScalesZatratView1.hints.Nal.mandatory}"
+                                                      columns="#{bindings.ScalesZatratView1.hints.Nal.displayWidth}"
+                                                      maximumLength="#{bindings.ScalesZatratView1.hints.Nal.precision}"
+                                                      shortDesc="#{bindings.ScalesZatratView1.hints.Nal.tooltip}"
+                                                      id="it2">
+                                            <f:validator binding="#{row.bindings.Nal.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ScalesZatratView1.hints.Beznal.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.ScalesZatratView1.hints.Beznal.label}" id="c31"
+                                               width="57">
+                                        <af:inputText value="#{row.bindings.Beznal.inputValue}"
+                                                      label="#{bindings.ScalesZatratView1.hints.Beznal.label}"
+                                                      required="#{bindings.ScalesZatratView1.hints.Beznal.mandatory}"
+                                                      columns="#{bindings.ScalesZatratView1.hints.Beznal.displayWidth}"
+                                                      maximumLength="#{bindings.ScalesZatratView1.hints.Beznal.precision}"
+                                                      shortDesc="#{bindings.ScalesZatratView1.hints.Beznal.tooltip}"
+                                                      id="it16">
+                                            <f:validator binding="#{row.bindings.Beznal.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </af:panelWindow>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pZakSumm"
+                      popupFetchListener="#{OrdrBean.ZakSummFetchListener}"
+                      popupCanceledListener="#{OrdrBean.ZakSummCancelListener}" contentDelivery="lazyUncached">
+                <af:dialog id="d5" dialogListener="#{OrdrBean.ZakSummDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Оплатить закупку?" id="ol2" inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pZamer"
+                      popupFetchListener="#{OrdrBean.ZakSummFetchListener}"
+                      popupCanceledListener="#{OrdrBean.ZakSummCancelListener}" contentDelivery="lazyUncached">
+                <af:dialog id="d6" dialogListener="#{OrdrBean.ZamerDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Оплатить замер?" id="ol3" inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pKonsult"
+                      popupFetchListener="#{OrdrBean.ZakSummFetchListener}"
+                      popupCanceledListener="#{OrdrBean.ZakSummCancelListener}" contentDelivery="lazyUncached">
+                <af:dialog id="d7" dialogListener="#{OrdrBean.KonsultDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Оплатить консультанта?" id="ol4" inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pMontag"
+                      popupFetchListener="#{OrdrBean.ZakSummFetchListener}"
+                      popupCanceledListener="#{OrdrBean.ZakSummCancelListener}" contentDelivery="lazyUncached">
+                <af:dialog id="d8" dialogListener="#{OrdrBean.MontagDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Оплатить монтажные работы?" id="ol5" inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pDostavka"
+                      popupFetchListener="#{OrdrBean.ZakSummFetchListener}"
+                      popupCanceledListener="#{OrdrBean.ZakSummCancelListener}" contentDelivery="lazyUncached">
+                <af:dialog id="d9" dialogListener="#{OrdrBean.DostavkaDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Оплатить доставку по заказу?" id="ol6" inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pBank"
+                      popupFetchListener="#{OrdrBean.ZakSummFetchListener}"
+                      popupCanceledListener="#{OrdrBean.ZakSummCancelListener}" contentDelivery="lazyUncached">
+                <af:dialog id="d10" dialogListener="#{OrdrBean.BankDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Оплатить банковские?" id="ol7" inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pEditCost" contentDelivery="lazyUncached"
+                      popupCanceledListener="#{AccCost.AccCostCancelListener}">
+                <af:resetListener type="popupCanceled"/>
+                <af:dialog id="d11" dialogListener="#{AccCost.AccCostDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:panelFormLayout id="pfl3">
+                        <af:selectOneChoice value="#{bindings.IdZatr.inputValue}" label="#{bindings.IdZatr.label}"
+                                            required="#{bindings.IdZatr.hints.mandatory}"
+                                            shortDesc="#{bindings.IdZatr.hints.tooltip}" id="soc11" readOnly="true">
+                            <f:selectItems value="#{bindings.IdZatr.items}" id="si14"/>
+                        </af:selectOneChoice>
+                        <af:inputText value="#{bindings.Summa1.inputValue}" label="#{bindings.Summa1.hints.label}"
+                                      required="#{bindings.Summa1.hints.mandatory}"
+                                      columns="#{bindings.Summa1.hints.displayWidth}"
+                                      maximumLength="#{bindings.Summa1.hints.precision}"
+                                      shortDesc="#{bindings.Summa1.hints.tooltip}" id="it24">
+                            <f:validator binding="#{bindings.Summa1.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+        </af:form>
+    </af:document>
+    <!--oracle-jdev-comment:preferred-managed-bean-name:OrdrBean-->
+</f:view>

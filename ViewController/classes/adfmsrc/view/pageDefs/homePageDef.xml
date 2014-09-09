@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="homePageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MenuView1" RangeSize="25" DataControl="AppModuleDataControl" id="MenuView1Iterator"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MenuView1Iterator" id="MenuView1">
+      <nodeDefinition DefName="falcon.view.MenuView" Name="MenuView10">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="Url"/>
+          <Item Value="Label"/>
+          <Item Value="Title"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="MenuView" Label="ancestor"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

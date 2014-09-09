@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="XmlTView"
+  Version="11.1.2.62.94"
+  SelectList="XmlT.ID, 
+       XmlT.ONE, 
+       XmlT.DAT, 
+       XmlT.SYNC_KEY"
+  FromList="XML_T XmlT"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="XmlT"
+    Entity="model.entity.XmlT"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="XmlT"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="One"
+    PrecisionRule="true"
+    EntityAttrName="One"
+    EntityUsage="XmlT"
+    AliasName="ONE"/>
+  <ViewAttribute
+    Name="Dat"
+    PrecisionRule="true"
+    EntityAttrName="Dat"
+    EntityUsage="XmlT"
+    AliasName="DAT"/>
+  <ViewAttribute
+    Name="SyncKey"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SyncKey"
+    EntityUsage="XmlT"
+    AliasName="SYNC_KEY"/>
+</ViewObject>

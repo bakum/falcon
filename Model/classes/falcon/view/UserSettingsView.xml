@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserSettingsView"
+  Version="11.1.2.62.94"
+  SelectList="UserSettings.ID, 
+       UserSettings.USER_ID, 
+       UserSettings.DIVISION_ID, 
+       UserSettings.KASSA_ID"
+  FromList="USER_SETTINGS UserSettings"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  Where="user_id = :id_user"
+  ComponentClass="falcon.view.UserSettingsViewImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="id_user"
+    Kind="where"
+    Type="java.math.BigDecimal">
+    <TransientExpression><![CDATA[adf.object.viewObject.id_user]]></TransientExpression>
+  </Variable>
+  <EntityUsage
+    Name="UserSettings"
+    Entity="falcon.entity.UserSettings"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="UserSettings"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="UserId"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="UserSettings"
+    AliasName="USER_ID"/>
+  <ViewAttribute
+    Name="DivisionId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="UserSettings"
+    AliasName="DIVISION_ID"/>
+  <ViewAttribute
+    Name="KassaId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="KassaId"
+    EntityUsage="UserSettings"
+    AliasName="KASSA_ID"/>
+</ViewObject>

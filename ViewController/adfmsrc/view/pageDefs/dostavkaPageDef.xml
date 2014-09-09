@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="dostavkaPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DostavkaView1" RangeSize="25" DataControl="AppModuleDataControl" id="DostavkaView1Iterator"/>
+    <searchRegion Binds="DostavkaView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="DostavkaView1Query"/>
+    <iterator Binds="DostavkaTabPartOrdersView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="DostavkaTabPartOrdersView2Iterator"/>
+    <taskFlow id="addDostavka1" taskFlowId="/WEB-INF/addDostavka.xml#addDostavka" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="VwOrderView1" RangeSize="10" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DostavkaView1Iterator" id="DostavkaView1">
+      <nodeDefinition DefName="falcon.view.DostavkaView" Name="DostavkaView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="IdBase"/>
+          <Item Value="Dat"/>
+          <Item Value="Num"/>
+          <Item Value="UserId"/>
+          <Item Value="DivisionId"/>
+          <Item Value="Summa"/>
+          <Item Value="CurrId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="DostavkaTabPartOrdersView2Iterator" id="DostavkaTabPartOrdersView2">
+      <nodeDefinition DefName="falcon.view.DostavkaTabPartOrdersView" Name="DostavkaTabPartOrdersView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="DostavkaId"/>
+          <Item Value="OrderId"/>
+          <Item Value="Summa"/>
+          <Item Value="DopSumma"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DostavkaView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action IterBinding="DostavkaView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="VwOrderView1Iterator" id="VwOrderView1">
+      <nodeDefinition DefName="falcon.view.VwOrderView" Name="VwOrderView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Bank"/>
+          <Item Value="Dat"/>
+          <Item Value="Division"/>
+          <Item Value="DolgKlienta"/>
+          <Item Value="Dostavka"/>
+          <Item Value="Kassa"/>
+          <Item Value="Konsult"/>
+          <Item Value="Kontrag"/>
+          <Item Value="Kredit"/>
+          <Item Value="KreditBoolean"/>
+          <Item Value="Metrag"/>
+          <Item Value="Montag"/>
+          <Item Value="Num"/>
+          <Item Value="Summa"/>
+          <Item Value="Total_Cost"/>
+          <Item Value="UserS"/>
+          <Item Value="ZakSumm"/>
+          <Item Value="Zamer"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

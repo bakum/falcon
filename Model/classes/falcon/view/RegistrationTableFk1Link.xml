@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RegistrationTableFk1Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="falcon.entity.RegistrationTableFk1Assoc">
+  <ViewLinkDefEnd
+    Name="ObmenSettingsView"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.view.ObmenSettingsView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="ObmenSettingsView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.ObmenSettingsView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="RegistrationTableView"
+    Cardinality="-1"
+    Owner="falcon.view.RegistrationTableView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="RegistrationTableView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.RegistrationTableView.IdNode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

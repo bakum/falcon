@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwBepDivisionsFkAcc"
+  Version="11.1.2.62.98">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="Divisions"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.entity.Divisions"
+    LockLevel="NONE">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="Divisions"/>
+      <Attr Name="_foreignKey" Value="falcon.entity.Divisions.DivisionsPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Divisions.Id"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="VwBep"
+    Cardinality="-1"
+    Owner="falcon.entity.VwBep">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="VwBep"/>
+      <Attr Name="_foreignKey" Value="falcon.entity.VwBep.fk_VwBep"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.VwBep.IdDiv"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

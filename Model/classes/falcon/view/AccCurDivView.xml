@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AccCurDivView"
+  Version="11.1.2.62.98"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="falcon.view.AccCurDivView_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[select 'Мы должны' Fullname, div_id, kontrag, id_val, sum(summa) summa from (select (select division_id from orders where id=id_order) div_id, (select fullname from kontragents where id = id_kontrag) kontrag, id_val, summa from acc_accounting_ost
+where summa < 0)
+group by div_id, kontrag, id_val
+union
+SELECT 'Мы должны' Fullname, id, 'Undefined', 2, 0 from divisions
+where id not in (SELECT ORDERS.DIVISION_ID
+FROM ACC_ACCOUNTING_OST
+INNER JOIN ORDERS
+ON ORDERS.ID                   = ACC_ACCOUNTING_OST.ID_ORDER
+WHERE ACC_ACCOUNTING_OST.SUMMA < 0)]]></SQLQuery>
+  <ViewAttribute
+    Name="Fullname"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="17"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="FULLNAME"
+    Expression="FULLNAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="17"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="DIV_ID"
+    Expression="DIV_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Kontrag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KONTRAG"
+    Expression="KONTRAG"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IdVal"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="ID_VAL"
+    Expression="ID_VAL"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Summa"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMMA"
+    Expression="SUMMA"
+    SQLType="NUMERIC"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

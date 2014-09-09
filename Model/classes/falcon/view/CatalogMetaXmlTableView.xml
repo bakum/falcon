@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CatalogMetaXmlTableView"
+  Version="11.1.2.62.94"
+  SelectList="CatalogMetaXmlTable.ID, 
+       CatalogMetaXmlTable.ID_TABLE, 
+       CatalogMetaXmlTable.XML_STR"
+  FromList="DBA_FALCON.CATALOG_META_XML_TABLE CatalogMetaXmlTable"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="CatalogMetaXmlTable"
+    Entity="falcon.entity.CatalogMetaXmlTable"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="CatalogMetaXmlTable"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="IdTable"
+    PrecisionRule="true"
+    EntityAttrName="IdTable"
+    EntityUsage="CatalogMetaXmlTable"
+    AliasName="ID_TABLE"/>
+  <ViewAttribute
+    Name="XmlStr"
+    PrecisionRule="true"
+    EntityAttrName="XmlStr"
+    EntityUsage="CatalogMetaXmlTable"
+    AliasName="XML_STR"/>
+</ViewObject>

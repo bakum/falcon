@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="zatratyPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="id_par" Name="createZatratyArticle_id_par"
+                     IsQueriable="false" DefaultValue="#{bindings.Id}"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="za" Name="createZatratyArticle_za" IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="OtherZatratyView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OtherZatratyView1Iterator"/>
+    <searchRegion Binds="OtherZatratyView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="OtherZatratyView1Query"/>
+    <iterator Binds="OtherZatratyTabPartZatratyView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OtherZatratyTabPartZatratyView2Iterator"/>
+    <iterator Binds="ZatratyPostView2" RangeSize="25" DataControl="AppModuleDataControl" id="ZatratyPostView2Iterator"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <iterator Binds="DivisionsView1" RangeSize="10" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="OtherZatratyView1Iterator" id="OtherZatratyView1">
+      <nodeDefinition DefName="falcon.view.OtherZatratyView" Name="OtherZatratyView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Num"/>
+          <Item Value="Dat"/>
+          <Item Value="DivisionId"/>
+          <Item Value="UserId"/>
+          <Item Value="Comments"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="OtherZatratyTabPartZatratyView2">
+      <nodeDefinition DefName="falcon.view.OtherZatratyTabPartZatratyView" Name="OtherZatratyTabPartZatratyView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="OthId"/>
+          <Item Value="ZatrId"/>
+          <Item Value="Summa"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="OtherZatratyTabPartZatratyView21">
+      <nodeDefinition DefName="falcon.view.OtherZatratyTabPartZatratyView" Name="OtherZatratyTabPartZatratyView210">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="OthId"/>
+          <Item Value="ZatrId"/>
+          <Item Value="Summa"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="ZatratyPostView2Iterator" id="ZatratyPostView2">
+      <nodeDefinition DefName="falcon.view.ZatratyPostView" Name="ZatratyPostView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="IdZatratyPostView"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="OtherZatratyView1Iterator" id="CreateInsert"
+            InstanceName="AppModuleDataControl.OtherZatratyView1" DataControl="AppModuleDataControl"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="OtherZatratyView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="createZatratyArticle" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createZatratyArticle" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ZatratyPostView1">
+      <NamedData NDName="id_par" NDType="java.math.BigDecimal" NDValue="${bindings.createZatratyArticle_id_par}"/>
+      <NamedData NDName="za" NDType="java.lang.String" NDValue="${bindings.createZatratyArticle_za}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="id_par">
+      <AttrNames>
+        <Item Value="createZatratyArticle_id_par"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="za">
+      <AttrNames>
+        <Item Value="createZatratyArticle_za"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ZatratyPostView2Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94"
+                id="PanelOrdersTabPartOplatyView3HelperPageDef" Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="OrdersTabPartOplatyView3" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OrdersTabPartOplatyView3Iterator"/>
+  </executables>
+  <bindings>
+    <table ColumnSort="entireCollection" IterBinding="OrdersTabPartOplatyView3Iterator" id="OrdersTabPartOplatyView3"
+           xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="DatOpl"/>
+        <Item Value="Id"/>
+        <Item Value="OrderId"/>
+        <Item Value="Summ"/>
+      </AttrNames>
+    </table>
+  </bindings>
+</pageDefinition>

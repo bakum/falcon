@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTabPartOplaty"
+  Version="11.1.2.62.94"
+  DBObjectType="table"
+  DBObjectName="ORDERS_TAB_PART_OPLATY"
+  AliasName="OrdersTabPartOplaty"
+  BindingStyle="OracleName"
+  UseGlueCode="false"
+  RowClass="model.entity.OrdersTabPartOplatyImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Init|Delete|Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="ORDERS_TAB_PART_OPLATY"
+    PrimaryKey="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.entity.OrdersTabPartOplaty.Id_LABEL"/>
+        <TOOLTIP
+          ResId="model.entity.OrdersTabPartOplaty.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="OrderId"
+    IsNotNull="true"
+    ColumnName="ORDER_ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="ORDERS_TAB_PART_OPLATY">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.entity.OrdersTabPartOplaty.OrderId_LABEL"/>
+        <TOOLTIP
+          ResId="model.entity.OrdersTabPartOplaty.OrderId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="DatOpl"
+    IsNotNull="true"
+    ColumnName="DAT_OPL"
+    SQLType="DATE"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="DATE"
+    TableName="ORDERS_TAB_PART_OPLATY">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.entity.OrdersTabPartOplaty.DatOpl_LABEL"/>
+        <TOOLTIP
+          ResId="model.entity.OrdersTabPartOplaty.DatOpl_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Summ"
+    IsNotNull="true"
+    Precision="10"
+    Scale="2"
+    ColumnName="SUMM"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="ORDERS_TAB_PART_OPLATY">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.entity.OrdersTabPartOplaty.Summ_LABEL"/>
+        <TOOLTIP
+          ResId="model.entity.OrdersTabPartOplaty.Summ_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Orders"
+    Association="model.entity.OrdersTabPartOplatyOrFk1Assoc"
+    AssociationEnd="model.entity.OrdersTabPartOplatyOrFk1Assoc.Orders"
+    AssociationOtherEnd="model.entity.OrdersTabPartOplatyOrFk1Assoc.OrdersTabPartOplaty"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="VwOrder"
+    Association="model.entity.VwOrderOplataTabPartFkAssoc"
+    AssociationEnd="model.entity.VwOrderOplataTabPartFkAssoc.VwOrder"
+    AssociationOtherEnd="model.entity.VwOrderOplataTabPartFkAssoc.OrdersTabPartOplaty"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="OrdersTabPartOplatyPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="ORDERS_TAB_PART_OPLATY_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.entity.OrdersTabPartOplaty.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="OrdersTabPartOplatyOrFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="ORDERS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="ORDERS_TAB_PART_OPLATY_OR_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.entity.OrdersTabPartOplaty.OrderId"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTabPartOplatyView"
+  Version="11.1.2.62.98"
+  SelectList="OrdersTabPartOplaty.ID, 
+       OrdersTabPartOplaty.ORDER_ID, 
+       OrdersTabPartOplaty.DAT_OPL, 
+       OrdersTabPartOplaty.SUMM, 
+       OrdersTabPartOplaty.NUM"
+  FromList="ORDERS_TAB_PART_OPLATY OrdersTabPartOplaty"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="OrdersTabPartOplaty"
+    Entity="falcon.entity.OrdersTabPartOplaty"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="OrdersTabPartOplaty"
+    AliasName="ID"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="OrderId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="OrderId"
+    EntityUsage="OrdersTabPartOplaty"
+    AliasName="ORDER_ID"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="DatOpl"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DatOpl"
+    EntityUsage="OrdersTabPartOplaty"
+    AliasName="DAT_OPL"/>
+  <ViewAttribute
+    Name="Summ"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summ"
+    EntityUsage="OrdersTabPartOplaty"
+    AliasName="SUMM"/>
+  <ViewAttribute
+    Name="Num"
+    PrecisionRule="true"
+    EntityAttrName="Num"
+    EntityUsage="OrdersTabPartOplaty"
+    AliasName="NUM"/>
+</ViewObject>

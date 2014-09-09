@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="ordersPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VwOrderView1" RangeSize="25" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
+    <searchRegion Binds="VwOrderView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="VwOrderView1Query"/>
+    <iterator Binds="OrdersTabPartOplatyView3" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OrdersTabPartOplatyView3Iterator"/>
+    <iterator Binds="AccCostView7" RangeSize="25" DataControl="AppModuleDataControl" id="AccCostView7Iterator"/>
+    <iterator Binds="VwTurnoverWeekView1" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="VwTurnoverWeekView1Iterator"/>
+    <taskFlow id="addDostavka1" taskFlowId="/WEB-INF/addDostavka.xml#addDostavka"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="DostavkaView1" RangeSize="25" DataControl="AppModuleDataControl" id="DostavkaView1Iterator"/>
+    <iterator Binds="ScalesZatratView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ScalesZatratView1Iterator"/>
+    <iterator Binds="DolgKontragents1" RangeSize="25" DataControl="AppModuleDataControl" id="DolgKontragents1Iterator"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VwOrderView1Iterator" id="VwOrderView1">
+      <nodeDefinition DefName="falcon.view.VwOrderView" Name="VwOrderView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Num"/>
+          <Item Value="Dat"/>
+          <Item Value="Kontrag"/>
+          <Item Value="KreditBoolean"/>
+          <Item Value="Metrag"/>
+          <Item Value="Summa"/>
+          <Item Value="ZakSumm"/>
+          <Item Value="DolgKlienta"/>
+          <Item Value="Zamer"/>
+          <Item Value="Konsult"/>
+          <Item Value="Montag"/>
+          <Item Value="Dostavka"/>
+          <Item Value="Bank"/>
+          <Item Value="Kassa"/>
+          <Item Value="UserS"/>
+          <Item Value="Division"/>
+          <Item Value="Total_Cost"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="VwOrderView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action IterBinding="VwOrderView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="OrdersTabPartOplatyView3Iterator" id="OrdersTabPartOplatyView3">
+      <nodeDefinition DefName="falcon.view.OrdersTabPartOplatyView" Name="OrdersTabPartOplatyView30">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="OrderId"/>
+          <Item Value="DatOpl"/>
+          <Item Value="Summ"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AccCostView7Iterator" id="AccCostView7">
+      <nodeDefinition DefName="falcon.view.AccCostView" Name="AccCostView70">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="IdOrder"/>
+          <Item Value="IdZatr"/>
+          <Item Value="Summa"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="OrdersTabPartOplatyView3Iterator" id="OrderId">
+      <AttrNames>
+        <Item Value="OrderId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersTabPartOplatyView3Iterator" id="DatOpl">
+      <AttrNames>
+        <Item Value="DatOpl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersTabPartOplatyView3Iterator" id="Summ">
+      <AttrNames>
+        <Item Value="Summ"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="OrdersTabPartOplatyView3Iterator" id="CreateInsert1" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <graph IterBinding="VwTurnoverWeekView1Iterator" id="VwTurnoverWeekView1" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="BAR_VERT_CLUST">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Summa"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Id"/>
+          <item value="Comments"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <action IterBinding="DostavkaView1Iterator" id="CreateInsert2" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <tree IterBinding="DostavkaView1Iterator" id="DostavkaView1">
+      <nodeDefinition DefName="falcon.view.DostavkaView" Name="DostavkaView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Comments"/>
+          <Item Value="CurrId"/>
+          <Item Value="Dat"/>
+          <Item Value="Deleted"/>
+          <Item Value="DivisionId"/>
+          <Item Value="IdBase"/>
+          <Item Value="Krantost"/>
+          <Item Value="Kurs"/>
+          <Item Value="Num"/>
+          <Item Value="OrganisationRef"/>
+          <Item Value="Posted"/>
+          <Item Value="Summa"/>
+          <Item Value="SyncKey"/>
+          <Item Value="SyncStr"/>
+          <Item Value="UserId"/>
+          <Item Value="Version"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="ScalesZatratView1Iterator" id="ScalesZatratView1">
+      <nodeDefinition DefName="falcon.view.ScalesZatratView" Name="ScalesZatratView10">
+        <AttrNames>
+          <Item Value="UserId"/>
+          <Item Value="ZatratyId"/>
+          <Item Value="BaseOfCalcId"/>
+          <Item Value="Nal"/>
+          <Item Value="Beznal"/>
+          <Item Value="Id"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction IterBinding="VwOrderView1Iterator" id="getRowStatusColor" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getRowStatus" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.VwOrderView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getRowStatus_AppModuleDataControl_VwOrderView1_getRowStatus_result">
+      <NamedData NDName="row" NDType="oracle.jbo.Row"/>
+    </methodAction>
+    <methodAction IterBinding="VwOrderView1Iterator" id="getRowStatus" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getRowStatus" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.VwOrderView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getRowStatus_AppModuleDataControl_VwOrderView1_getRowStatus_result">
+      <NamedData NDName="row" NDType="oracle.jbo.Row"/>
+    </methodAction>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Dolg">
+      <AttrNames>
+        <Item Value="Dolg"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Total_Cost">
+      <AttrNames>
+        <Item Value="Total_Cost"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Zamer">
+      <AttrNames>
+        <Item Value="Zamer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Konsult">
+      <AttrNames>
+        <Item Value="Konsult"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Montag">
+      <AttrNames>
+        <Item Value="Montag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Dostavka">
+      <AttrNames>
+        <Item Value="Dostavka"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Bank">
+      <AttrNames>
+        <Item Value="Bank"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DolgKontragents1Iterator" id="Zakup">
+      <AttrNames>
+        <Item Value="Zakup"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

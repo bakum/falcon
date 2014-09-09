@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwOrderTabPartZatratyLink"
+  Version="11.1.2.62.94">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="view.VwOrderTabPartZatratyLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="VwOrderView"
+    Cardinality="1"
+    Source="true"
+    Owner="view.VwOrderView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwOrderView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.VwOrderView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OrdersTabPartZatratyView"
+    Cardinality="-1"
+    Owner="view.OrdersTabPartZatratyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OrdersTabPartZatratyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.OrdersTabPartZatratyView.OrderId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

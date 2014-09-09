@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AccCurrencyView"
+  Version="11.1.2.62.98"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="DAT DESC"
+  ComponentClass="falcon.view.AccCurrencyViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.object.viewObject.u_name]]></TransientExpression>
+  </Variable>
+  <ViewAccessor
+    Name="MoveStatView1"
+    ViewObjectName="falcon.view.MoveStatView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KassaView1"
+    ViewObjectName="falcon.view.KassaView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CurrencyView1"
+    ViewObjectName="falcon.view.CurrencyView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_IdMove"
+    ListVOName="MoveStatView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IdMove"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Namefull"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_IdKassa"
+    ListVOName="KassaView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IdKassa"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_IdCurr"
+    ListVOName="CurrencyView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IdCurr"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT AccCurrency.ID, 
+       AccCurrency.DAT, 
+       AccCurrency.ID_MOVE, 
+       AccCurrency.ID_REGISTRATOR, 
+       AccCurrency.ID_KASSA, 
+       AccCurrency.ID_CURR, 
+       AccCurrency.SUMMA, 
+       AccCurrency.COMMENTS
+FROM DBA_FALCON.ACC_CURRENCY AccCurrency where AccCurrency.ID_KASSA in (select n from table(cast(get_kassa(:u_name) as kassaTable)))]]></SQLQuery>
+  <EntityUsage
+    Name="AccCurrency"
+    Entity="falcon.entity.AccCurrency"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="AccCurrency"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Dat"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Dat"
+    EntityUsage="AccCurrency"
+    AliasName="DAT">
+    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IdMove"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdMove"
+    EntityUsage="AccCurrency"
+    AliasName="ID_MOVE"
+    LOVName="LOV_IdMove">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IdRegistrator"
+    PrecisionRule="true"
+    EntityAttrName="IdRegistrator"
+    EntityUsage="AccCurrency"
+    AliasName="ID_REGISTRATOR"/>
+  <ViewAttribute
+    Name="IdKassa"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdKassa"
+    EntityUsage="AccCurrency"
+    AliasName="ID_KASSA"
+    LOVName="LOV_IdKassa">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IdCurr"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdCurr"
+    EntityUsage="AccCurrency"
+    AliasName="ID_CURR"
+    LOVName="LOV_IdCurr">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summa"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="AccCurrency"
+    AliasName="SUMMA"/>
+  <ViewAttribute
+    Name="Comments"
+    PrecisionRule="true"
+    EntityAttrName="Comments"
+    EntityUsage="AccCurrency"
+    AliasName="COMMENTS">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="AccCurrencyRegIsNull"
+    ViewObjectName="falcon.view.AccCurrencyView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteria
+      Name="AccCurrencyViewSubCriteria1"
+      ViewObjectName="falcon.view.AccCurrencyView"
+      Conjunction="AND">
+      <ViewCriteriaRow
+        Name="AccCurrencyViewSubCriteria1_row_0"
+        UpperColumns="1">
+        <ViewCriteriaItem
+          Name="IdRegistrator"
+          ViewAttribute="IdRegistrator"
+          Operator="ISBLANK"
+          Conjunction="AND"
+          Required="Optional"/>
+      </ViewCriteriaRow>
+    </ViewCriteria>
+  </ViewCriteria>
+</ViewObject>

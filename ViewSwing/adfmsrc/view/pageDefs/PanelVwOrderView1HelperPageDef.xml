@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="PanelVwOrderView1HelperPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VwOrderView1" RangeSize="25" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Bank" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Bank"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Dat" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Division" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Division"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="DolgKlienta" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="DolgKlienta"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Dostavka" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Dostavka"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Id" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Kassa" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Kassa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Konsult" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Konsult"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Kontrag" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Kontrag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Metrag" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Metrag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Montag" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Montag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Num" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Summa" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Total_Cost" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Total_Cost"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="UserS" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="UserS"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="ZakSumm" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="ZakSumm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwOrderView1Iterator" id="Zamer" xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Zamer"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

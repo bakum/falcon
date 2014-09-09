@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwOrderOplatyFkLink"
+  Version="11.1.2.62.94">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="falcon.view.VwOrderOplatyFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="VwOrderView"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.view.VwOrderView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwOrderView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.VwOrderView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OrdersTabPartOplatyView"
+    Cardinality="-1"
+    Owner="falcon.view.OrdersTabPartOplatyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OrdersTabPartOplatyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.OrdersTabPartOplatyView.OrderId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

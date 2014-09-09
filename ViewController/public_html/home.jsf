@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <af:document title="Falcon's store - Главная" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" id="pt1">
+                <f:facet name="body">
+                    <dvt:hierarchyViewer inlineStyle="width:100%; height:100%;" id="hv1" var="node"
+                                         value="#{bindings.MenuView1.treeModel}"
+                                         selectionListener="#{bindings.MenuView1.treeModel.makeCurrent}"
+                                         detailWindow="none" layout="hier_vert_top"
+                                         levelFetchSize="3" nodeSelection="single" displayLevelsChildren="3"
+                                         summary="wewe">
+                        <dvt:link linkType="orthogonalRounded" id="l1"/>
+                        <dvt:node type="falcon.view.MenuView" width="233" height="233" id="n1">
+                            <f:facet name="zoom100">
+                                <af:panelGroupLayout inlineStyle="padding:5px;" layout="vertical" id="pgl1">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl2">
+                                        <af:panelGroupLayout layout="vertical" id="pgl3">
+                                            <af:outputText value="#{node.Label}"
+                                                           inlineStyle="font-weight:bold;font-size:14px;color:#383A47"
+                                                           id="ot1"/>
+                                            <af:outputText value="#{node.Url}"
+                                                           inlineStyle="font-size:14px;color:#383A47" id="ot2"/>
+                                        </af:panelGroupLayout>
+                                    </af:panelGroupLayout>
+                                    <af:spacer height="5" id="s1"/>
+                                    <dvt:panelCard effect="slide_horz" id="pc1">
+                                        <af:showDetailItem text="#{node.Label}" id="sdi1">
+                                            <af:spacer height="2" id="s2"/>
+                                            <af:panelFormLayout inlineStyle="padding:5px;" id="pfl1">
+                                                <af:panelLabelAndMessage label="#{bindings.MenuView1.hints.Title.label}"
+                                                                         labelStyle="font-size:14px;color:#5A6A7A"
+                                                                         id="plam1">
+                                                    <af:outputText value="#{node.Title}"
+                                                                   inlineStyle="font-size:14px;color:#383A47" id="ot3"/>
+                                                </af:panelLabelAndMessage>
+                                            </af:panelFormLayout>
+                                        </af:showDetailItem>
+                                    </dvt:panelCard>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="zoom75">
+                                <af:panelGroupLayout inlineStyle="padding:5px;" layout="vertical" id="pgl4">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl5">
+                                        <af:panelGroupLayout layout="vertical" id="pgl6">
+                                            <af:outputText value="#{node.Label}"
+                                                           inlineStyle="font-weight:bold;font-size:11px;color:#383A47"
+                                                           id="ot4"/>
+                                            <af:outputText value="#{node.Url}"
+                                                           inlineStyle="font-size:11px;color:#383A47" id="ot5"/>
+                                        </af:panelGroupLayout>
+                                    </af:panelGroupLayout>
+                                    <af:spacer height="5" id="s3"/>
+                                    <dvt:panelCard effect="slide_horz" id="pc2">
+                                        <af:showDetailItem text="#{node.Label}" id="sdi2">
+                                            <af:spacer height="2" id="s4"/>
+                                            <af:panelFormLayout inlineStyle="padding:5px;" id="pfl2">
+                                                <af:panelLabelAndMessage label="#{bindings.MenuView1.hints.Name.label}"
+                                                                         labelStyle="font-size:11px;color:#5A6A7A"
+                                                                         id="plam2">
+                                                    <af:outputText value="#{node.Name}"
+                                                                   inlineStyle="font-size:11px;color:#383A47" id="ot6"/>
+                                                </af:panelLabelAndMessage>
+                                                <af:panelLabelAndMessage label="#{bindings.MenuView1.hints.Title.label}"
+                                                                         labelStyle="font-size:11px;color:#5A6A7A"
+                                                                         id="plam3">
+                                                    <af:outputText value="#{node.Title}"
+                                                                   inlineStyle="font-size:11px;color:#383A47" id="ot7"/>
+                                                </af:panelLabelAndMessage>
+                                            </af:panelFormLayout>
+                                        </af:showDetailItem>
+                                    </dvt:panelCard>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="zoom50">
+                                <af:panelGroupLayout inlineStyle="padding:5px;" layout="vertical" id="pgl7">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl8">
+                                        <af:panelGroupLayout layout="vertical" id="pgl9">
+                                            <af:outputText value="#{node.Label}"
+                                                           inlineStyle="font-weight:bold;font-size:10px;color:#383A47"
+                                                           id="ot8"/>
+                                            <af:outputText value="#{node.Url}"
+                                                           inlineStyle="font-size:10px;color:#383A47" id="ot9"/>
+                                        </af:panelGroupLayout>
+                                    </af:panelGroupLayout>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="zoom25">
+                                <af:panelGroupLayout inlineStyle="padding:5px;" layout="vertical" id="pgl10">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl11">
+                                        <af:panelGroupLayout layout="vertical" id="pgl12">
+                                            <af:outputText value="#{node.Label}"
+                                                           inlineStyle="font-weight:bold;font-size:10px;color:#383A47"
+                                                           id="ot10"/>
+                                        </af:panelGroupLayout>
+                                    </af:panelGroupLayout>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </dvt:node>
+                    </dvt:hierarchyViewer>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AccZatrView"
+  Version="11.1.2.62.94"
+  SelectList="AccZatr.ID, 
+       AccZatr.ID_OTHER_ZATR, 
+       AccZatr.ID_ZATR, 
+       AccZatr.ID_DIV, 
+       AccZatr.SUMM, 
+       AccZatr.COMMENTS"
+  FromList="ACC_ZATR AccZatr"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="AccZatr"
+    Entity="falcon.entity.AccZatr"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="AccZatr"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="IdOtherZatr"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdOtherZatr"
+    EntityUsage="AccZatr"
+    AliasName="ID_OTHER_ZATR"/>
+  <ViewAttribute
+    Name="IdZatr"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdZatr"
+    EntityUsage="AccZatr"
+    AliasName="ID_ZATR"/>
+  <ViewAttribute
+    Name="IdDiv"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdDiv"
+    EntityUsage="AccZatr"
+    AliasName="ID_DIV"/>
+  <ViewAttribute
+    Name="Summ"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summ"
+    EntityUsage="AccZatr"
+    AliasName="SUMM"/>
+  <ViewAttribute
+    Name="Comments"
+    PrecisionRule="true"
+    EntityAttrName="Comments"
+    EntityUsage="AccZatr"
+    AliasName="COMMENTS"/>
+</ViewObject>

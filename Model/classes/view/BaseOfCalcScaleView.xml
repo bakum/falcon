@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="BaseOfCalcScaleView"
+  Version="11.1.2.62.94"
+  SelectList="BaseOfCalcScale.ID, 
+       BaseOfCalcScale.FULLNAME, 
+       BaseOfCalcScale.SYNC_STR"
+  FromList="BASE_OF_CALC_SCALE BaseOfCalcScale"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="BaseOfCalcScale"
+    Entity="model.entity.BaseOfCalcScale"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="BaseOfCalcScale"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Fullname"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Fullname"
+    EntityUsage="BaseOfCalcScale"
+    AliasName="FULLNAME"/>
+  <ViewAttribute
+    Name="SyncStr"
+    PrecisionRule="true"
+    EntityAttrName="SyncStr"
+    EntityUsage="BaseOfCalcScale"
+    AliasName="SYNC_STR"/>
+  <ViewLinkAccessor
+    Name="ScalesZatratView"
+    ViewLink="view.ScalesZatratBaseOfCalFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

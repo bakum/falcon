@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwZatratyMonthDivisionFkLink"
+  Version="11.1.2.62.94"
+  EntityAssociation="falcon.entity.VwZatratyMonthDivisionAssocFk">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="falcon.view.VwZatratyMonthDivisionFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="DivisionsView"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.view.DivisionsView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="DivisionsView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.DivisionsView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="VwZatratyPerMonthView"
+    Cardinality="-1"
+    Owner="falcon.view.VwZatratyPerMonthView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwZatratyPerMonthView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.VwZatratyPerMonthView.Div"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

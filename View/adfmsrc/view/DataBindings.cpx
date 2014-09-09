@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="11.1.2.62.94" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="JClient">
+  <pageMap>
+    <page path="view.Form" usageId="view_FormPageDef"/>
+    <page path="view.PanelRolesView1Helper" usageId="view_PanelRolesView1HelperPageDef"/>
+    <page path="view.PanelRolesView1Helper1" usageId="view_PanelRolesView1Helper1PageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_FormPageDef" path="view.pageDefs.FormPageDef"/>
+    <page id="view_PanelRolesView1HelperPageDef" path="view.pageDefs.PanelRolesView1HelperPageDef"/>
+    <page id="view_PanelRolesView1Helper1PageDef" path="view.pageDefs.PanelRolesView1Helper1PageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="AppModuleDataControl" Package="falcon.app_module"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     ExceptionMode="Immediate" xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

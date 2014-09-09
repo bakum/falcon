@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ScalesZatratView"
+  Version="11.1.2.62.94"
+  SelectList="ScalesZatrat.ID, 
+       ScalesZatrat.USER_ID, 
+       ScalesZatrat.ZATRATY_ID, 
+       ScalesZatrat.BASE_OF_CALC_ID, 
+       ScalesZatrat.NAL, 
+       ScalesZatrat.BEZNAL, 
+       ScalesZatrat.PERIOD, 
+       ScalesZatrat.VERSION"
+  FromList="SCALES_ZATRAT ScalesZatrat"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  Where="user_id = :id_user"
+  ComponentClass="falcon.view.ScalesZatratViewImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="id_user"
+    Kind="where"
+    Type="java.math.BigDecimal">
+    <TransientExpression><![CDATA[adf.object.viewObject.id_user]]></TransientExpression>
+  </Variable>
+  <ViewAccessor
+    Name="UsersView1"
+    ViewObjectName="falcon.view.UsersView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="BaseOfCalcScaleView1"
+    ViewObjectName="falcon.view.BaseOfCalcScaleView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="ZatratyView1"
+    ViewObjectName="falcon.view.ZatratyView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_UserId"
+    ListVOName="UsersView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="UserId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="RealName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ZatratyId"
+    ListVOName="ZatratyView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZatratyId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_BaseOfCalcId"
+    ListVOName="BaseOfCalcScaleView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="BaseOfCalcId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="ScalesZatrat"
+    Entity="falcon.entity.ScalesZatrat"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="ScalesZatrat"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="UserId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="ScalesZatrat"
+    AliasName="USER_ID"
+    LOVName="LOV_UserId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ZatratyId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ZatratyId"
+    EntityUsage="ScalesZatrat"
+    AliasName="ZATRATY_ID"
+    LOVName="LOV_ZatratyId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BaseOfCalcId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="BaseOfCalcId"
+    EntityUsage="ScalesZatrat"
+    AliasName="BASE_OF_CALC_ID"
+    LOVName="LOV_BaseOfCalcId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Nal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Nal"
+    EntityUsage="ScalesZatrat"
+    AliasName="NAL"/>
+  <ViewAttribute
+    Name="Beznal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Beznal"
+    EntityUsage="ScalesZatrat"
+    AliasName="BEZNAL"/>
+  <ViewAttribute
+    Name="Period"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Period"
+    EntityUsage="ScalesZatrat"
+    AliasName="PERIOD"/>
+  <ViewAttribute
+    Name="Version"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="ScalesZatrat"
+    AliasName="VERSION"/>
+</ViewObject>

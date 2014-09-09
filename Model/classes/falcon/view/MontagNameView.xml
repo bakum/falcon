@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MontagNameView"
+  Version="11.1.2.62.98"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  ComponentClass="falcon.view.MontagNameViewImpl"
+  RowClass="falcon.view.MontagNameViewRowImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.object.viewObject.u_name]]></TransientExpression>
+  </Variable>
+  <ViewAccessor
+    Name="DivisionsView1"
+    ViewObjectName="falcon.view.DivisionsView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_DivisionsId"
+    ListVOName="DivisionsView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DivisionsId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT MontagName.ID, 
+       MontagName.NAME, 
+       MontagName.DIVISIONS_ID,
+       MontagName.IS_ACTIVE
+FROM DBA_FALCON.MONTAG_NAME MontagName
+WHERE (select upper(fullname) from divisions where id=divisions_id) in (select u_name from table(cast(get_divisions(:u_name) as divisionTable)))]]></SQLQuery>
+  <EntityUsage
+    Name="MontagName"
+    Entity="falcon.entity.MontagName"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="MontagName"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Name"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="MontagName"
+    AliasName="NAME"/>
+  <ViewAttribute
+    Name="DivisionsId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DivisionsId"
+    EntityUsage="MontagName"
+    AliasName="DIVISIONS_ID"
+    LOVName="LOV_DivisionsId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IsActive"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsActive"
+    EntityUsage="MontagName"
+    AliasName="IS_ACTIVE">
+    <TransientExpression><![CDATA[1]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IsActiveBoolean"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.view.MontagNameView.IsActiveBoolean_LABEL"/>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

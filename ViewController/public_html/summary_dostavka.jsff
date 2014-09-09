@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:pageTemplate viewId="/templaddDostavka.jsf" id="pt1">
+        <f:facet name="body">
+            <af:decorativeBox id="db1">
+                <f:facet name="center">
+                    <af:panelStretchLayout id="psl1">
+                        <f:facet name="center">
+                            <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="89">
+                                <f:facet name="first">
+                                    <af:panelFormLayout id="pfl1">
+                                        <af:panelLabelAndMessage label="#{bindings.Dat.hints.label}" id="plam1">
+                                            <af:outputText value="#{bindings.Dat.inputValue}" id="ot1">
+                                                <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                            </af:outputText>
+                                        </af:panelLabelAndMessage>
+                                        <af:selectOneChoice value="#{bindings.IdBase.inputValue}"
+                                                            label="#{bindings.IdBase.label}"
+                                                            required="#{bindings.IdBase.hints.mandatory}"
+                                                            shortDesc="#{bindings.IdBase.hints.tooltip}" readOnly="true"
+                                                            id="soc1">
+                                            <f:selectItems value="#{bindings.IdBase.items}" id="si1"/>
+                                        </af:selectOneChoice>
+                                        <af:panelLabelAndMessage label="#{bindings.Summa.hints.label}" id="plam2">
+                                            <af:outputText value="#{bindings.Summa.inputValue}" id="ot2"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.Comments.hints.label}" id="plam3">
+                                            <af:outputText value="#{bindings.Comments.inputValue}" id="ot3"/>
+                                        </af:panelLabelAndMessage>
+                                    </af:panelFormLayout>
+                                </f:facet>
+                                <f:facet name="second">
+                                    <af:table value="#{bindings.DostavkaTabPartOrdersView2.collectionModel}" var="row"
+                                              rows="#{bindings.DostavkaTabPartOrdersView2.rangeSize}"
+                                              emptyText="#{bindings.DostavkaTabPartOrdersView2.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                              fetchSize="#{bindings.DostavkaTabPartOrdersView2.rangeSize}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.DostavkaTabPartOrdersView2.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.DostavkaTabPartOrdersView2.collectionModel.makeCurrent}"
+                                              rowSelection="single" id="t1">
+                                        <af:column headerText="#{bindings.DostavkaTabPartOrdersView2.hints.OrderId.label}"
+                                                   id="c4" width="300">
+                                            <af:selectOneChoice value="#{row.bindings.OrderId.inputValue}"
+                                                                label="#{row.bindings.OrderId.label}"
+                                                                required="#{bindings.DostavkaTabPartOrdersView2.hints.OrderId.mandatory}"
+                                                                shortDesc="#{bindings.DostavkaTabPartOrdersView2.hints.OrderId.tooltip}"
+                                                                id="soc2" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.OrderId.items}" id="si2"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.DostavkaTabPartOrdersView2.hints.Summa.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.DostavkaTabPartOrdersView2.hints.Summa.label}"
+                                                   id="c2" width="143">
+                                            <af:outputText value="#{row.Summa}" id="ot5"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.DostavkaTabPartOrdersView2.hints.DopSumma.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.DostavkaTabPartOrdersView2.hints.DopSumma.label}"
+                                                   id="c3" width="151">
+                                            <af:outputText value="#{row.DopSumma}" id="ot6"/>
+                                        </af:column>
+                                    </af:table>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelHeader text="Итог" id="ph1" type="flow">
+                        <f:facet name="context"/>
+                        <f:facet name="toolbar">
+                            <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                               id="tbb1"/>
+                        </f:facet>
+                        <f:facet name="legend">
+                            <af:panelLabelAndMessage label="#{bindings.Num.hints.label}" id="plam4">
+                                <af:outputFormatted value="#{bindings.Num.inputValue}" id="of1"/>
+                            </af:panelLabelAndMessage>
+                        </f:facet>
+                        <f:facet name="info"/>
+                    </af:panelHeader>
+                </f:facet>
+            </af:decorativeBox>
+        </f:facet>
+    </af:pageTemplate>
+</ui:composition>

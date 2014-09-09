@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="falcon.app_module.AppModule">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="model.Model" name="AppModuleLocal" ApplicationName="falcon.app_module.AppModule">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="falcon.app_module.AppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/db_falconDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="model.Model" name="AppModuleShared" ApplicationName="falcon.app_module.AppModule">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="falcon.app_module.AppModule"/>
+         <Custom JDBCDataSource="jdbc/db_falconDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="FalconService" jbo.project="model.Model" ApplicationName="falcon.app_module.AppModule" DeployPlatform="SI">
+         <AM-Pooling jbo.ampool.resetnontransactionalstate="true"/>
+         <Database jbo.locking.mode="optimistic" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="falcon.app_module.AppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/db_falconDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

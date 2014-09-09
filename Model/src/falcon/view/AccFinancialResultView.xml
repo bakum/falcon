@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AccFinancialResultView"
+  Version="11.1.2.62.94"
+  SelectList="AccFinancialResult.ID, 
+       AccFinancialResult.ID_KONTRAG, 
+       AccFinancialResult.ID_ORDER, 
+       AccFinancialResult.SUMMA_DOH, 
+       AccFinancialResult.SUMMA_RAS"
+  FromList="ACC_FINANCIAL_RESULT AccFinancialResult"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="AccFinancialResult"
+    Entity="falcon.entity.AccFinancialResult"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="AccFinancialResult"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="IdKontrag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdKontrag"
+    EntityUsage="AccFinancialResult"
+    AliasName="ID_KONTRAG"/>
+  <ViewAttribute
+    Name="IdOrder"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdOrder"
+    EntityUsage="AccFinancialResult"
+    AliasName="ID_ORDER"/>
+  <ViewAttribute
+    Name="SummaDoh"
+    PrecisionRule="true"
+    EntityAttrName="SummaDoh"
+    EntityUsage="AccFinancialResult"
+    AliasName="SUMMA_DOH"/>
+  <ViewAttribute
+    Name="SummaRas"
+    PrecisionRule="true"
+    EntityAttrName="SummaRas"
+    EntityUsage="AccFinancialResult"
+    AliasName="SUMMA_RAS"/>
+</ViewObject>

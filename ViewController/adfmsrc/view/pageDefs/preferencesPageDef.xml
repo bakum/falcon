@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="preferencesPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="id" Name="doSynchronization_id" IsQueriable="false"
+                     DefaultValue="#{bindings.Id}"/>
+      <variable Type="void" Name="doSynchronization_return" IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.doSynchronization.result}"/>
+    </variableIterator>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="ObmenSettingsView1" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="ObmenSettingsView1Iterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="RegistrationTableView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="RegistrationTableView2Iterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="CatalogMetaTablesView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="CatalogMetaTablesView1Iterator"/>
+    <iterator Binds="CatalogMetaInsTableView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="CatalogMetaInsTableView2Iterator"/>
+    <iterator Binds="CatalogMetaUpdTableView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="CatalogMetaUpdTableView2Iterator"/>
+    <iterator Binds="CatalogMetaXmlTableView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="CatalogMetaXmlTableView2Iterator"/>
+    <iterator Binds="SessionsView1" RangeSize="25" DataControl="AppModuleDataControl" id="SessionsView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="Fullname">
+      <AttrNames>
+        <Item Value="Fullname"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="ServerFtp">
+      <AttrNames>
+        <Item Value="ServerFtp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="UserFtp">
+      <AttrNames>
+        <Item Value="UserFtp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="PassWd">
+      <AttrNames>
+        <Item Value="PassWd"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="MainNode">
+      <AttrNames>
+        <Item Value="MainNode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="ThisNode">
+      <AttrNames>
+        <Item Value="ThisNode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="SentMess">
+      <AttrNames>
+        <Item Value="SentMess"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ObmenSettingsView1Iterator" id="RecMess">
+      <AttrNames>
+        <Item Value="RecMess"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RegistrationTableView2Iterator" id="RegistrationTableView2">
+      <nodeDefinition DefName="falcon.view.RegistrationTableView" Name="RegistrationTableView20">
+        <AttrNames>
+          <Item Value="IdNode"/>
+          <Item Value="IdObj"/>
+          <Item Value="Messnum"/>
+          <Item Value="Id"/>
+          <Item Value="IdTable"/>
+          <Item Value="IdRec"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doSynchronization" RequiresUpdateModel="true" Action="invokeMethod" MethodName="doSynchronization"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ObmenSettingsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.doSynchronization_AppModuleDataControl_ObmenSettingsView1_doSynchronization_result">
+      <NamedData NDName="id" NDType="java.math.BigDecimal" NDValue="${bindings.doSynchronization_id}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="id">
+      <AttrNames>
+        <Item Value="doSynchronization_id"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <tree IterBinding="CatalogMetaTablesView1Iterator" id="CatalogMetaTablesView1">
+      <nodeDefinition DefName="falcon.view.CatalogMetaTablesView" Name="CatalogMetaTablesView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="MainName"/>
+          <Item Value="ThisName"/>
+          <Item Value="Ordr"/>
+          <Item Value="XmlStr"/>
+          <Item Value="MasterKey"/>
+          <Item Value="MasterFld"/>
+          <Item Value="Category"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CatalogMetaInsTableView2Iterator" id="InsSql">
+      <AttrNames>
+        <Item Value="InsSql"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CatalogMetaUpdTableView2Iterator" id="UpdSql">
+      <AttrNames>
+        <Item Value="UpdSql"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CatalogMetaXmlTableView2Iterator" id="XmlStr">
+      <AttrNames>
+        <Item Value="XmlStr"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction IterBinding="CatalogMetaTablesView1Iterator" id="getRowStatusColor" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getRowStatus" IsViewObjectMethod="true"
+                  DataControl="AppModuleDataControl" InstanceName="data.AppModuleDataControl.CatalogMetaTablesView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getRowStatus_AppModuleDataControl_CatalogMetaTablesView1_getRowStatus_result">
+      <NamedData NDName="row" NDType="oracle.jbo.Row"/>
+    </methodAction>
+    <graph IterBinding="ObmenSettingsView1Iterator" id="ObmenSettingsView1" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="BAR_HORIZ_CLUST">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="RecMess"/>
+            <item value="SentMess"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Fullname"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <tree IterBinding="SessionsView1Iterator" id="SessionsView1">
+      <nodeDefinition DefName="falcon.view.SessionsView" Name="SessionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="InstId"/>
+          <Item Value="Sid"/>
+          <Item Value="Serial"/>
+          <Item Value="Spid"/>
+          <Item Value="Username"/>
+          <Item Value="Status"/>
+          <Item Value="Machine"/>
+          <Item Value="Program"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

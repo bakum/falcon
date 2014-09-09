@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94"
+                id="addDostavka_addDostavka_CreateInsertPageDef" Package="view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="DostavkaView1" RangeSize="25" DataControl="AppModuleDataControl" id="DostavkaView1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="DostavkaView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

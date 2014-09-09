@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <exception-handler>exeption</exception-handler>
+  <view id="orders">
+    <page>/orders.jsf</page>
+  </view>
+  <view id="dostavka">
+    <page>/dostavka.jsf</page>
+  </view>
+  <view id="oplaty">
+    <page>/oplaty.jsf</page>
+  </view>
+  <view id="exeption">
+    <page>/exeption.jsf</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id>*</from-activity-id>
+    <control-flow-case id="__2">
+      <from-outcome>adfMenu_orders</from-outcome>
+      <to-activity-id>orders</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__3">
+      <from-outcome>adfMenu_dostavka</from-outcome>
+      <to-activity-id>dostavka</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__7">
+      <from-outcome>adfMenu_oplaty</from-outcome>
+      <to-activity-id>oplaty</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__4">
+    <description>Menu Model Managed Bean</description>
+    <managed-bean-name>orders_menu</managed-bean-name>
+    <managed-bean-class>oracle.adf.view.rich.model.MDSMenuModel</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property id="__5">
+      <property-name>createHiddenNodes</property-name>
+      <value>false</value>
+    </managed-property>
+    <managed-property id="__6">
+      <property-name>source</property-name>
+      <property-class>java.lang.String</property-class>
+      <value>/WEB-INF/orders_menu.xml</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__8">
+    <managed-bean-name>FalconBean</managed-bean-name>
+    <managed-bean-class>view.FalconBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__9">
+    <managed-bean-name>OrdrBean</managed-bean-name>
+    <managed-bean-class>view.OrdrBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__10">
+    <managed-bean-name>DostavkaBean</managed-bean-name>
+    <managed-bean-class>view.DostavkaBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__11">
+    <managed-bean-name>OplatyBeans</managed-bean-name>
+    <managed-bean-class>view.Oplaty</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__12">
+    <managed-bean-name>ordr_quey</managed-bean-name>
+    <managed-bean-class>view.OrderQueryBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__13">
+    <managed-bean-name>AccCost</managed-bean-name>
+    <managed-bean-class>view.AccCostBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

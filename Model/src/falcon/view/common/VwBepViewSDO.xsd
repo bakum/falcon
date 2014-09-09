@@ -1,0 +1,24 @@
+<xsd:schema xmlns:sdoJava="commonj.sdo/java" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/falcon/view/common/"
+     xmlns="/falcon/view/common/" elementFormDefault="qualified" sdoJava:package="falcon.view.common">
+    <xsd:import schemaLocation="classpath:/xml/sdoJava.xsd" namespace="commonj.sdo/java"/>
+    <xsd:complexType name="VwBepViewSDO">
+        <xsd:annotation>
+            <xsd:appinfo source="http://xmlns.oracle.com/adf/svc/metadata/">
+                <key xmlns="http://xmlns.oracle.com/adf/svc/metadata/">
+                    <attribute>Id</attribute>
+                </key>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Id" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="IdDiv" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="Doh" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Perem" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="Postoyan" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="BrEp" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="PrOch" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="RyChag" type="xsd:decimal" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="vwBepViewSDO" type="VwBepViewSDO"/>
+</xsd:schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OtherZatratyTabPartZatratyView"
+  Version="11.1.2.62.94"
+  SelectList="OtherZatratyTabPartZatraty.ID, 
+       OtherZatratyTabPartZatraty.OTH_ID, 
+       OtherZatratyTabPartZatraty.ZATR_ID, 
+       OtherZatratyTabPartZatraty.SUMMA"
+  FromList="OTHER_ZATRATY_TAB_PART_ZATRATY OtherZatratyTabPartZatraty"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="OtherZatratyTabPartZatraty"
+    Entity="model.entity.OtherZatratyTabPartZatraty"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="OthId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="OthId"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="OTH_ID"/>
+  <ViewAttribute
+    Name="ZatrId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ZatrId"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="ZATR_ID"/>
+  <ViewAttribute
+    Name="Summa"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="SUMMA"/>
+</ViewObject>

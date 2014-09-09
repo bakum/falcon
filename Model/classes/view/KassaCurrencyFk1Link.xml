@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="KassaCurrencyFk1Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="model.entity.KassaCurrencyFk1Assoc">
+  <ViewLinkDefEnd
+    Name="CurrencyView"
+    Cardinality="1"
+    Source="true"
+    Owner="view.CurrencyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CurrencyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.CurrencyView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="KassaView"
+    Cardinality="-1"
+    Owner="view.KassaView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="KassaView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.KassaView.CurrId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

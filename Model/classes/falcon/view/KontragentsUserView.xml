@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="KontragentsUserView"
+  Version="11.1.2.62.94"
+  SelectList="KontragentsUser.ID, 
+       KontragentsUser.ID_KONTRAG, 
+       KontragentsUser.USER_ID"
+  FromList="KONTRAGENTS_USER KontragentsUser"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="KontragentsUser"
+    Entity="falcon.entity.KontragentsUser"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="KontragentsUser"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="IdKontrag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdKontrag"
+    EntityUsage="KontragentsUser"
+    AliasName="ID_KONTRAG"/>
+  <ViewAttribute
+    Name="UserId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="KontragentsUser"
+    AliasName="USER_ID"/>
+</ViewObject>

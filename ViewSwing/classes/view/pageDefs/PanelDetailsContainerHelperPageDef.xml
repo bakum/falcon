@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94"
+                id="PanelDetailsContainerHelperPageDef" Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page id="view_PanelOrdersTabPartOplatyView3HelperPageDef"
+          path="view.pageDefs.PanelOrdersTabPartOplatyView3HelperPageDef"/>
+    <page id="view_PanelAccCostView7HelperPageDef" path="view.pageDefs.PanelAccCostView7HelperPageDef"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

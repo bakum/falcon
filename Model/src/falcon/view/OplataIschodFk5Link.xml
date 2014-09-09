@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OplataIschodFk5Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="falcon.entity.OplataIschodFk5Assoc">
+  <ViewLinkDefEnd
+    Name="KassaView"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.view.KassaView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="KassaView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.KassaView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OplataIschodView"
+    Cardinality="-1"
+    Owner="falcon.view.OplataIschodView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OplataIschodView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.OplataIschodView.KassaId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

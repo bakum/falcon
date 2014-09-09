@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="summary_dostavkaPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DostavkaView1" RangeSize="25" DataControl="AppModuleDataControl" id="DostavkaView1Iterator"/>
+    <iterator Binds="DostavkaTabPartOrdersView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="DostavkaTabPartOrdersView2Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="DostavkaView1Iterator" StaticList="false" Uses="LOV_IdBase" id="IdBase" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="DostavkaTabPartOrdersView2Iterator" id="DostavkaTabPartOrdersView2">
+      <nodeDefinition DefName="falcon.view.DostavkaTabPartOrdersView" Name="DostavkaTabPartOrdersView20">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="Summa"/>
+          <Item Value="DopSumma"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="DostavkaView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

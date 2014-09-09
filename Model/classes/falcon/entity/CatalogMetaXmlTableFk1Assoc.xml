@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CatalogMetaXmlTableFk1Assoc"
+  Version="11.1.2.62.94">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="CatalogMetaTables"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.entity.CatalogMetaTables">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="CatalogMetaTables"/>
+      <Attr Name="_foreignKey" Value="falcon.entity.CatalogMetaTables.CatalogMetaPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.CatalogMetaTables.Id"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="CatalogMetaXmlTable"
+    Cardinality="-1"
+    Owner="falcon.entity.CatalogMetaXmlTable">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="CatalogMetaXmlTable"/>
+      <Attr Name="_foreignKey" Value="falcon.entity.CatalogMetaXmlTable.CatalogMetaXmlTableFk1"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.CatalogMetaXmlTable.IdTable"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

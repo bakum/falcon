@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:pageTemplateDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs" definition="private"
+                    xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component" xmlns:f="http://java.sun.com/jsf/core">
+    <af:xmlContent>
+        <afc:component>
+            <afc:display-name>templateMain</afc:display-name>
+            <afc:facet>
+                <afc:facet-name>body</afc:facet-name>
+            </afc:facet>
+            <afc:facet>
+                <afc:facet-name>graph</afc:facet-name>
+            </afc:facet>
+            <afc:attribute>
+                <afc:attribute-name>title</afc:attribute-name>
+                <afc:attribute-class>java.lang.String</afc:attribute-class>
+            </afc:attribute>
+        </afc:component>
+    </af:xmlContent>
+    <af:panelSplitter orientation="vertical" splitterPosition="60" id="pt_ps2">
+        <f:facet name="first">
+            <af:panelHeader text="#{attrs.title}" id="pt_ph1" type="flow" inlineStyle="background: #AFD7E5;">
+                <f:facet name="context">
+                    <af:group id="pt_g1">
+                        <af:panelGroupLayout id="pgl1" layout="horizontal" styleClass=".AFStretchWidth">
+                            <af:spacer width="30" height="10" id="pt_s2"/>
+                            <af:commandImageLink text="Выйти" id="commandImageLink1"
+                                                 rendered="#{securityContext.authenticated}" partialSubmit="true"
+                                                 immediate="false" action="#{login.logout}"
+                                                 icon="/images/glbl_logout.gif"/>
+                            <af:commandImageLink text="Войти" id="cil1"
+                                                 rendered="#{!securityContext.authenticated}"
+                                                 icon="/images/glbl_login_msg.gif">
+                                <af:showPopupBehavior popupId="pLogin" triggerType="action" align="startAfter"
+                                                      alignId="cil1"/>
+                            </af:commandImageLink>
+                            <af:spacer width="30" height="10" id="pt_s1"/>
+                            <af:outputLabel value="#{securityContext.userName}" id="pt_ol2"/>
+                            <af:popup id="pLogin">
+                                <af:dialog id="d2" title="Авторизация" type="okCancel" closeIconVisible="false"
+                                           modal="true" stretchChildren="none" dialogListener="#{login.OnLoginAction}">
+                                    <af:panelFormLayout id="pfl5">
+                                        <af:inputText label="Пользователь" id="it34" columns="20"
+                                                      value="#{login.username}"/>
+                                        <af:inputText label="Пароль" id="it35" secret="true" columns="20"
+                                                      value="#{login.password}"/>
+                                        <af:message id="m2" for="it35" messageType="error"/>
+                                    </af:panelFormLayout>
+                                </af:dialog>
+                            </af:popup>
+                        </af:panelGroupLayout>
+                    </af:group>
+                </f:facet>
+                <f:facet name="menuBar">
+                    <af:navigationPane id="pt_np1" value="#{root_menu}" var="m" hint="buttons" itemRemoval="all"
+                                       disabled="#{!securityContext.authenticated}">
+                        <f:facet name="nodeStamp">
+                            <af:commandNavigationItem text="#{m.label}" id="pt_cni1" destination="#{m.destination}"
+                                                      action="#{m.doAction}" inlineStyle="color:#333;"
+                                                      styleClass="AFAutoSuggestItem" rendered="#{m.rendered}"/>
+                        </f:facet>
+                    </af:navigationPane>
+                </f:facet>
+                <f:facet name="toolbar"/>
+                <f:facet name="legend">
+                    <af:outputLabel value="Falcon's store (Управление филиалами)" id="pt_ol1"
+                                    styleClass="AFBrandingBarTitle"/>
+                </f:facet>
+                <f:facet name="info"/>
+            </af:panelHeader>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelSplitter orientation="vertical" positionedFromEnd="true" splitterPosition="72" id="pt_ps1"
+                              collapsed="true">
+                <f:facet name="first">
+                    <!-- id="af_one_column_header_and_footer_stretched_with_splitter"   -->
+                    <af:decorativeBox theme="dark" id="pt_db2">
+                        <f:facet name="center">
+                            <af:decorativeBox theme="medium" id="pt_db1">
+                                <f:facet name="center">
+                                    <af:decorativeBox id="pt_db3" topHeight="30px">
+                                        <f:facet name="center">
+                                            <af:decorativeBox id="pt_db4" topHeight="50px">
+                                                <f:facet name="center">
+                                                    <af:panelStretchLayout id="pt_psl1" bottomHeight="150px">
+                                                        <f:facet name="center">
+                                                            <af:facetRef facetName="body"/>
+                                                        </f:facet>
+                                                    </af:panelStretchLayout>
+                                                </f:facet>
+                                                <f:facet name="top">
+                                                    <af:panelGroupLayout layout="scroll" id="pt_pgl1">
+                                                        <af:breadCrumbs id="pt_bc1" value="#{root_menu}" var="m">
+                                                            <f:facet name="nodeStamp">
+                                                                <af:commandNavigationItem text="#{m.label}" id="pt_cni3"
+                                                                                          action="#{m.doAction}"
+                                                                                          destination="#{m.destination}"/>
+                                                            </f:facet>
+                                                        </af:breadCrumbs>
+                                                        <af:navigationPane id="pt_np3" value="#{root_menu}" var="m"
+                                                                           level="2" hint="buttons">
+                                                            <f:facet name="nodeStamp">
+                                                                <af:commandNavigationItem text="#{m.label}"
+                                                                                          id="pt_cni4"
+                                                                                          destination="#{m.destination}"
+                                                                                          action="#{m.doAction}"/>
+                                                            </f:facet>
+                                                        </af:navigationPane>
+                                                    </af:panelGroupLayout>
+                                                </f:facet>
+                                            </af:decorativeBox>
+                                        </f:facet>
+                                        <f:facet name="top">
+                                            <af:navigationPane id="pt_np2" level="1" value="#{root_menu}" var="m"
+                                                               disabled="#{!securityContext.authenticated}">
+                                                <f:facet name="nodeStamp">
+                                                    <af:commandNavigationItem text="#{m.label}"
+                                                                              id="pt_cni2"
+                                                                              destination="#{m.destination}"
+                                                                              action="#{m.doAction}"
+                                                                              rendered="#{m.rendered}"/>
+                                                </f:facet>
+                                            </af:navigationPane>
+                                        </f:facet>
+                                    </af:decorativeBox>
+                                </f:facet>
+                            </af:decorativeBox>
+                        </f:facet>
+                    </af:decorativeBox>
+                </f:facet>
+                <f:facet name="second">
+                    <af:panelStretchLayout id="pt_psl2" bottomHeight="17px">
+                        <f:facet name="bottom">
+                            <af:goLink text="Copyright by BMExpert 2012" id="pt_gl1"
+                                       destination="mailto:bakum@bmexp.com"/>
+                        </f:facet>
+                        <f:facet name="center">
+                            <af:facetRef facetName="graph"/>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelSplitter>
+        </f:facet>
+    </af:panelSplitter>
+</af:pageTemplateDef>

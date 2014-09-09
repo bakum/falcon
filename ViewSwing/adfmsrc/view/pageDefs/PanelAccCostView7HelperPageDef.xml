@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="PanelAccCostView7HelperPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AccCostView7" RangeSize="25" DataControl="AppModuleDataControl" id="AccCostView7Iterator"/>
+  </executables>
+  <bindings>
+    <table ColumnSort="entireCollection" IterBinding="AccCostView7Iterator" id="AccCostView7"
+           xmlns="http://xmlns.oracle.com/adfm/jcuimodel">
+      <AttrNames xmlns="http://xmlns.oracle.com/adfm/uimodel">
+        <Item Value="Id"/>
+        <Item Value="IdDiv"/>
+        <Item Value="IdKontrag"/>
+        <Item Value="IdOrder"/>
+        <Item Value="IdUser"/>
+        <Item Value="IdZatr"/>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </table>
+  </bindings>
+</pageDefinition>

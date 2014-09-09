@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="usersPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <iterator Binds="UsersAllView1" RangeSize="25" DataControl="AppModuleDataControl" id="UsersAllView1Iterator"/>
+    <searchRegion Binds="UsersAllView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="UsersAllView1Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="UsersAllView1Iterator" id="UsersAllView1">
+      <nodeDefinition DefName="falcon.view.UsersAllView" Name="UsersAllView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="IsGroup"/>
+          <Item Value="NotActive"/>
+          <Item Value="Password"/>
+          <Item Value="RealName"/>
+          <Item Value="IsAdmin"/>
+          <Item Value="IsAdminBoolean"/>
+          <Item Value="NotActiveBoolean"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+  </bindings>
+</pageDefinition>

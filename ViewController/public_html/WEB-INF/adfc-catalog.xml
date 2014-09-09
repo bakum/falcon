@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <exception-handler>exeption</exception-handler>
+  <view id="directories">
+    <page>/directories.jsf</page>
+  </view>
+  <view id="users">
+    <page>/users.jsf</page>
+  </view>
+  <view id="cat_zatraty">
+    <page>/cat_zatraty.jsf</page>
+  </view>
+  <view id="konsult_name">
+    <page>/konsult_name.jsf</page>
+  </view>
+  <view id="monrag_name">
+    <page>/monrag_name.jsf</page>
+  </view>
+  <view id="zamer_name">
+    <page>/zamer_name.jsf</page>
+  </view>
+  <view id="exeption">
+    <page>/exeption.jsf</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id>*</from-activity-id>
+    <control-flow-case id="__2">
+      <from-outcome>adfMenu_directories</from-outcome>
+      <to-activity-id>directories</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__3">
+      <from-outcome>adfMenu_users</from-outcome>
+      <to-activity-id>users</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__4">
+      <from-outcome>adfMenu_cat_zatraty</from-outcome>
+      <to-activity-id>cat_zatraty</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__9">
+      <from-outcome>adfMenu_konsult_name</from-outcome>
+      <to-activity-id>konsult_name</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__11">
+      <from-outcome>adfMenu_montag_name</from-outcome>
+      <to-activity-id>monrag_name</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__12">
+      <from-outcome>adfMenu_zamer_name</from-outcome>
+      <to-activity-id>zamer_name</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__13">
+      <from-outcome>adfMenu_montag_name_4</from-outcome>
+      <to-activity-id>zamer_name</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__5">
+    <description>Menu Model Managed Bean</description>
+    <managed-bean-name>catalog_menu</managed-bean-name>
+    <managed-bean-class>oracle.adf.view.rich.model.MDSMenuModel</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property id="__6">
+      <property-name>createHiddenNodes</property-name>
+      <value>false</value>
+    </managed-property>
+    <managed-property id="__7">
+      <property-name>source</property-name>
+      <property-class>java.lang.String</property-class>
+      <value>/WEB-INF/catalog_menu.xml</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__8">
+    <managed-bean-name>diction</managed-bean-name>
+    <managed-bean-class>view.DictBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__10">
+    <managed-bean-name>konsult</managed-bean-name>
+    <managed-bean-class>view.KonsNameBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__14">
+    <managed-bean-name>montag</managed-bean-name>
+    <managed-bean-class>view.MontagNameBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__15">
+    <managed-bean-name>zamer</managed-bean-name>
+    <managed-bean-class>view.ZamerNameBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTabPartOplaty"
+  Version="11.1.2.62.98"
+  DBObjectType="table"
+  DBObjectName="ORDERS_TAB_PART_OPLATY"
+  AliasName="OrdersTabPartOplaty"
+  BindingStyle="OracleName"
+  UseGlueCode="false"
+  RowClass="falcon.entity.OrdersTabPartOplatyImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="ORDERS_TAB_PART_OPLATY"
+    PrimaryKey="true"
+    IsUpdateable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.OrdersTabPartOplaty.Id_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.OrdersTabPartOplaty.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="OrderId"
+    ColumnName="ORDER_ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="ORDERS_TAB_PART_OPLATY"
+    IsUpdateable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.OrdersTabPartOplaty.OrderId_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.OrdersTabPartOplaty.OrderId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="DatOpl"
+    IsNotNull="true"
+    ColumnName="DAT_OPL"
+    SQLType="DATE"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="DATE"
+    TableName="ORDERS_TAB_PART_OPLATY">
+    <TransientExpression><![CDATA[adf.currentDateTime]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.OrdersTabPartOplaty.DatOpl_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.OrdersTabPartOplaty.DatOpl_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Summ"
+    IsNotNull="true"
+    Precision="10"
+    Scale="2"
+    ColumnName="SUMM"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="ORDERS_TAB_PART_OPLATY">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.OrdersTabPartOplaty.Summ_LABEL"/>
+        <TOOLTIP
+          ResId="falcon.entity.OrdersTabPartOplaty.Summ_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Num"
+    Precision="50"
+    ColumnName="NUM"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="ORDERS_TAB_PART_OPLATY">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.OrdersTabPartOplaty.Num_LABEL"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Orders"
+    Association="falcon.entity.OrdersTabPartOplatyOrFk1Assoc"
+    AssociationEnd="falcon.entity.OrdersTabPartOplatyOrFk1Assoc.Orders"
+    AssociationOtherEnd="falcon.entity.OrdersTabPartOplatyOrFk1Assoc.OrdersTabPartOplaty"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="VwOrder"
+    Association="falcon.entity.VwOrderOplatyAssocFk"
+    AssociationEnd="falcon.entity.VwOrderOplatyAssocFk.VwOrder"
+    AssociationOtherEnd="falcon.entity.VwOrderOplatyAssocFk.OrdersTabPartOplaty"
+    Type="falcon.entity.VwOrderImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="OrdersTabPartOplatyPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="ORDERS_TAB_PART_OPLATY_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.OrdersTabPartOplaty.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="OrdersTabPartOplatyOrFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="ORDERS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="ORDERS_TAB_PART_OPLATY_OR_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.OrdersTabPartOplaty.OrderId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_OrdersTabPartOplaty">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="VWORDER_PRIMARY_KEY"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_ORDERS_TAB_PART_OPLATY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.OrdersTabPartOplaty.OrderId"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

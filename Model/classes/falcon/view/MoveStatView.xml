@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MoveStatView"
+  Version="11.1.2.62.98"
+  SelectList="MoveStat.ID, 
+       MoveStat.FULLNAME, 
+       MoveStat.NAMEFULL"
+  FromList="MOVE_STAT MoveStat"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="MoveStat"
+    Entity="falcon.entity.MoveStat"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="MoveStat"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Fullname"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Fullname"
+    EntityUsage="MoveStat"
+    AliasName="FULLNAME"/>
+  <ViewAttribute
+    Name="Namefull"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Namefull"
+    EntityUsage="MoveStat"
+    AliasName="NAMEFULL"/>
+  <ViewLinkAccessor
+    Name="AccAccountingView"
+    ViewLink="falcon.view.AccAccountingMoveStatFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="AccCurrencyView"
+    ViewLink="falcon.view.AccCurrencyMoveStatFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="AccFizView"
+    ViewLink="falcon.view.AccFizMoveStatFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

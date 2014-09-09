@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="sales_repPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="DivisionsView1" RangeSize="-1" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+    <iterator Binds="ReportViewSalesPerMonth1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ReportViewSalesPerMonth1Iterator"/>
+    <iterator Binds="VwSalesReportView1" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="VwSalesReportView1Iterator"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="u_name"
+                     Name="setRangeForDetailVwSalesPerMonthAccessorViewObject_u_name" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="u_dat"
+                     Name="setRangeForDetailVwSalesPerMonthAccessorViewObject_u_dat" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="VwSalesReportView1.variablesMap.u_name"
+                     Name="ExecuteWithParams_u_name" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="VwSalesReportView1.variablesMap.u_dat"
+                     Name="ExecuteWithParams_u_dat" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Code"/>
+          <Item Value="Deleted"/>
+          <Item Value="Fullname"/>
+          <Item Value="IsGroup"/>
+          <Item Value="MainUser"/>
+          <Item Value="ParentId"/>
+          <Item Value="SyncKey"/>
+          <Item Value="SyncStr"/>
+          <Item Value="Total_Apr"/>
+          <Item Value="Total_Aug"/>
+          <Item Value="Total_Dec"/>
+          <Item Value="Total_Doh"/>
+          <Item Value="Total_Feb"/>
+          <Item Value="Total_Jan"/>
+          <Item Value="Total_Jul"/>
+          <Item Value="Total_Jun"/>
+          <Item Value="Total_Mar"/>
+          <Item Value="Total_May"/>
+          <Item Value="Total_Nov"/>
+          <Item Value="Total_Oct"/>
+          <Item Value="Total_Prib"/>
+          <Item Value="Total_Ras"/>
+          <Item Value="Total_Sep"/>
+          <Item Value="Total_Summ"/>
+          <Item Value="Version"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwSalesPerMonthView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="falcon.view.VwSalesPerMonthView" Name="DivisionsView11">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Division"/>
+          <Item Value="Doh"/>
+          <Item Value="IdDiv"/>
+          <Item Value="Prib"/>
+          <Item Value="Ras"/>
+          <Item Value="Stat"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <graph IterBinding="DivisionsView1Iterator" id="DivisionsView11" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="BAR_VERT_CLUST">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Total_Doh"/>
+            <item value="Total_Ras"/>
+            <item value="Total_Prib"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Fullname"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <attributeValues IterBinding="ReportViewSalesPerMonth1Iterator" id="Total_Doh">
+      <AttrNames>
+        <Item Value="Total_Doh"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ReportViewSalesPerMonth1Iterator" id="Total_Ras">
+      <AttrNames>
+        <Item Value="Total_Ras"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ReportViewSalesPerMonth1Iterator" id="Total_Prib">
+      <AttrNames>
+        <Item Value="Total_Prib"/>
+      </AttrNames>
+    </attributeValues>
+    <graph IterBinding="VwSalesReportView1Iterator" id="VwSalesReportView1" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="BAR_HORIZ_CLUST">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Doh"/>
+            <item value="Ras"/>
+            <item value="Prib"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Stat"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="setRangeForDetailVwSalesPerMonthAccessorViewObject" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="setRangeForDetailVwSalesPerMonthAccessorViewObject"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.DivisionsView1">
+      <NamedData NDName="u_name" NDType="java.lang.String"
+                 NDValue="${bindings.setRangeForDetailVwSalesPerMonthAccessorViewObject_u_name}"/>
+      <NamedData NDName="u_dat" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.setRangeForDetailVwSalesPerMonthAccessorViewObject_u_dat}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="u_name">
+      <AttrNames>
+        <Item Value="setRangeForDetailVwSalesPerMonthAccessorViewObject_u_name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="u_dat">
+      <AttrNames>
+        <Item Value="setRangeForDetailVwSalesPerMonthAccessorViewObject_u_dat"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="VwSalesReportView1Iterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="u_name" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_u_name}"/>
+      <NamedData NDName="u_dat" NDType="oracle.jbo.domain.Date" NDValue="${bindings.ExecuteWithParams_u_dat}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="u_name1">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_u_name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="u_dat1">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_u_dat"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

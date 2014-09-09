@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="oplatyPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator1"/>
+    <iterator Binds="OplataIschodView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OplataIschodView1Iterator"/>
+    <searchRegion Binds="OplataIschodView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="OplataIschodView1Query"/>
+    <iterator Binds="OplataIschodTabPartView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OplataIschodTabPartView2Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator1" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="OplataIschodView1Iterator" id="OplataIschodView1">
+      <nodeDefinition DefName="falcon.view.OplataIschodView" Name="OplataIschodView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Num"/>
+          <Item Value="Dat"/>
+          <Item Value="KontragId"/>
+          <Item Value="Summa"/>
+          <Item Value="CurrId"/>
+          <Item Value="UserId"/>
+          <Item Value="DivisionId"/>
+          <Item Value="KassaId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="OplataIschodTabPartView2Iterator" id="OplataIschodTabPartView2">
+      <nodeDefinition DefName="falcon.view.OplataIschodTabPartView" Name="OplataIschodTabPartView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="OplId"/>
+          <Item Value="OrderId"/>
+          <Item Value="Summa"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="OplataIschodTabPartView2Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OplataIschodView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OplataIschodTabPartView2Iterator" StaticList="false" Uses="LOV_OrderId" id="OrderId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action IterBinding="OplataIschodView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.98" id="konsult_namePageDef"
+                Package="view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <iterator Binds="KonsultNameView1" RangeSize="25" DataControl="AppModuleDataControl" id="KonsultNameView1Iterator"/>
+    <searchRegion Binds="KonsultNameView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="KonsultNameView1Query"/>
+    <iterator Binds="DivisionsView1" RangeSize="10" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="KonsultNameView1Iterator" id="KonsultNameView1">
+      <nodeDefinition DefName="falcon.view.KonsultNameView" Name="KonsultNameView10">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="DivisionsId"/>
+          <Item Value="IsActiveBoolean" Binds="IsActiveBoolean"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="KonsultNameView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Fullname"/>
+          <Item Value="Id"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="KonsultNameView1Iterator" id="Name">
+      <AttrNames>
+        <Item Value="Name"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="KonsultNameView1Iterator" StaticList="false" Uses="LOV_DivisionsId" id="DivisionsId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <button IterBinding="KonsultNameView1Iterator" id="IsActiveBoolean" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="IsActiveBoolean"/>
+      </AttrNames>
+    </button>
+    <attributeValues IterBinding="KonsultNameView1Iterator" id="IsActiveBoolean1">
+      <AttrNames>
+        <Item Value="IsActiveBoolean"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

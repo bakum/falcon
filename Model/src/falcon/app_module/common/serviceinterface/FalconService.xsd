@@ -1,0 +1,65 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="/falcon/app_module/common/types/"
+     xmlns:tns="/falcon/app_module/common/types/" xmlns:ns0="/falcon/view/common/" xmlns:ns1="http://xmlns.oracle.com/adf/svc/errors/"
+     xmlns:ns2="http://xmlns.oracle.com/adf/svc/types/">
+    <import namespace="http://xmlns.oracle.com/adf/svc/types/" schemaLocation="classpath:/META-INF/wsdl/BC4JService.xsd"/>
+    <import namespace="/falcon/view/common/" schemaLocation="../../../view/common/VwBepViewSDO.xsd"/>
+    <import namespace="http://xmlns.oracle.com/adf/svc/errors/" schemaLocation="classpath:/META-INF/wsdl/ServiceException.xsd"/>
+    <import namespace="/falcon/view/common/" schemaLocation="../../../view/common/VwOrderViewSDO.xsd"/>
+    <element name="getVwOrderView1">
+        <complexType>
+            <sequence>
+                <element name="id" type="decimal"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getVwOrderView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:VwOrderViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateVwOrderView1">
+        <complexType>
+            <sequence>
+                <element name="vwOrderView1" type="ns0:VwOrderViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateVwOrderView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:VwOrderViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createVwOrderView1">
+        <complexType>
+            <sequence>
+                <element name="vwOrderView1" type="ns0:VwOrderViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createVwOrderView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:VwOrderViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findVwOrderView1">
+        <complexType>
+            <sequence>
+                <element name="findCriteria" type="ns2:FindCriteria"/>
+                <element name="findControl" type="ns2:FindControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findVwOrderView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:VwOrderViewSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

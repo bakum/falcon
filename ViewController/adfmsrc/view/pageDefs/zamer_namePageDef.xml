@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.98" id="zamer_namePageDef"
+                Package="view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <iterator Binds="ZamerNameView1" RangeSize="25" DataControl="AppModuleDataControl" id="ZamerNameView1Iterator"/>
+    <searchRegion Binds="ZamerNameView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ZamerNameView1Query"/>
+    <iterator Binds="DivisionsView1" RangeSize="10" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="ZamerNameView1Iterator" id="ZamerNameView1">
+      <nodeDefinition DefName="falcon.view.ZamerNameView" Name="ZamerNameView10">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="DivisionsId"/>
+          <Item Value="IsActiveBoolean" Binds="IsActiveBoolean"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="ZamerNameView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="ZamerNameView1Iterator" id="Name">
+      <AttrNames>
+        <Item Value="Name"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="ZamerNameView1Iterator" StaticList="false" Uses="LOV_DivisionsId" id="DivisionsId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="ZamerNameView1Iterator" id="IsActiveBoolean" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="IsActiveBoolean"/>
+      </AttrNames>
+    </button>
+    <attributeValues IterBinding="ZamerNameView1Iterator" id="IsActiveBoolean1">
+      <AttrNames>
+        <Item Value="IsActiveBoolean"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

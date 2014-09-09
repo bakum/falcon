@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RegistrationTableView"
+  Version="11.1.2.62.94"
+  SelectList="RegistrationTable.ID_NODE, 
+       RegistrationTable.ID_OBJ, 
+       RegistrationTable.MESSNUM, 
+       RegistrationTable.ID, 
+       RegistrationTable.ID_TABLE, 
+       RegistrationTable.ID_REC"
+  FromList="DBA_FALCON.REGISTRATION_TABLE RegistrationTable"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <ViewAccessor
+    Name="CatalogMetaTablesView1"
+    ViewObjectName="falcon.view.CatalogMetaTablesView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_IdTable"
+    ListVOName="CatalogMetaTablesView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IdTable"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ThisName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="RegistrationTable"
+    Entity="falcon.entity.RegistrationTable"/>
+  <ViewAttribute
+    Name="IdNode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdNode"
+    EntityUsage="RegistrationTable"
+    AliasName="ID_NODE"/>
+  <ViewAttribute
+    Name="IdObj"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdObj"
+    EntityUsage="RegistrationTable"
+    AliasName="ID_OBJ"/>
+  <ViewAttribute
+    Name="Messnum"
+    PrecisionRule="true"
+    EntityAttrName="Messnum"
+    EntityUsage="RegistrationTable"
+    AliasName="MESSNUM"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="RegistrationTable"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="IdTable"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdTable"
+    EntityUsage="RegistrationTable"
+    AliasName="ID_TABLE"
+    LOVName="LOV_IdTable">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IdRec"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdRec"
+    EntityUsage="RegistrationTable"
+    AliasName="ID_REC"/>
+</ViewObject>

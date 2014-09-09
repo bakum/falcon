@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OtherZatratyTabPartZaFk2Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="model.entity.OtherZatratyTabPartZaFk2Assoc">
+  <ViewLinkDefEnd
+    Name="ZatratyView"
+    Cardinality="1"
+    Source="true"
+    Owner="view.ZatratyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="ZatratyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.ZatratyView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OtherZatratyTabPartZatratyView"
+    Cardinality="-1"
+    Owner="view.OtherZatratyTabPartZatratyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OtherZatratyTabPartZatratyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.OtherZatratyTabPartZatratyView.ZatrId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

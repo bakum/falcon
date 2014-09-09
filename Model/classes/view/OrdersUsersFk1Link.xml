@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersUsersFk1Link"
+  Version="11.1.2.62.94"
+  EntityAssociation="model.entity.OrdersUsersFk1Assoc">
+  <ViewLinkDefEnd
+    Name="UsersView"
+    Cardinality="1"
+    Source="true"
+    Owner="view.UsersView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="UsersView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.UsersView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OrdersView"
+    Cardinality="-1"
+    Owner="view.OrdersView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OrdersView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="view.OrdersView.UserId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

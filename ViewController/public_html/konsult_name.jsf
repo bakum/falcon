@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Falcon's store - Консультанты" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" value="#{bindings.ptb1}" id="pt1">
+                <f:facet name="body">
+                    <af:group id="g1">
+                        <af:panelCollection id="pc1">
+                            <f:facet name="menus"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t2">
+                                    <af:commandButton text="Добавить" disabled="#{!bindings.CreateInsert.enabled}"
+                                                      id="cbInsert" actionListener="#{bindings.CreateInsert.execute}"
+                                                      icon="/images/icon-add.png">
+                                        <af:showPopupBehavior popupId=":::pKonsultName"/>
+                                    </af:commandButton>
+                                    <af:commandToolbarButton actionListener="#{bindings.Commit.execute}"
+                                                             text="Сохранить" disabled="#{!bindings.Commit.enabled}"
+                                                             id="ctb2" icon="/images/save.png"/>
+                                    <af:commandToolbarButton actionListener="#{bindings.Rollback.execute}"
+                                                             text="Отменить" disabled="#{!bindings.Rollback.enabled}"
+                                                             immediate="true" id="ctb1" icon="/images/undo.png">
+                                        <af:resetActionListener/>
+                                    </af:commandToolbarButton>
+                                    <af:commandToolbarButton text="Обновить" id="ctb5" action="#{konsult.refreshNames}"
+                                                             icon="/images/refresh.png"/>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="statusbar"/>
+                            <af:table value="#{bindings.KonsultNameView1.collectionModel}" var="row"
+                                      rows="#{bindings.KonsultNameView1.rangeSize}"
+                                      emptyText="#{bindings.KonsultNameView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                      fetchSize="#{bindings.KonsultNameView1.rangeSize}" rowBandingInterval="0"
+                                      filterModel="#{bindings.KonsultNameView1Query.queryDescriptor}"
+                                      queryListener="#{bindings.KonsultNameView1Query.processQuery}"
+                                      filterVisible="true" varStatus="vs"
+                                      selectedRowKeys="#{bindings.KonsultNameView1.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.KonsultNameView1.collectionModel.makeCurrent}"
+                                      rowSelection="single" id="t1" partialTriggers="::cbInsert">
+                                <af:column id="c1" width="65">
+                                    <af:toolbar id="t3">
+                                        <af:commandToolbarButton id="ctb3" icon="/images/mini-edit.png">
+                                            <af:showPopupBehavior popupId="::::pKonsultName"/>
+                                        </af:commandToolbarButton>
+                                        <af:commandToolbarButton id="ctb4" icon="/images/delete.png" visible="false"/>
+                                    </af:toolbar>
+                                </af:column>
+                                <af:column headerText="#{bindings.KonsultNameView1.hints.Name.label}" id="c3"
+                                           width="200" filterable="true">
+                                    <af:outputText value="#{row.Name}" id="ot1"/>
+                                    <f:facet name="filter">
+                                        <af:selectOneChoice id="soc10" value="#{vs.filterCriteria.Name}"
+                                                            autoSubmit="true" label="Имя консультанта">
+                                            <f:selectItem itemValue="" itemLabel="" id="si12"/>
+                                            <af:forEach var="listrow" items="#{bindings.KonsultNameView1.rangeSet}">
+                                                <f:selectItem id="si13" itemLabel="#{listrow.Name}"
+                                                              itemValue="#{listrow.Name}"/>
+                                            </af:forEach>
+                                        </af:selectOneChoice>
+                                    </f:facet>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.KonsultNameView1.hints.DivisionsId.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.KonsultNameView1.hints.DivisionsId.label}" id="c2"
+                                           width="200">
+                                    <af:selectOneChoice value="#{row.bindings.DivisionsId.inputValue}"
+                                                        label="#{row.bindings.DivisionsId.label}"
+                                                        required="#{bindings.KonsultNameView1.hints.DivisionsId.mandatory}"
+                                                        shortDesc="#{bindings.KonsultNameView1.hints.DivisionsId.tooltip}"
+                                                        readOnly="true" id="soc1">
+                                        <f:selectItems value="#{row.bindings.DivisionsId.items}" id="si1"/>
+                                    </af:selectOneChoice>
+                                    <f:facet name="filter">
+                                        <af:selectOneChoice id="soc2" value="#{vs.filterCriteria.DivisionsId}"
+                                                            autoSubmit="true" label="Подразделение">
+                                            <f:selectItem itemValue="" itemLabel="" id="si2"/>
+                                            <af:forEach var="listrow" items="#{bindings.DivisionsView1.rangeSet}">
+                                                <f:selectItem id="si3" itemLabel="#{listrow.Fullname}"
+                                                              itemValue="#{listrow.Id}"/>
+                                            </af:forEach>
+                                        </af:selectOneChoice>
+                                    </f:facet>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.KonsultNameView1.hints.IsActiveBoolean.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.KonsultNameView1.hints.IsActiveBoolean.label}"
+                                           id="c4">
+                                    <af:selectBooleanCheckbox value="#{row.IsActiveBoolean}" id="ot3" label="Label 2"
+                                                              readOnly="true"/>
+                                </af:column>
+                            </af:table>
+                        </af:panelCollection>
+                    </af:group>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pKonsultName" contentDelivery="lazyUncached"
+                      popupFetchListener="#{konsult.namePopFetchListener}"
+                      popupCanceledListener="#{konsult.namePopCancelListener}">
+                <af:resetListener type="popupCanceled" />      
+                <af:dialog id="d3" title="Имя консультанта" dialogListener="#{konsult.nameDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:panelFormLayout id="pfl1">
+                        <af:inputText value="#{bindings.Name.inputValue}" label="#{bindings.Name.hints.label}"
+                                      required="#{bindings.Name.hints.mandatory}"
+                                      columns="#{bindings.Name.hints.displayWidth}"
+                                      maximumLength="#{bindings.Name.hints.precision}"
+                                      shortDesc="#{bindings.Name.hints.tooltip}" id="it1">
+                            <f:validator binding="#{bindings.Name.validator}"/>
+                        </af:inputText>
+                        <af:selectOneChoice value="#{bindings.DivisionsId.inputValue}"
+                                            label="#{bindings.DivisionsId.label}"
+                                            required="#{bindings.DivisionsId.hints.mandatory}"
+                                            shortDesc="#{bindings.DivisionsId.hints.tooltip}" id="soc3">
+                            <f:selectItems value="#{bindings.DivisionsId.items}" id="si4"/>
+                        </af:selectOneChoice>
+                        <af:selectBooleanCheckbox value="#{bindings.IsActiveBoolean1.inputValue}"
+                                                  label="#{bindings.IsActiveBoolean1.hints.label}"
+                                                  required="#{bindings.IsActiveBoolean1.hints.mandatory}"
+                                                  shortDesc="#{bindings.IsActiveBoolean1.hints.tooltip}" id="it2">
+                            <f:validator binding="#{bindings.IsActiveBoolean1.validator}"/>
+                        </af:selectBooleanCheckbox>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+        </af:form>
+    </af:document>
+</f:view>

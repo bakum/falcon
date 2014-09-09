@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94"
+                id="MDVwOrderView1DetailsHelperPageDef" Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page id="view_PanelVwOrderView1Helper1PageDef" path="view.pageDefs.PanelVwOrderView1Helper1PageDef"/>
+    <page id="view_PanelDetailsContainerHelperPageDef" path="view.pageDefs.PanelDetailsContainerHelperPageDef"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

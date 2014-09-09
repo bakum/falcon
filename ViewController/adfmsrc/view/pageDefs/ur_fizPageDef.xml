@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.98" id="ur_fizPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <iterator Binds="AccFizDolgView1" RangeSize="25" DataControl="AppModuleDataControl" id="AccFizDolgView1Iterator"/>
+    <searchRegion Binds="AccFizDolgView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="AccFizDolgView1Query"/>
+    <iterator Binds="AccFizView5" RangeSize="25" DataControl="AppModuleDataControl" id="AccFizView5Iterator"/>
+    <searchRegion Binds="AccFizView5Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="AccFizView5Query"/>
+    <iterator id="AccFizView1Iterator" Binds="AccFizView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator id="KontragentsView1Iterator" Binds="KontragentsView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="AccFizDolgView1Iterator" id="AccFizDolgView1">
+      <nodeDefinition DefName="falcon.view.AccFizDolgView" Name="AccFizDolgView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="IdKontrag"/>
+          <Item Value="IdVal"/>
+          <Item Value="Dolg"/>
+          <Item Value="IdDivision"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AccFizView5Iterator" id="AccFizView5">
+      <nodeDefinition DefName="falcon.view.AccFizView" Name="AccFizView50">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Dat"/>
+          <Item Value="IdMove"/>
+          <Item Value="IdKontrag"/>
+          <Item Value="IdVal"/>
+          <Item Value="Summa"/>
+          <Item Value="Comments"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="AccFizView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow" InstanceName="AppModuleDataControl.AccFizView1"
+            DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="AccFizView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="AccFizView1Iterator" StaticList="false" Uses="LOV_IdMove" id="IdMove" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="AccFizView1Iterator" StaticList="false" Uses="LOV_IdKontrag" id="IdKontrag"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="AccFizView1Iterator" StaticList="false" Uses="LOV_IdVal" id="IdVal" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="AccFizView1Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccFizView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="AccFizView5Iterator" id="Dat1">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="AccFizView5Iterator" StaticList="false" Uses="LOV_IdMove" id="IdMove1" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="AccFizView5Iterator" StaticList="false" Uses="LOV_IdKontrag" id="IdKontrag1"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="AccFizView5Iterator" StaticList="false" Uses="LOV_IdVal" id="IdVal1" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="AccFizView5Iterator" id="Summa1">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccFizView5Iterator" id="Comments1">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccFizView1Iterator" id="Fullname">
+      <AttrNames>
+        <Item Value="Fullname"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="AccFizView5Iterator" id="CreateInsert1" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="AccFizView5Iterator" id="Delete" InstanceName="AppModuleDataControl.AccFizView5"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

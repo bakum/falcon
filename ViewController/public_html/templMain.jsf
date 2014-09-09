@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:pageTemplateDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs"
+                    xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component" xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="pt_psl1" topHeight="71px">
+        <f:facet name="bottom">
+            <af:goLink text="Copyright by BMExpert 2012" id="pt_gl1"
+                       destination="mailto:bakum@bmexp.com"/>
+        </f:facet>
+        <f:facet name="center">
+            <af:decorativeBox id="pt_db1">
+                <f:facet name="center">
+                    <af:decorativeBox id="pt_db2">
+                        <f:facet name="center">
+                            <af:panelSplitter id="pt_ps1" splitterPosition="140">
+                                <f:facet name="first"/>
+                                <f:facet name="second">
+                                    <af:facetRef facetName="body"/>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </f:facet>
+                        <f:facet name="top">
+                            <af:panelGroupLayout layout="scroll" id="pt_pgl1">
+                                <af:breadCrumbs id="pt_bc1" value="#{root_menu}" var="menuInfo">
+                                    <f:facet name="nodeStamp">
+                                        <af:commandNavigationItem text="#{menuInfo.label}" id="pt_cni4"
+                                                                  destination="#{menuInfo.destination}"
+                                                                  action="#{menuInfo.doAction}"/>
+                                    </f:facet>
+                                </af:breadCrumbs>
+                                <af:navigationPane id="pt_np3" level="2" value="#{root_menu}" var="menuInfo"
+                                                   hint="buttons">
+                                    <f:facet name="nodeStamp">
+                                        <af:commandNavigationItem text="#{menuInfo.label}" id="pt_cni3"
+                                                                  destination="#{menuInfo.destination}"
+                                                                  action="#{menuInfo.doAction}"/>
+                                    </f:facet>
+                                </af:navigationPane>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:decorativeBox>
+                </f:facet>
+                <f:facet name="top">
+                    <af:navigationPane id="pt_np2" value="#{root_menu}" level="1" var="menuInfo">
+                        <f:facet name="nodeStamp">
+                            <af:commandNavigationItem text="#{menuInfo.label}" id="pt_cni2"
+                                                      destination="#{menuInfo.destination}"
+                                                      action="#{menuInfo.doAction}"/>
+                        </f:facet>
+                    </af:navigationPane>
+                </f:facet>
+            </af:decorativeBox>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top">
+            <af:panelHeader text="#{attrs.title}" id="pt_ph1">
+                <f:facet name="context"/>
+                <f:facet name="menuBar">
+                    <af:navigationPane id="pt_np1" hint="buttons" var="menuInfo" value="#{root_menu}">
+                        <f:facet name="nodeStamp">
+                            <af:commandNavigationItem text="#{menuInfo.label}" id="pt_cni1"
+                                                      destination="#{menuInfo.destination}"
+                                                      action="#{menuInfo.doAction}"/>
+                        </f:facet>
+                    </af:navigationPane>
+                </f:facet>
+                <f:facet name="toolbar"/>
+                <f:facet name="legend"/>
+                <f:facet name="info"/>
+                <af:outputLabel value="Falcon's store (Управление филиалами)" id="pt_ol1"
+                                inlineStyle="font-size:15pt;"/>
+            </af:panelHeader>
+        </f:facet>
+    </af:panelStretchLayout>
+    <af:xmlContent>
+        <afc:component>
+            <afc:display-name>templMain</afc:display-name>
+            <afc:facet>
+                <afc:facet-name>
+                    body
+                </afc:facet-name>
+            </afc:facet>
+            <afc:facet>
+                <afc:facet-name>
+                    graph
+                </afc:facet-name>
+            </afc:facet>
+            <afc:attribute>
+                <afc:attribute-name>
+                    title
+                </afc:attribute-name>
+                <afc:attribute-class>
+                    java.lang.String
+                </afc:attribute-class>
+                <afc:default-value>
+                    My Panel
+                </afc:default-value>
+            </afc:attribute>
+        </afc:component>
+    </af:xmlContent>
+</af:pageTemplateDef>

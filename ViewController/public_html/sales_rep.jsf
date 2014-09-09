@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <af:document title="Falcon's store - Отчет продажи" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" id="pt1">
+                <f:facet name="body">
+                    <af:panelSplitter id="ps1" splitterPosition="756">
+                        <f:facet name="first">
+                            <af:panelDashboard id="pd1" columns="1" rowHeight="260px">
+                                <af:panelBox text="Обороты по подразделениям за месяц" id="pb1">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t1">
+                                            <af:inputText value="#{bindings.u_name.inputValue}"
+                                                          label="#{bindings.u_name.hints.label}"
+                                                          required="#{bindings.u_name.hints.mandatory}"
+                                                          columns="#{bindings.u_name.hints.displayWidth}"
+                                                          maximumLength="#{bindings.u_name.hints.precision}"
+                                                          shortDesc="#{bindings.u_name.hints.tooltip}" id="it1"
+                                                          visible="false">
+                                                <f:validator binding="#{bindings.u_name.validator}"/>
+                                            </af:inputText>
+                                            <af:inputDate value="#{bindings.u_dat.inputValue}"
+                                                          label="Дата отчета:"
+                                                          required="#{bindings.u_dat.hints.mandatory}"
+                                                          columns="#{bindings.u_dat.hints.displayWidth}"
+                                                          shortDesc="#{bindings.u_dat.hints.tooltip}" id="id1"
+                                                          binding="#{ReportBean.ids}">
+                                                <f:validator binding="#{bindings.u_dat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.u_dat.format}"/>
+                                            </af:inputDate>
+                                            <af:commandButton actionListener="#{ReportBean.ExecuteWithUser}"
+                                                              text="Обновить"
+                                                              disabled="#{!bindings.setRangeForDetailVwSalesPerMonthAccessorViewObject.enabled}"
+                                                              id="cb1"/>
+                                            <af:panelFormLayout id="pfl1" visible="false">
+                                                <af:inputText value="#{bindings.u_name1.inputValue}"
+                                                              label="#{bindings.u_name1.hints.label}"
+                                                              required="#{bindings.u_name1.hints.mandatory}"
+                                                              columns="#{bindings.u_name1.hints.displayWidth}"
+                                                              maximumLength="#{bindings.u_name1.hints.precision}"
+                                                              shortDesc="#{bindings.u_name1.hints.tooltip}" id="it2">
+                                                    <f:validator binding="#{bindings.u_name1.validator}"/>
+                                                </af:inputText>
+                                                <af:inputDate value="#{bindings.u_dat1.inputValue}"
+                                                              label="#{bindings.u_dat1.hints.label}"
+                                                              required="#{bindings.u_dat1.hints.mandatory}"
+                                                              columns="#{bindings.u_dat1.hints.displayWidth}"
+                                                              shortDesc="#{bindings.u_dat1.hints.tooltip}" id="id2">
+                                                    <f:validator binding="#{bindings.u_dat1.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.u_dat1.format}"/>
+                                                </af:inputDate>
+                                                <af:commandButton actionListener="#{bindings.ExecuteWithParams.execute}"
+                                                                  text="ExecuteWithParams"
+                                                                  disabled="#{!bindings.ExecuteWithParams.enabled}"
+                                                                  id="cb2"/>
+                                            </af:panelFormLayout>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:panelCollection id="pc1" featuresOff="viewMenu">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar"/>
+                                        <f:facet name="statusbar"/>
+                                        <af:treeTable value="#{bindings.DivisionsView1.treeModel}" var="node"
+                                                      selectionListener="#{bindings.DivisionsView1.treeModel.makeCurrent}"
+                                                      rowSelection="single" id="tt1"
+                                                      emptyText="Нет данных для отображения.">
+                                            <f:facet name="nodeStamp">
+                                                <af:column id="c1" headerText="Подразделение" width="150">
+                                                    <af:outputText value="#{node.Fullname}" id="ot1"
+                                                                   inlineStyle="font-weight:bold;"/>
+                                                </af:column>
+                                            </f:facet>
+                                            <af:column id="c2" width="200" headerText="Контрагент/Статья затрат">
+                                                <af:outputText value="#{node.Stat}" id="ot3"/>
+                                            </af:column>
+                                            <af:column id="c3" headerText="Доход" align="right">
+                                                <af:outputText value="#{node.Total_Doh}" id="ot4"
+                                                               inlineStyle="font-weight:bold;"/>
+                                                <af:outputText value="#{node.Doh}" id="ot5"/>
+                                                <f:facet name="footer">
+                                                    <af:panelGroupLayout id="pgl3" layout="horizontal" halign="right">
+                                                        <af:outputText value="#{bindings.DivisionsView1Iterator.viewObject.sum['Total_Doh']}"
+                                                                       id="ot10" inlineStyle="font-weight:bold;">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.Total_Doh.format}"/>
+                                                        </af:outputText>
+                                                    </af:panelGroupLayout>
+                                                </f:facet>
+                                            </af:column>
+                                            <af:column id="c4" headerText="Расход" align="right">
+                                                <af:outputText value="#{node.Total_Ras}" id="ot6"
+                                                               inlineStyle="font-weight:bold;"/>
+                                                <af:outputText value="#{node.Ras}" id="ot7"/>
+                                                <f:facet name="footer">
+                                                    <af:panelGroupLayout id="pgl2" halign="right" layout="horizontal">
+                                                        <af:outputText value="#{bindings.DivisionsView1Iterator.viewObject.sum['Total_Ras']}"
+                                                                       id="ot11" inlineStyle="font-weight:bold;">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.Total_Ras.format}"/>
+                                                        </af:outputText>
+                                                    </af:panelGroupLayout>
+                                                </f:facet>
+                                            </af:column>
+                                            <af:column id="c5" headerText="Прибыль" align="right">
+                                                <af:outputText value="#{node.Total_Prib}" id="ot8"
+                                                               inlineStyle="font-weight:bold;"/>
+                                                <af:outputText value="#{node.Prib}" id="ot9"/>
+                                                <f:facet name="footer">
+                                                    <af:panelGroupLayout id="pgl1" layout="horizontal" halign="right">
+                                                        <af:outputText value="#{bindings.DivisionsView1Iterator.viewObject.sum['Total_Prib']}"
+                                                                       id="ot12" inlineStyle="font-weight:bold;">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.Total_Prib.format}"/>
+                                                        </af:outputText>
+                                                    </af:panelGroupLayout>
+                                                </f:facet>
+                                            </af:column>
+                                            <f:facet name="pathStamp">
+                                                <af:outputText value="#{node}" id="ot2"/>
+                                            </f:facet>
+                                        </af:treeTable>
+                                    </af:panelCollection>
+                                </af:panelBox>
+                                <af:panelBox text="Обороты за текущий месяц" id="pb2">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:barGraph id="graph1" value="#{bindings.DivisionsView11.graphModel}"
+                                                  subType="BAR_VERT_CLUST" inlineStyle="width:670px; height:200px;">
+                                        <dvt:background>
+                                            <dvt:specialEffects/>
+                                        </dvt:background>
+                                        <dvt:graphPlotArea/>
+                                        <dvt:seriesSet>
+                                            <dvt:series/>
+                                        </dvt:seriesSet>
+                                        <dvt:o1Axis/>
+                                        <dvt:y1Axis/>
+                                        <dvt:legendArea automaticPlacement="AP_NEVER"/>
+                                    </dvt:barGraph>
+                                </af:panelBox>
+                            </af:panelDashboard>
+                        </f:facet>
+                        <f:facet name="second">
+                            <af:panelDashboard id="pd2" rowHeight="520px" columns="1">
+                                <af:panelBox text="Продажи за текущий месяц" id="pb3">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:horizontalBarGraph id="graph2"
+                                                            value="#{bindings.VwSalesReportView1.graphModel}"
+                                                            subType="BAR_HORIZ_CLUST"
+                                                            inlineStyle="height:400px; width:650px;">
+                                        <dvt:background>
+                                            <dvt:specialEffects/>
+                                        </dvt:background>
+                                        <dvt:graphPlotArea/>
+                                        <dvt:seriesSet>
+                                            <dvt:series/>
+                                        </dvt:seriesSet>
+                                        <dvt:o1Axis/>
+                                        <dvt:y1Axis/>
+                                        <dvt:legendArea automaticPlacement="AP_NEVER"/>
+                                    </dvt:horizontalBarGraph>
+                                </af:panelBox>
+                            </af:panelDashboard>
+                        </f:facet>
+                    </af:panelSplitter>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>

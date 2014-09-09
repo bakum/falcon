@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="sales_repPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DivisionsView1" RangeSize="-1" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+    <iterator Binds="ReportViewSalesPerMonth1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ReportViewSalesPerMonth1Iterator"/>
+    <iterator Binds="VwSalesReportView1" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="VwSalesReportView1Iterator"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Code"/>
+          <Item Value="Deleted"/>
+          <Item Value="Fullname"/>
+          <Item Value="IsGroup"/>
+          <Item Value="MainUser"/>
+          <Item Value="ParentId"/>
+          <Item Value="SyncKey"/>
+          <Item Value="SyncStr"/>
+          <Item Value="Total_Apr"/>
+          <Item Value="Total_Aug"/>
+          <Item Value="Total_Dec"/>
+          <Item Value="Total_Doh"/>
+          <Item Value="Total_Feb"/>
+          <Item Value="Total_Jan"/>
+          <Item Value="Total_Jul"/>
+          <Item Value="Total_Jun"/>
+          <Item Value="Total_Mar"/>
+          <Item Value="Total_May"/>
+          <Item Value="Total_Nov"/>
+          <Item Value="Total_Oct"/>
+          <Item Value="Total_Prib"/>
+          <Item Value="Total_Ras"/>
+          <Item Value="Total_Sep"/>
+          <Item Value="Total_Summ"/>
+          <Item Value="Version"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwSalesPerMonthView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="falcon.view.VwSalesPerMonthView" Name="DivisionsView11">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Division"/>
+          <Item Value="Doh"/>
+          <Item Value="IdDiv"/>
+          <Item Value="Prib"/>
+          <Item Value="Ras"/>
+          <Item Value="Stat"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <graph IterBinding="DivisionsView1Iterator" id="DivisionsView11" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="BAR_VERT_CLUST">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Total_Doh"/>
+            <item value="Total_Ras"/>
+            <item value="Total_Prib"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Fullname"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <attributeValues IterBinding="ReportViewSalesPerMonth1Iterator" id="Total_Doh">
+      <AttrNames>
+        <Item Value="Total_Doh"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ReportViewSalesPerMonth1Iterator" id="Total_Ras">
+      <AttrNames>
+        <Item Value="Total_Ras"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ReportViewSalesPerMonth1Iterator" id="Total_Prib">
+      <AttrNames>
+        <Item Value="Total_Prib"/>
+      </AttrNames>
+    </attributeValues>
+    <graph IterBinding="VwSalesReportView1Iterator" id="VwSalesReportView1" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="BAR_HORIZ_CLUST">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Doh"/>
+            <item value="Ras"/>
+            <item value="Prib"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Stat"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

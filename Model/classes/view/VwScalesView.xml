@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwScalesView"
+  Version="11.1.2.62.94"
+  SelectList="VwScales.ID, 
+       VwScales.USE_R, 
+       VwScales.ZATRATY, 
+       VwScales.NAME, 
+       VwScales.NAL, 
+       VwScales.BEZNAL, 
+       VwScales.ROWID"
+  FromList="VW_SCALES VwScales"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <EntityUsage
+    Name="VwScales"
+    Entity="model.entity.VwScales"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="VwScales"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="UseR1"
+    PrecisionRule="true"
+    EntityAttrName="UseR1"
+    EntityUsage="VwScales"
+    AliasName="USE_R"/>
+  <ViewAttribute
+    Name="Zatraty"
+    PrecisionRule="true"
+    EntityAttrName="Zatraty"
+    EntityUsage="VwScales"
+    AliasName="ZATRATY"/>
+  <ViewAttribute
+    Name="Name"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="VwScales"
+    AliasName="NAME"/>
+  <ViewAttribute
+    Name="Nal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Nal"
+    EntityUsage="VwScales"
+    AliasName="NAL"/>
+  <ViewAttribute
+    Name="Beznal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Beznal"
+    EntityUsage="VwScales"
+    AliasName="BEZNAL"/>
+  <ViewAttribute
+    Name="Rowid"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="Rowid"
+    EntityUsage="VwScales"
+    AliasName="ROWID"/>
+</ViewObject>

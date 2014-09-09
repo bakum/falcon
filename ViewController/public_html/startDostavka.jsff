@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:pageTemplate viewId="/templaddDostavka.jsf" id="pt1">
+        <f:facet name="body">
+            <af:decorativeBox id="db1">
+                <f:facet name="center">
+                    <af:panelFormLayout id="pfl1">
+                        <af:inputDate value="#{bindings.Dat.inputValue}" label="#{bindings.Dat.hints.label}"
+                                      required="#{bindings.Dat.hints.mandatory}"
+                                      columns="#{bindings.Dat.hints.displayWidth}"
+                                      shortDesc="#{bindings.Dat.hints.tooltip}" id="id1">
+                            <f:validator binding="#{bindings.Dat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                        </af:inputDate>
+                        <af:inputNumberSpinbox value="#{bindings.Summa.inputValue}"
+                                               label="#{bindings.Summa.hints.label}"
+                                               required="#{bindings.Summa.hints.mandatory}"
+                                               columns="#{bindings.Summa.hints.displayWidth}"
+                                               shortDesc="#{bindings.Summa.hints.tooltip}" id="it2">
+                            <f:validator binding="#{bindings.Summa.validator}"/>
+                        </af:inputNumberSpinbox>
+                        <af:panelGroupLayout id="pgl1" layout="horizontal">
+                            <af:inputComboboxListOfValues id="idBaseId"
+                                                          popupTitle="Search and Select: #{bindings.IdBase.hints.label}"
+                                                          value="#{bindings.IdBase.inputValue}"
+                                                          label="#{bindings.IdBase.hints.label}"
+                                                          model="#{bindings.IdBase.listOfValuesModel}"
+                                                          required="#{bindings.IdBase.hints.mandatory}"
+                                                          columns="#{bindings.IdBase.hints.displayWidth}"
+                                                          shortDesc="#{bindings.IdBase.hints.tooltip}">
+                                <f:validator binding="#{bindings.IdBase.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.IdBase.format}"/>
+                            </af:inputComboboxListOfValues>
+                            <af:selectOneChoice value="#{bindings.IdBase1.inputValue}"
+                                                required="#{bindings.IdBase1.hints.mandatory}"
+                                                shortDesc="#{bindings.IdBase1.hints.tooltip}" id="soc1" readOnly="true">
+                                <f:selectItems value="#{bindings.IdBase1.items}" id="si1"/>
+                            </af:selectOneChoice>
+                        </af:panelGroupLayout>
+                        <af:inputText value="#{bindings.Comments.inputValue}" label="#{bindings.Comments.hints.label}"
+                                      required="#{bindings.Comments.hints.mandatory}"
+                                      columns="#{bindings.Comments.hints.displayWidth}"
+                                      maximumLength="#{bindings.Comments.hints.precision}"
+                                      shortDesc="#{bindings.Comments.hints.tooltip}" id="it1"
+                                      contentStyle="width:100%;" styleClass="AFStretchWidth" rows="4">
+                            <f:validator binding="#{bindings.Comments.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelHeader text="Основные реквизиты" id="ph1" type="flow">
+                        <f:facet name="context"/>
+                        <f:facet name="toolbar">
+                            <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                               id="tbb1"/>
+                        </f:facet>
+                        <f:facet name="legend">
+                            <af:panelLabelAndMessage label="#{bindings.Num.hints.label}" id="plam1">
+                                <af:outputFormatted value="#{bindings.Num.inputValue}" id="of1"/>
+                            </af:panelLabelAndMessage>
+                        </f:facet>
+                        <f:facet name="info"/>
+                    </af:panelHeader>
+                </f:facet>
+            </af:decorativeBox>
+        </f:facet>
+    </af:pageTemplate>
+</ui:composition>

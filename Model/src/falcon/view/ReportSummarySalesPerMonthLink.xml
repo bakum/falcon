@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ReportSummarySalesPerMonthLink"
+  Version="11.1.2.62.94">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="falcon.view.ReportSummarySalesPerMonthLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="ReportViewSalesPerMonth"
+    Cardinality="1"
+    Source="true"
+    Owner="falcon.view.ReportViewSalesPerMonth">
+    <DesignTime>
+      <Attr Name="_finderName" Value="ReportViewSalesPerMonth"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.ReportViewSalesPerMonth.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="VwSalesPerMonthView"
+    Cardinality="-1"
+    Owner="falcon.view.VwSalesPerMonthView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwSalesPerMonthView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.view.VwSalesPerMonthView.RepId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

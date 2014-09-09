@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageTemplateDefs xmlns="http://xmlns.oracle.com/adf/faces/rich/pagetemplate">
+  <pagetemplate-jsp-ui-def>/templaddDostavka.jsf</pagetemplate-jsp-ui-def>
+  <pagetemplate-jsp-ui-def>/templateMain.jsf</pagetemplate-jsp-ui-def>
+  <pagetemplate-jsp-ui-def>/templMain.jsf</pagetemplate-jsp-ui-def>
+</pageTemplateDefs>

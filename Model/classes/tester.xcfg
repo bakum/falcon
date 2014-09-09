@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="module.AppModule">
+      <AppModuleConfig name="13B14DBD48B" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" DBconnection="java:comp/env/jdbc/db_falconDS" IsLazyLoadingTrue="true" JDBCName="db_falcon" jbo.project="model.Model" BC4JConfigName="AppModuleLocal" DeployPlatform="LOCAL" ApplicationName="module.AppModule">
+         <Database jbo.SQLBuilder="Oracle" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="module.AppModule"/>
+         <Tester FullProxyInterfaceName="module.common.AppModule"/>
+         <Custom LastUsedConfiguration="AppModuleLocal" JDBCDataSource="java:comp/env/jdbc/db_falconDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="falcon.app_module.AppModule">
+      <AppModuleConfig name="145AE0502E9" DBconnection="java:comp/env/jdbc/db_falconDS" ApplicationName="falcon.app_module.AppModule" DeployPlatform="LOCAL" IsLazyLoadingTrue="true" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" JDBCName="db_falcon" BC4JConfigName="AppModuleLocal" jbo.project="model.Model">
+         <Database jbo.locking.mode="optimistic" jbo.TypeMapEntries="OracleApps" jbo.SQLBuilder="Oracle"/>
+         <Security AppModuleJndiName="falcon.app_module.AppModule"/>
+         <Tester FullProxyInterfaceName="falcon.app_module.common.AppModule"/>
+         <Custom LastUsedConfiguration="AppModuleLocal" JDBCDataSource="java:comp/env/jdbc/db_falconDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AccFiz"
+  Version="11.1.2.62.98"
+  DBObjectType="TABLE"
+  DBObjectName="DBA_FALCON.ACC_FIZ"
+  AliasName="AccFiz"
+  BindingStyle="OracleName"
+  UseGlueCode="false"
+  RowClass="falcon.entity.AccFizImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.ACC_FIZ"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="Dat"
+    IsNotNull="true"
+    ColumnName="DAT"
+    SQLType="DATE"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="DATE"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <TransientExpression><![CDATA[adf.currentDateTime]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.Dat_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="IdMove"
+    IsNotNull="true"
+    ColumnName="ID_MOVE"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.IdMove_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="IdRegistrator"
+    Precision="100"
+    ColumnName="ID_REGISTRATOR"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.IdRegistrator_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="IdKontrag"
+    ColumnName="ID_KONTRAG"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.IdKontrag_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="IdVal"
+    IsNotNull="true"
+    ColumnName="ID_VAL"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.IdVal_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Summa"
+    IsNotNull="true"
+    Precision="10"
+    Scale="3"
+    ColumnName="SUMMA"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.Summa_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Comments"
+    Precision="100"
+    ColumnName="COMMENTS"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.Comments_LABEL"/>
+        <DISPLAYWIDTH
+          Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Deleted"
+    Precision="1"
+    Scale="0"
+    ColumnName="DELETED"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="DBA_FALCON.ACC_FIZ">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.Deleted_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Fullname"
+    Precision="80"
+    ColumnName="FULLNAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    IsQueriable="false"
+    IsPersistent="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.AccFiz.Fullname_LABEL"/>
+        <DISPLAYWIDTH
+          Value="40"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Kontragents"
+    Association="falcon.entity.AccFizKontragentsFkAssoc"
+    AssociationEnd="falcon.entity.AccFizKontragentsFkAssoc.Kontragents"
+    AssociationOtherEnd="falcon.entity.AccFizKontragentsFkAssoc.AccFiz"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Currency"
+    Association="falcon.entity.AccFizCurrencyFkAssoc"
+    AssociationEnd="falcon.entity.AccFizCurrencyFkAssoc.Currency"
+    AssociationOtherEnd="falcon.entity.AccFizCurrencyFkAssoc.AccFiz"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="MoveStat"
+    Association="falcon.entity.AccFizMoveStatFkAssoc"
+    AssociationEnd="falcon.entity.AccFizMoveStatFkAssoc.MoveStat"
+    AssociationOtherEnd="falcon.entity.AccFizMoveStatFkAssoc.AccFiz"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="AccFizPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="ACC_FIZ_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.AccFiz.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="AccFizCurrencyFk">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="CURRENCY_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="ACC_FIZ_CURRENCY_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.AccFiz.IdVal"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="AccFizKontragentsFk">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="KONTRAGENTS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="ACC_FIZ_KONTRAGENTS_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.AccFiz.IdKontrag"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="AccFizMoveStatFk">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="MOVE_STAT_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="ACC_FIZ_MOVE_STAT_FK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.AccFiz.IdMove"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

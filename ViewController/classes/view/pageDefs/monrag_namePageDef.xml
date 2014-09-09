@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.98" id="monrag_namePageDef"
+                Package="view.pageDefs" SkipValidation="false">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
+    <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <iterator Binds="MontagNameView1" RangeSize="25" DataControl="AppModuleDataControl" id="MontagNameView1Iterator"/>
+    <searchRegion Binds="MontagNameView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="MontagNameView1Query"/>
+    <iterator Binds="DivisionsView1" RangeSize="10" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UsersView1Iterator" id="RealName">
+      <AttrNames>
+        <Item Value="RealName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MontagNameView1Iterator" id="MontagNameView1">
+      <nodeDefinition DefName="falcon.view.MontagNameView" Name="MontagNameView10">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="DivisionsId"/>
+          <Item Value="IsActiveBoolean" Binds="IsActiveBoolean"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MontagNameView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="MontagNameView1Iterator" id="Name">
+      <AttrNames>
+        <Item Value="Name"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MontagNameView1Iterator" StaticList="false" Uses="LOV_DivisionsId" id="DivisionsId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <button IterBinding="MontagNameView1Iterator" id="IsActiveBoolean" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="IsActiveBoolean"/>
+      </AttrNames>
+    </button>
+    <attributeValues IterBinding="MontagNameView1Iterator" id="IsActiveBoolean1">
+      <AttrNames>
+        <Item Value="IsActiveBoolean"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

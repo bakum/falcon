@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Falcon's store - Статьи затрат" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" id="pt1">
+                <f:facet name="body">
+                    <af:panelStretchLayout id="psl1">
+                        <f:facet name="bottom"/>
+                        <f:facet name="center">
+                            <af:panelCollection id="pc1">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t2">
+                                        <af:commandToolbarButton actionListener="#{bindings.CreateInsert.execute}"
+                                                                 text="Добавить"
+                                                                 disabled="#{!bindings.CreateInsert.enabled}"
+                                                                 id="ctbInsert">
+                                            <af:showPopupBehavior popupId=":::pCreateEdit" align="afterEnd"/>
+                                        </af:commandToolbarButton>
+                                        <af:commandToolbarButton actionListener="#{bindings.Commit.execute}"
+                                                                 text="Сохранить" disabled="#{!bindings.Commit.enabled}"
+                                                                 id="ctb2"/>
+                                        <af:commandToolbarButton actionListener="#{bindings.Rollback.execute}"
+                                                                 text="Отменить"
+                                                                 disabled="#{!bindings.Rollback.enabled}"
+                                                                 immediate="true" id="ctb3">
+                                            <af:resetActionListener/>
+                                        </af:commandToolbarButton>
+                                        <af:commandToolbarButton text="Обновить" id="ctb1"
+                                                                 action="#{diction.refreshZatraty}"/>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.ZatratyView1.collectionModel}" var="row"
+                                          rows="#{bindings.ZatratyView1.rangeSize}"
+                                          emptyText="#{bindings.ZatratyView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                          fetchSize="#{bindings.ZatratyView1.rangeSize}" rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.ZatratyView1.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.ZatratyView1.collectionModel.makeCurrent}"
+                                          rowSelection="single" id="t1" partialTriggers="::ctb1 ::ctbInsert">
+                                    <af:column id="c5">
+                                        <af:commandButton text="Редактировать" id="cb1">
+                                            <af:showPopupBehavior popupId="::::pCreateEdit" align="afterEnd"/>
+                                        </af:commandButton>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ZatratyView1.hints.Code.name}" sortable="true"
+                                               headerText="#{bindings.ZatratyView1.hints.Code.label}" id="c1">
+                                        <af:outputText value="#{row.Code}" id="ot1"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ZatratyView1.hints.ParentId.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.ZatratyView1.hints.ParentId.label}" id="c2"
+                                               width="200">
+                                        <af:selectOneChoice value="#{row.bindings.ParentId.inputValue}"
+                                                            label="#{row.bindings.ParentId.label}"
+                                                            required="#{bindings.ZatratyView1.hints.ParentId.mandatory}"
+                                                            shortDesc="#{bindings.ZatratyView1.hints.ParentId.tooltip}"
+                                                            readOnly="true" id="soc1">
+                                            <f:selectItems value="#{row.bindings.ParentId.items}" id="si1"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ZatratyView1.hints.Fullname.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.ZatratyView1.hints.Fullname.label}" id="c3"
+                                               width="300">
+                                        <af:outputText value="#{row.Fullname}" id="ot2"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.ZatratyView1.hints.IsGroup.name}"
+                                               sortable="true" headerText="#{bindings.ZatratyView1.hints.IsGroup.label}"
+                                               id="c4">
+                                        <af:outputText value="#{row.IsGroup}" id="ot3">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.ZatratyView1.hints.IsGroup.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </f:facet>
+                        <f:facet name="start"/>
+                        <f:facet name="end"/>
+                        <f:facet name="top"/>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pCreateEdit" contentDelivery="lazyUncached"
+                      popupFetchListener="#{diction.zatrPopFetchListener}"
+                      popupCanceledListener="#{diction.dictPopCancelListener}">
+                <af:resetListener type="popupCanceled"/>
+                <af:dialog id="d3" dialogListener="#{diction.dictDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:panelFormLayout id="pfl1">
+                        <af:selectOneChoice value="#{bindings.ParentId.inputValue}" label="#{bindings.ParentId.label}"
+                                            required="#{bindings.ParentId.hints.mandatory}"
+                                            shortDesc="#{bindings.ParentId.hints.tooltip}" id="soc2">
+                            <f:selectItems value="#{bindings.ParentId.items}" id="si2"/>
+                        </af:selectOneChoice>
+                        <af:inputText value="#{bindings.Fullname.inputValue}" label="#{bindings.Fullname.hints.label}"
+                                      required="#{bindings.Fullname.hints.mandatory}"
+                                      columns="#{bindings.Fullname.hints.displayWidth}"
+                                      maximumLength="#{bindings.Fullname.hints.precision}"
+                                      shortDesc="#{bindings.Fullname.hints.tooltip}" id="it1" rows="3"
+                                      contentStyle="width:250px;">
+                            <f:validator binding="#{bindings.Fullname.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+        </af:form>
+    </af:document>
+</f:view>

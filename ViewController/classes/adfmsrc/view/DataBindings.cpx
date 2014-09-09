@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="11.1.2.62.94" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+             className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/untitled1.jsf" usageId="view_untitled1PageDef"/>
+    <page path="/orders.jsf" usageId="view_ordersPageDef"/>
+    <page path="/startDostavka.jsff" usageId="view_startDostavkaPageDef"/>
+    <page path="/tab_part.jsff" usageId="view_tab_partPageDef"/>
+    <page path="/summary_dostavka.jsff" usageId="view_summary_dostavkaPageDef"/>
+    <page path="/dostavka.jsf" usageId="view_dostavkaPageDef"/>
+    <page path="/zatraty.jsf" usageId="view_zatratyPageDef"/>
+    <page path="/home.jsf" usageId="view_homePageDef"/>
+    <page path="/zatr_rep.jsf" usageId="view_zatr_repPageDef"/>
+    <page path="/sales_rep.jsf" usageId="view_sales_repPageDef"/>
+    <page path="/templateMain.jsf" usageId="view_templateMainPageDef"/>
+    <page path="/preferences.jsf" usageId="view_preferencesPageDef"/>
+    <page path="/users.jsf" usageId="view_usersPageDef"/>
+    <page path="/cat_zatraty.jsf" usageId="view_cat_zatratyPageDef"/>
+    <page path="/oplaty.jsf" usageId="view_oplatyPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_untitled1PageDef" path="view.pageDefs.untitled1PageDef"/>
+    <page id="view_ordersPageDef" path="view.pageDefs.ordersPageDef"/>
+    <page id="view_startDostavkaPageDef" path="view.pageDefs.startDostavkaPageDef"/>
+    <page id="view_tab_partPageDef" path="view.pageDefs.tab_partPageDef"/>
+    <page id="view_summary_dostavkaPageDef" path="view.pageDefs.summary_dostavkaPageDef"/>
+    <page id="view_dostavkaPageDef" path="view.pageDefs.dostavkaPageDef"/>
+    <page id="view_zatratyPageDef" path="view.pageDefs.zatratyPageDef"/>
+    <page id="view_homePageDef" path="view.pageDefs.homePageDef"/>
+    <page id="view_zatr_repPageDef" path="view.pageDefs.zatr_repPageDef"/>
+    <page id="view_sales_repPageDef" path="view.pageDefs.sales_repPageDef"/>
+    <page id="view_templateMainPageDef" path="view.pageDefs.templateMainPageDef"/>
+    <page id="view_preferencesPageDef" path="view.pageDefs.preferencesPageDef"/>
+    <page id="view_usersPageDef" path="view.pageDefs.usersPageDef"/>
+    <page id="view_cat_zatratyPageDef" path="view.pageDefs.cat_zatratyPageDef"/>
+    <page id="view_oplatyPageDef" path="view.pageDefs.oplatyPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="AppModuleDataControl1" Package="falcon.model.view"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="AppModuleDataControl" Package="falcon.app_module"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

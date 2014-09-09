@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Divisions"
+  Version="11.1.2.62.98"
+  DBObjectType="table"
+  DBObjectName="DIVISIONS"
+  AliasName="Divisions"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DIVISIONS"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="SyncKey"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="SYNC_KEY"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="DIVISIONS"/>
+  <Attribute
+    Name="MainUser"
+    ColumnName="MAIN_USER"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DIVISIONS"/>
+  <Attribute
+    Name="Fullname"
+    IsNotNull="true"
+    Precision="150"
+    ColumnName="FULLNAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DIVISIONS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="falcon.entity.Divisions.Fullname_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Deleted"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="DELETED"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="DIVISIONS"/>
+  <Attribute
+    Name="SyncStr"
+    IsUnique="true"
+    Precision="100"
+    ColumnName="SYNC_STR"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DIVISIONS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="IsGroup"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="IS_GROUP"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="DIVISIONS"/>
+  <Attribute
+    Name="Code"
+    Precision="50"
+    ColumnName="CODE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DIVISIONS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ParentId"
+    ColumnName="PARENT_ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="DIVISIONS"/>
+  <Attribute
+    Name="Version"
+    IsNotNull="true"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="DIVISIONS"/>
+  <AccessorAttribute
+    Name="AccZatr"
+    Association="falcon.entity.AccZatrDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.AccZatrDivisionsFk1Assoc.AccZatr"
+    AssociationOtherEnd="falcon.entity.AccZatrDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Divisions"
+    Association="falcon.entity.DivisionsDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.DivisionsDivisionsFk1Assoc.Divisions"
+    AssociationOtherEnd="falcon.entity.DivisionsDivisionsFk1Assoc.ParentIdDivisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="ParentIdDivisions"
+    Association="falcon.entity.DivisionsDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.DivisionsDivisionsFk1Assoc.ParentIdDivisions"
+    AssociationOtherEnd="falcon.entity.DivisionsDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="AccCost"
+    Association="falcon.entity.AccCostDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.AccCostDivisionsFk1Assoc.AccCost"
+    AssociationOtherEnd="falcon.entity.AccCostDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="DivisionsSotr"
+    Association="falcon.entity.DivisionSotrDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.DivisionSotrDivisionsFk1Assoc.DivisionsSotr"
+    AssociationOtherEnd="falcon.entity.DivisionSotrDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Dostavka"
+    Association="falcon.entity.DostavkaDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.DostavkaDivisionsFk1Assoc.Dostavka"
+    AssociationOtherEnd="falcon.entity.DostavkaDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Kassa"
+    Association="falcon.entity.KassaDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.KassaDivisionsFk1Assoc.Kassa"
+    AssociationOtherEnd="falcon.entity.KassaDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Orders"
+    Association="falcon.entity.OrdersDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.OrdersDivisionsFk1Assoc.Orders"
+    AssociationOtherEnd="falcon.entity.OrdersDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="OtherZatraty"
+    Association="falcon.entity.OtherZatratyDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.OtherZatratyDivisionsFk1Assoc.OtherZatraty"
+    AssociationOtherEnd="falcon.entity.OtherZatratyDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Users"
+    Association="falcon.entity.DivisionsUsersFk1Assoc"
+    AssociationEnd="falcon.entity.DivisionsUsersFk1Assoc.Users"
+    AssociationOtherEnd="falcon.entity.DivisionsUsersFk1Assoc.Divisions"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="UserSettings"
+    Association="falcon.entity.UserSettingsDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.UserSettingsDivisionsFk1Assoc.UserSettings"
+    AssociationOtherEnd="falcon.entity.UserSettingsDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="VwZatratyPerMonth"
+    Association="falcon.entity.VwZatratyMonthDivisionAssocFk"
+    AssociationEnd="falcon.entity.VwZatratyMonthDivisionAssocFk.VwZatratyPerMonth"
+    AssociationOtherEnd="falcon.entity.VwZatratyMonthDivisionAssocFk.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="VwSalesPerMonth"
+    Association="falcon.entity.VwSalesMonthDivisionAssocFk"
+    AssociationEnd="falcon.entity.VwSalesMonthDivisionAssocFk.VwSalesPerMonth"
+    AssociationOtherEnd="falcon.entity.VwSalesMonthDivisionAssocFk.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="OplataIschod"
+    Association="falcon.entity.OplataIschodFk3Assoc"
+    AssociationEnd="falcon.entity.OplataIschodFk3Assoc.OplataIschod"
+    AssociationOtherEnd="falcon.entity.OplataIschodFk3Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="KonsultName"
+    Association="falcon.entity.KonsultNameDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.KonsultNameDivisionsFk1Assoc.KonsultName"
+    AssociationOtherEnd="falcon.entity.KonsultNameDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="MontagName"
+    Association="falcon.entity.MontagNameDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.MontagNameDivisionsFk1Assoc.MontagName"
+    AssociationOtherEnd="falcon.entity.MontagNameDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="ZamerName"
+    Association="falcon.entity.ZamerNameDivisionsFk1Assoc"
+    AssociationEnd="falcon.entity.ZamerNameDivisionsFk1Assoc.ZamerName"
+    AssociationOtherEnd="falcon.entity.ZamerNameDivisionsFk1Assoc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="VwBep"
+    Association="falcon.entity.VwBepDivisionsFkAcc"
+    AssociationEnd="falcon.entity.VwBepDivisionsFkAcc.VwBep"
+    AssociationOtherEnd="falcon.entity.VwBepDivisionsFkAcc.Divisions"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="DivisionsChk1">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DIVISIONS_CHK1"/>
+      <Attr Name="_checkCondition" Value="DELETED IN (0, 1)"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="DivisionsChk2">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DIVISIONS_CHK2"/>
+      <Attr Name="_checkCondition" Value="IS_GROUP IN (0, 1)"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="DivisionsChk3">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DIVISIONS_CHK3"/>
+      <Attr Name="_checkCondition" Value="SYNC_KEY IN (0, 1)"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="DivisionsPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DIVISIONS_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Divisions.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DivisionsUk1">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DIVISIONS_UK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Divisions.SyncStr"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DivisionsDivisionsFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="DIVISIONS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DIVISIONS_DIVISIONS_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Divisions.ParentId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DivisionsUsersFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="USERS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DIVISIONS_USERS_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="falcon.entity.Divisions.MainUser"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

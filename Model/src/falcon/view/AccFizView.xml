@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AccFizView"
+  Version="11.1.2.62.98"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="MoveStatView1"
+    ViewObjectName="falcon.view.MoveStatView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragentsView1"
+    ViewObjectName="falcon.view.KontragentsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CurrencyView1"
+    ViewObjectName="falcon.view.CurrencyView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_IdMove"
+    ListVOName="MoveStatView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IdMove"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Namefull"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_IdKontrag"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IdKontrag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_IdVal"
+    ListVOName="CurrencyView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IdVal"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT AccFiz.ID, 
+       AccFiz.DAT, 
+       AccFiz.ID_MOVE, 
+       AccFiz.ID_REGISTRATOR, 
+       AccFiz.ID_KONTRAG,
+       (select fullname from kontragents where id = AccFiz.ID_KONTRAG) fullname, 
+       AccFiz.ID_VAL, 
+       AccFiz.SUMMA, 
+       AccFiz.COMMENTS, 
+       AccFiz.DELETED
+FROM DBA_FALCON.ACC_FIZ AccFiz]]></SQLQuery>
+  <EntityUsage
+    Name="AccFiz"
+    Entity="falcon.entity.AccFiz"/>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="AccFiz"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Dat"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Dat"
+    EntityUsage="AccFiz"
+    AliasName="DAT"/>
+  <ViewAttribute
+    Name="IdMove"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdMove"
+    EntityUsage="AccFiz"
+    AliasName="ID_MOVE"
+    LOVName="LOV_IdMove">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IdRegistrator"
+    PrecisionRule="true"
+    EntityAttrName="IdRegistrator"
+    EntityUsage="AccFiz"
+    AliasName="ID_REGISTRATOR"/>
+  <ViewAttribute
+    Name="IdKontrag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdKontrag"
+    EntityUsage="AccFiz"
+    AliasName="ID_KONTRAG"
+    LOVName="LOV_IdKontrag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Fullname"
+    PrecisionRule="true"
+    EntityAttrName="Fullname"
+    EntityUsage="AccFiz"
+    AliasName="FULLNAME"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="IdVal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IdVal"
+    EntityUsage="AccFiz"
+    AliasName="ID_VAL"
+    LOVName="LOV_IdVal">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summa"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="AccFiz"
+    AliasName="SUMMA"/>
+  <ViewAttribute
+    Name="Comments"
+    PrecisionRule="true"
+    EntityAttrName="Comments"
+    EntityUsage="AccFiz"
+    AliasName="COMMENTS"/>
+  <ViewAttribute
+    Name="Deleted"
+    PrecisionRule="true"
+    EntityAttrName="Deleted"
+    EntityUsage="AccFiz"
+    AliasName="DELETED"/>
+</ViewObject>

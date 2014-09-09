@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Falcon's store - Затраты" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" id="pt1" value="#{bindings.ptb1}">
+                <f:facet name="body">
+                    <af:panelStretchLayout id="psl1">
+                        <f:facet name="center">
+                            <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="247"
+                                              positionedFromEnd="true">
+                                <f:facet name="first">
+                                    <af:panelCollection id="pc1">
+                                        <f:facet name="menus">
+                                            <af:menu text="Операции" id="m2">
+                                                <af:commandMenuItem actionListener="#{bindings.Delete.execute}"
+                                                                    text="Удалить текущую запись" disabled="#{bindings.Commit.enabled}"
+                                                                    id="cmiDelete">
+                                                    <af:showPopupBehavior popupId=":::pDelete"/>
+                                                </af:commandMenuItem>
+                                            </af:menu>
+                                        </f:facet>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t3">
+                                                <af:commandButton
+                                                                  text="Новые затраты"
+                                                                  disabled="#{bindings.Commit.enabled}"
+                                                                  id="cbInsert">
+                                                    <af:showPopupBehavior popupId=":::pCreateEdit" align="afterEnd"/>
+                                                </af:commandButton>
+                                                <af:commandButton
+                                                                  text="Сохранить" disabled="#{!bindings.Commit.enabled}"
+                                                                  id="cb3" action="#{OtherBean.commitOther}"/>
+                                                <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                                                                  text="Отменить"
+                                                                  disabled="#{!bindings.Rollback.enabled}"
+                                                                  immediate="true" id="cb4">
+                                                    <af:resetActionListener/>
+                                                </af:commandButton>
+                                                <af:commandToolbarButton text="Обновить" id="ctb1"
+                                                                         action="#{OtherBean.refreshOther}"/>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.OtherZatratyView1.collectionModel}" var="row"
+                                                  rows="#{bindings.OtherZatratyView1.rangeSize}"
+                                                  emptyText="#{bindings.OtherZatratyView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                                  fetchSize="#{bindings.OtherZatratyView1.rangeSize}"
+                                                  rowBandingInterval="0"
+                                                  filterModel="#{bindings.OtherZatratyView1Query.queryDescriptor}"
+                                                  queryListener="#{bindings.OtherZatratyView1Query.processQuery}"
+                                                  filterVisible="true" varStatus="vs"
+                                                  selectedRowKeys="#{bindings.OtherZatratyView1.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.OtherZatratyView1.collectionModel.makeCurrent}"
+                                                  rowSelection="single" id="t1"
+                                                  partialTriggers="::cmiDelete ::cbInsert"
+                                                  binding="#{OtherBean.featureTable}">
+                                            <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Id.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OtherZatratyView1.hints.Id.label}"
+                                                       id="c1" visible="false">
+                                                <af:outputText value="#{row.Id}" id="ot1">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.OtherZatratyView1.hints.Id.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Num.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OtherZatratyView1.hints.Num.label}"
+                                                       id="c2" width="120">
+                                                <af:commandButton text="#{row.Num}" id="cb1" inlineStyle="width:100px;">
+                                                    <af:showPopupBehavior popupId="::::pCreateEdit"/>
+                                                    <af:resetActionListener/>
+                                                </af:commandButton>
+                                                <f:facet name="filter">
+                                                    <af:group id="g2">
+                                                        <af:toolbar id="t9">
+                                                            <af:commandToolbarButton id="ctb2"
+                                                                                     actionListener="#{OtherBean.resetTableFilter}"
+                                                                                     icon="/images/refresh.png"
+                                                                                     shortDesc="Сбросить все фильтры"/>
+                                                        </af:toolbar>
+                                                    </af:group>
+                                                </f:facet>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Dat.name}" sortable="true"
+                                                       headerText="#{bindings.OtherZatratyView1.hints.Dat.label}"
+                                                       id="c3" width="120">
+                                                <af:outputText value="#{row.Dat}" id="ot3">
+                                                    <af:convertDateTime pattern="#{bindings.OtherZatratyView1.hints.Dat.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OtherZatratyView1.hints.DivisionId.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OtherZatratyView1.hints.DivisionId.label}"
+                                                       id="c4" width="179">
+                                                <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                                    label="#{row.bindings.DivisionId.label}"
+                                                                    required="#{bindings.OtherZatratyView1.hints.DivisionId.mandatory}"
+                                                                    shortDesc="#{bindings.OtherZatratyView1.hints.DivisionId.tooltip}"
+                                                                    readOnly="true" id="soc1">
+                                                    <f:selectItems value="#{row.bindings.DivisionId.items}" id="si1"/>
+                                                </af:selectOneChoice>
+                                                <f:facet name="filter">
+                                                    <af:selectOneChoice id="soc12"
+                                                                        value="#{vs.filterCriteria.DivisionId}"
+                                                                        autoSubmit="true" label="Подразделение">
+                                                        <f:selectItem itemValue="" itemLabel="" id="si15"/>
+                                                        <af:forEach var="listrow"
+                                                                    items="#{bindings.DivisionsView1.rangeSet}">
+                                                            <f:selectItem id="si16" itemLabel="#{listrow.Fullname}"
+                                                                          itemValue="#{listrow.Id}"/>
+                                                        </af:forEach>
+                                                    </af:selectOneChoice>
+                                                </f:facet>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OtherZatratyView1.hints.UserId.name}"
+                                                       filterable="true" sortable="true"
+                                                       headerText="#{bindings.OtherZatratyView1.hints.UserId.label}"
+                                                       id="c5" width="185">
+                                                <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                    label="#{row.bindings.UserId.label}"
+                                                                    required="#{bindings.OtherZatratyView1.hints.UserId.mandatory}"
+                                                                    shortDesc="#{bindings.OtherZatratyView1.hints.UserId.tooltip}"
+                                                                    readOnly="true" id="soc2">
+                                                    <f:selectItems value="#{row.bindings.UserId.items}" id="si2"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Comments.name}"
+                                                       filterable="false" sortable="true"
+                                                       headerText="#{bindings.OtherZatratyView1.hints.Comments.label}"
+                                                       id="c6" width="606">
+                                                <af:outputText value="#{row.Comments}" id="ot4"/>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </f:facet>
+                                <f:facet name="second">
+                                    <af:panelTabbed id="pt2">
+                                        <af:showDetailItem text="Затраты" id="sdi1">
+                                            <af:panelStretchLayout id="psl2" inlineStyle="width:auto; height:370px;">
+                                                <f:facet name="center">
+                                                    <af:panelCollection id="pc2">
+                                                        <f:facet name="menus"/>
+                                                        <f:facet name="toolbar"/>
+                                                        <f:facet name="statusbar"/>
+                                                        <af:table value="#{bindings.OtherZatratyTabPartZatratyView2.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.OtherZatratyTabPartZatratyView2.rangeSize}"
+                                                                  emptyText="#{bindings.OtherZatratyTabPartZatratyView2.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                                                  fetchSize="#{bindings.OtherZatratyTabPartZatratyView2.rangeSize}"
+                                                                  rowBandingInterval="0"
+                                                                  selectedRowKeys="#{bindings.OtherZatratyTabPartZatratyView2.collectionModel.selectedRow}"
+                                                                  selectionListener="#{bindings.OtherZatratyTabPartZatratyView2.collectionModel.makeCurrent}"
+                                                                  rowSelection="single" id="t2"
+                                                                  inlineStyle="width:auto; height:auto;">
+                                                            <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.label}"
+                                                                       id="c7" visible="false">
+                                                                <af:outputText value="#{row.Id}" id="ot5">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.label}"
+                                                                       id="c8" width="110">
+                                                                <af:outputText value="#{row.OthId}" id="ot6">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.label}"
+                                                                       id="c9" width="212">
+                                                                <af:selectOneChoice value="#{row.bindings.ZatrId.inputValue}"
+                                                                                    label="#{row.bindings.ZatrId.label}"
+                                                                                    required="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.mandatory}"
+                                                                                    shortDesc="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.tooltip}"
+                                                                                    readOnly="true" id="soc3">
+                                                                    <f:selectItems value="#{row.bindings.ZatrId.items}"
+                                                                                   id="si3"/>
+                                                                </af:selectOneChoice>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.label}"
+                                                                       id="c10" width="282">
+                                                                <af:outputText value="#{row.Summa}" id="ot7"/>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:panelCollection>
+                                                </f:facet>
+                                            </af:panelStretchLayout>
+                                        </af:showDetailItem>
+                                    </af:panelTabbed>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="graph"/>
+                <f:attribute name="title" value="#{bindings.RealName.inputValue}"/>
+            </af:pageTemplate>
+            <af:popup autoCancel="disabled" id="pCreateEdit" contentDelivery="lazyUncached"
+                      popupFetchListener="#{OtherBean.OtherFetchListener}"
+                      popupCanceledListener="#{OtherBean.OtherCancelListener}" childCreation="deferred">
+                <af:dialog id="d2" dialogListener="#{OtherBean.OtherDialogListener}" title="Прочие затраты">
+                    <f:facet name="buttonBar"/>
+                    <af:panelStretchLayout id="psl3" inlineStyle="width:811px; height:439px;">
+                        <f:facet name="center">
+                            <af:panelSplitter id="ps2" orientation="vertical" splitterPosition="268"
+                                              positionedFromEnd="true">
+                                <f:facet name="first">
+                                    <af:panelFormLayout id="pfl1">
+                                        <af:inputText value="#{bindings.Num.inputValue}"
+                                                      label="#{bindings.Num.hints.label}"
+                                                      required="#{bindings.Num.hints.mandatory}"
+                                                      columns="#{bindings.Num.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Num.hints.precision}"
+                                                      shortDesc="#{bindings.Num.hints.tooltip}" id="it1"
+                                                      readOnly="true">
+                                            <f:validator binding="#{bindings.Num.validator}"/>
+                                        </af:inputText>
+                                        <af:inputDate value="#{bindings.Dat.inputValue}"
+                                                      label="#{bindings.Dat.hints.label}"
+                                                      required="#{bindings.Dat.hints.mandatory}"
+                                                      columns="#{bindings.Dat.hints.displayWidth}"
+                                                      shortDesc="#{bindings.Dat.hints.tooltip}" id="id1">
+                                            <f:validator binding="#{bindings.Dat.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                        </af:inputDate>
+                                        <af:inputText value="#{bindings.Comments.inputValue}"
+                                                      label="#{bindings.Comments.hints.label}"
+                                                      required="#{bindings.Comments.hints.mandatory}"
+                                                      columns="#{bindings.Comments.hints.displayWidth}"
+                                                      shortDesc="#{bindings.Comments.hints.tooltip}" id="it2"
+                                                      clientComponent="true" rows="3">
+                                            <f:validator binding="#{bindings.Comments.validator}"/>
+                                        </af:inputText>
+                                    </af:panelFormLayout>
+                                </f:facet>
+                                <f:facet name="second">
+                                    <af:panelSplitter id="ps3" splitterPosition="303" collapsed="false"
+                                                      positionedFromEnd="true">
+                                        <f:facet name="first">
+                                            <af:panelTabbed id="pt3">
+                                                <af:showDetailItem text="Затраты" id="sdi2" stretchChildren="first">
+                                                    <af:table value="#{bindings.OtherZatratyTabPartZatratyView21.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.OtherZatratyTabPartZatratyView21.rangeSize}"
+                                                              emptyText="#{bindings.OtherZatratyTabPartZatratyView21.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                                              fetchSize="#{bindings.OtherZatratyTabPartZatratyView21.rangeSize}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.OtherZatratyTabPartZatratyView21.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.OtherZatratyTabPartZatratyView21.collectionModel.makeCurrent}"
+                                                              rowSelection="single" id="t4" editingMode="clickToEdit" width="711"
+                                                              inlineStyle="height:auto;">
+                                                        <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.label}"
+                                                                   id="c12" visible="false">
+                                                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                                          label="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.label}"
+                                                                          required="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.mandatory}"
+                                                                          columns="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.displayWidth}"
+                                                                          maximumLength="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.precision}"
+                                                                          shortDesc="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.tooltip}"
+                                                                          id="it3">
+                                                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.OtherZatratyTabPartZatratyView21.hints.Id.format}"/>
+                                                            </af:inputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.label}"
+                                                                   id="c13" visible="false">
+                                                            <af:inputText value="#{row.bindings.OthId.inputValue}"
+                                                                          label="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.label}"
+                                                                          required="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.mandatory}"
+                                                                          columns="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.displayWidth}"
+                                                                          maximumLength="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.precision}"
+                                                                          shortDesc="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.tooltip}"
+                                                                          id="it4">
+                                                                <f:validator binding="#{row.bindings.OthId.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.OtherZatratyTabPartZatratyView21.hints.OthId.format}"/>
+                                                            </af:inputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView21.hints.ZatrId.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OtherZatratyTabPartZatratyView21.hints.ZatrId.label}"
+                                                                   id="c14" width="168">
+                                                            <af:selectOneChoice value="#{row.bindings.ZatrId.inputValue}"
+                                                                                label="#{row.bindings.ZatrId.label}"
+                                                                                required="#{bindings.OtherZatratyTabPartZatratyView21.hints.ZatrId.mandatory}"
+                                                                                shortDesc="#{bindings.OtherZatratyTabPartZatratyView21.hints.ZatrId.tooltip}"
+                                                                                id="soc4">
+                                                                <f:selectItems value="#{row.bindings.ZatrId.items}"
+                                                                               id="si4"/>
+                                                            </af:selectOneChoice>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.OtherZatratyTabPartZatratyView21.hints.Summa.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.OtherZatratyTabPartZatratyView21.hints.Summa.label}"
+                                                                   id="c15" width="149">
+                                                            <af:inputText value="#{row.bindings.Summa.inputValue}"
+                                                                          label="#{bindings.OtherZatratyTabPartZatratyView21.hints.Summa.label}"
+                                                                          required="#{bindings.OtherZatratyTabPartZatratyView21.hints.Summa.mandatory}"
+                                                                          columns="#{bindings.OtherZatratyTabPartZatratyView21.hints.Summa.displayWidth}"
+                                                                          maximumLength="#{bindings.OtherZatratyTabPartZatratyView21.hints.Summa.precision}"
+                                                                          shortDesc="#{bindings.OtherZatratyTabPartZatratyView21.hints.Summa.tooltip}"
+                                                                          id="it5">
+                                                                <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                                            </af:inputText>
+                                                        </af:column>
+                                                        <af:collectionDropTarget dropListener="#{OtherBean.addZatratyListener}"
+                                                                                 actions="COPY" modelName="addZatraty"/>
+                                                    </af:table>
+                                                </af:showDetailItem>
+                                            </af:panelTabbed>
+                                        </f:facet>
+                                        <f:facet name="second">
+                                            <af:treeTable value="#{bindings.ZatratyPostView2.treeModel}" var="node"
+                                                          selectionListener="#{bindings.ZatratyPostView2.treeModel.makeCurrent}"
+                                                          rowSelection="single" id="tt1">
+                                                <f:facet name="nodeStamp">
+                                                    <af:column id="c16" width="200" headerText="Статья затрат">
+                                                        <af:outputText value="#{node.Fullname}" id="ot2"/>
+                                                        <f:facet name="header">
+                                                            <af:commandButton text="Добавить" id="cbInsertZatraty">
+                                                                <af:showPopupBehavior popupId="::pCreateZatr"
+                                                                                      align="afterEnd"/>
+                                                                <af:resetActionListener/>
+                                                            </af:commandButton>
+                                                        </f:facet>
+                                                    </af:column>
+                                                </f:facet>
+                                                <f:facet name="pathStamp">
+                                                    <af:outputText value="#{node}" id="ot8"/>
+                                                </f:facet>
+                                                <af:dragSource actions="COPY" defaultAction="COPY"
+                                                               discriminant="addZatraty"
+                                                               dragDropEndListener="#{OtherBean.DragListener}"/>
+                                            </af:treeTable>
+                                        </f:facet>
+                                    </af:panelSplitter>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete" contentDelivery="lazyUncached"
+                      popupFetchListener="#{OtherBean.DeleteFetchListener}"
+                      popupCanceledListener="#{OtherBean.OtherCancelListener}">
+                <af:dialog id="d3" dialogListener="#{OtherBean.OtherDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:outputLabel value="Вы действительно хотите удалить запись?" id="ol1"
+                                    inlineStyle="font-size:11pt;"/>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="pCreateZatr" contentDelivery="lazyUncached">
+                <af:dialog id="d4" title="Новая статья затрат" dialogListener="#{OtherBean.NewZatratyDialogListener}">
+                    <f:facet name="buttonBar"/>
+                    <af:panelFormLayout id="pfl2">
+                        <af:inputText value="#{bindings.id_par.inputValue}" label="#{bindings.id_par.hints.label}"
+                                      required="#{bindings.id_par.hints.mandatory}"
+                                      columns="#{bindings.id_par.hints.displayWidth}"
+                                      maximumLength="#{bindings.id_par.hints.precision}"
+                                      shortDesc="#{bindings.id_par.hints.tooltip}" id="it6" readOnly="true"
+                                      visible="false">
+                            <f:validator/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.za.inputValue}" label="Статья затрат"
+                                      required="#{bindings.za.hints.mandatory}"
+                                      columns="#{bindings.za.hints.displayWidth}"
+                                      maximumLength="#{bindings.za.hints.precision}"
+                                      shortDesc="#{bindings.za.hints.tooltip}" id="it7">
+                            <f:validator binding="#{bindings.za.validator}"/>
+                        </af:inputText>
+                        <af:commandButton actionListener="#{bindings.createZatratyArticle.execute}"
+                                          text="createZatratyArticle"
+                                          disabled="#{!bindings.createZatratyArticle.enabled}" id="cb5"
+                                          visible="false"/>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+        </af:form>
+    </af:document>
+</f:view>
