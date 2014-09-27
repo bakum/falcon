@@ -315,6 +315,11 @@
           <display-name>BoykoAlexandr</display-name>
           <credentials>{903}DyEpmprbZtLJdP6nViV1QifjhEmoKTN9</credentials>
         </user>
+        <user>
+          <name>FU</name>
+          <display-name>ChernyshVladislav</display-name>
+          <credentials>{903}G+mFkW4yiCtwWJ27tZBu+lkNH+g+mUbD</credentials>
+        </user>
       </users>
       <roles>
         <role>
@@ -573,6 +578,10 @@
             <member>
               <type>user</type>
               <name>BZ</name>
+            </member>
+            <member>
+              <type>user</type>
+              <name>FU</name>
             </member>
           </members>
         </role>

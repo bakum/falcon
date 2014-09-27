@@ -33,7 +33,7 @@
             <Contents>1521</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="hostname">
-            <Contents>localhost</Contents>
+            <Contents>imx.net.ua</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="user">
             <Contents>dba_falcon</Contents>
