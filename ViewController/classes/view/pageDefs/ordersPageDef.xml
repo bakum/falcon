@@ -4,7 +4,7 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="VwOrderView1" RangeSize="70" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
+    <iterator Binds="VwOrderView1" RangeSize="25" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
     <searchRegion Binds="VwOrderView1Iterator" Criteria=""
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="VwOrderView1Query"/>
     <iterator Binds="OrdersTabPartOplatyView3" RangeSize="25" DataControl="AppModuleDataControl"
