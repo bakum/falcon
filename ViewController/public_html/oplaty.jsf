@@ -6,7 +6,7 @@
         <af:form id="f1">
             <af:pageTemplate viewId="/templateMain.jsf" value="#{bindings.ptb1}" id="pt1">
                 <f:facet name="body">
-                    <af:panelSplitter id="ps1" orientation="vertical" positionedFromEnd="true">
+                    <af:panelSplitter id="ps1" orientation="vertical" positionedFromEnd="true" collapsed="true">
                         <f:facet name="first">
                             <af:panelStretchLayout id="psl1">
                                 <f:facet name="center">

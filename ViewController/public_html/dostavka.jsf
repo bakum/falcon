@@ -6,7 +6,8 @@
         <af:form id="f1">
             <af:pageTemplate viewId="/templateMain.jsf" id="pt1">
                 <f:facet name="body">
-                    <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="200" positionedFromEnd="true">
+                    <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="200" positionedFromEnd="true"
+                                      collapsed="true">
                         <f:facet name="first">
                             <af:panelStretchLayout id="psl1">
                                 <f:facet name="center">
@@ -26,7 +27,7 @@
                                                                   text="Новая доставка"
                                                                   disabled="#{bindings.Commit.enabled}"
                                                                   id="cbInsert">
-                                                    <af:showPopupBehavior popupId=":::p1" align="afterEnd"/>
+                                                    <af:showPopupBehavior popupId=":::p1"/>
                                                 </af:commandButton>
                                                 <af:commandButton
                                                                   text="Сохранить" disabled="#{!bindings.Commit.enabled}"
