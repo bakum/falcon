@@ -320,6 +320,11 @@
           <display-name>ChernyshVladislav</display-name>
           <credentials>{903}G+mFkW4yiCtwWJ27tZBu+lkNH+g+mUbD</credentials>
         </user>
+        <user>
+          <name>DBR</name>
+          <display-name>PupenaMishail</display-name>
+          <credentials>{903}9O4IZnoO3PizZdXRbEY5NbUia7t0EZJx</credentials>
+        </user>
       </users>
       <roles>
         <role>
@@ -582,6 +587,10 @@
             <member>
               <type>user</type>
               <name>FU</name>
+            </member>
+            <member>
+              <type>user</type>
+              <name>DBR</name>
             </member>
           </members>
         </role>
