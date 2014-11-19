@@ -15,7 +15,7 @@
                                 <f:facet name="first">
                                     <af:panelStretchLayout id="psl1">
                                         <f:facet name="center">
-                                            <af:panelCollection id="pc1" featuresOff="formatMenu">
+                                            <af:panelCollection id="pc1" featuresOff="formatMenu statusBar">
                                                 <f:facet name="menus">
                                                     <af:menu text="Операции" id="m2">
                                                         <af:commandMenuItem actionListener="#{bindings.Delete.execute}"
@@ -361,7 +361,7 @@
                                                     <af:column headerText="#{bindings.VwOrderView1.hints.ZamerId.label}"
                                                                id="c39"
                                                                sortProperty="#{bindings.VwOrderView1.hints.ZamerId.name}"
-                                                               sortable="true" filterable="true" width="110"
+                                                               sortable="true" width="110"
                                                                inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
                                                         <af:selectOneChoice value="#{row.bindings.ZamerId.inputValue}"
                                                                             label="#{row.bindings.ZamerId.label}"
@@ -371,18 +371,7 @@
                                                             <f:selectItems value="#{row.bindings.ZamerId.items}"
                                                                            id="si17"/>
                                                         </af:selectOneChoice>
-                                                        <f:facet name="filter">
-                                                            <af:selectOneChoice id="soc14"
-                                                                                value="#{vs.filterCriteria.ZamerId}"
-                                                                                autoSubmit="true" label="Имя замерщика">
-                                                                <f:selectItem itemValue="" itemLabel="" id="si18"/>
-                                                                <af:forEach var="listrow"
-                                                                            items="#{bindings.ZamerNameViewActive1.rangeSet}">
-                                                                    <f:selectItem id="si19" itemLabel="#{listrow.Name}"
-                                                                                  itemValue="#{listrow.Id}"/>
-                                                                </af:forEach>
-                                                            </af:selectOneChoice>
-                                                        </f:facet>
+                                                        <f:facet name="filter"/>
                                                     </af:column>
                                                     <af:column sortProperty="#{bindings.VwOrderView1.hints.Konsult.name}"
                                                                filterable="true" sortable="true"
@@ -423,7 +412,7 @@
                                                     <af:column headerText="#{bindings.VwOrderView1.hints.KonsulrId.label}"
                                                                id="c40" width="110"
                                                                sortProperty="#{bindings.VwOrderView1.hints.KonsulrId.name}"
-                                                               sortable="true" filterable="true"
+                                                               sortable="true"
                                                                inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
                                                         <af:selectOneChoice value="#{row.bindings.KonsulrId.inputValue}"
                                                                             label="#{row.bindings.KonsulrId.label}"
@@ -433,19 +422,7 @@
                                                             <f:selectItems value="#{row.bindings.KonsulrId.items}"
                                                                            id="si20"/>
                                                         </af:selectOneChoice>
-                                                        <f:facet name="filter">
-                                                            <af:selectOneChoice id="soc16"
-                                                                                value="#{vs.filterCriteria.KonsulrId}"
-                                                                                autoSubmit="true"
-                                                                                label="Имя консультанта">
-                                                                <f:selectItem itemValue="" itemLabel="" id="si21"/>
-                                                                <af:forEach var="listrow"
-                                                                            items="#{bindings.KonsultNameActiveView1.rangeSet}">
-                                                                    <f:selectItem id="si22" itemLabel="#{listrow.Name}"
-                                                                                  itemValue="#{listrow.Id}"/>
-                                                                </af:forEach>
-                                                            </af:selectOneChoice>
-                                                        </f:facet>
+                                                        <f:facet name="filter"/>
                                                     </af:column>
                                                     <af:column sortProperty="#{bindings.VwOrderView1.hints.Montag.name}"
                                                                filterable="true" sortable="true"
@@ -485,7 +462,7 @@
                                                     <af:column headerText="#{bindings.VwOrderView1.hints.MontagId.label}"
                                                                id="c41"
                                                                sortProperty="#{bindings.VwOrderView1.hints.MontagId.name}"
-                                                               sortable="true" filterable="true" width="110"
+                                                               sortable="true" width="110"
                                                                inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
                                                         <af:selectOneChoice value="#{row.bindings.MontagId.inputValue}"
                                                                             label="#{row.bindings.MontagId.label}"
@@ -495,19 +472,7 @@
                                                             <f:selectItems value="#{row.bindings.MontagId.items}"
                                                                            id="si23"/>
                                                         </af:selectOneChoice>
-                                                        <f:facet name="filter">
-                                                            <af:selectOneChoice id="soc18"
-                                                                                value="#{vs.filterCriteria.MontagId}"
-                                                                                autoSubmit="true"
-                                                                                label="Имя монтажника">
-                                                                <f:selectItem itemValue="" itemLabel="" id="si24"/>
-                                                                <af:forEach var="listrow"
-                                                                            items="#{bindings.MontagNameActive1.rangeSet}">
-                                                                    <f:selectItem id="si25" itemLabel="#{listrow.Name}"
-                                                                                  itemValue="#{listrow.Id}"/>
-                                                                </af:forEach>
-                                                            </af:selectOneChoice>
-                                                        </f:facet>
+                                                        <f:facet name="filter"/>
                                                     </af:column>
                                                     <af:column sortProperty="#{bindings.VwOrderView1.hints.Dostavka.name}"
                                                                filterable="true" sortable="true"
@@ -583,8 +548,7 @@
                                                             <f:validator binding="#{row.bindings.Kassa.validator}"/>
                                                         </af:inputText>
                                                     </af:column>
-                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.UserS.name}"
-                                                               filterable="true" sortable="true"
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.UserS.name}" sortable="true"
                                                                headerText="#{bindings.VwOrderView1.hints.UserS.label}"
                                                                id="c16" visible="false"
                                                                inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
@@ -598,8 +562,7 @@
                                                             <f:validator binding="#{row.bindings.UserS.validator}"/>
                                                         </af:inputText>
                                                     </af:column>
-                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Division.name}"
-                                                               filterable="true" sortable="true"
+                                                    <af:column sortProperty="#{bindings.VwOrderView1.hints.Division.name}" sortable="true"
                                                                headerText="#{bindings.VwOrderView1.hints.Division.label}"
                                                                id="c17" visible="false"
                                                                inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
@@ -613,19 +576,7 @@
                                                                       id="it15">
                                                             <f:validator binding="#{row.bindings.Division.validator}"/>
                                                         </af:inputText>
-                                                        <f:facet name="filter">
-                                                            <af:selectOneChoice id="soc12"
-                                                                                value="#{vs.filterCriteria.Division}"
-                                                                                autoSubmit="true" label="Подразделение">
-                                                                <f:selectItem itemValue="" itemLabel="" id="si15"/>
-                                                                <af:forEach var="listrow"
-                                                                            items="#{bindings.DivisionsView1.rangeSet}">
-                                                                    <f:selectItem id="si16"
-                                                                                  itemLabel="#{listrow.Fullname}"
-                                                                                  itemValue="#{listrow.Fullname}"/>
-                                                                </af:forEach>
-                                                            </af:selectOneChoice>
-                                                        </f:facet>
+                                                        <f:facet name="filter"/>
                                                     </af:column>
                                                     <f:facet name="header"/>
                                                 </af:table>

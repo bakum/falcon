@@ -6,14 +6,12 @@
     <variableIterator id="variables"/>
     <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
     <iterator Binds="UsersView1" RangeSize="10" DataControl="AppModuleDataControl" id="UsersView1Iterator1"/>
-    <iterator Binds="OplataIschodView1" RangeSize="25" DataControl="AppModuleDataControl"
+    <iterator Binds="OplataIschodView1" RangeSize="20" DataControl="AppModuleDataControl"
               id="OplataIschodView1Iterator"/>
     <searchRegion Binds="OplataIschodView1Iterator" Criteria=""
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="OplataIschodView1Query"/>
-    <iterator Binds="OplataIschodTabPartView2" RangeSize="25" DataControl="AppModuleDataControl"
+    <iterator Binds="OplataIschodTabPartView2" RangeSize="20" DataControl="AppModuleDataControl"
               id="OplataIschodTabPartView2Iterator"/>
-    <iterator Binds="DivisionsView1" RangeSize="-1" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
-    <iterator Binds="VwOrderView1" RangeSize="-1" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="UsersView1Iterator1" id="RealName">
@@ -62,22 +60,5 @@
     <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
     <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
     <action IterBinding="OplataIschodView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
-    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
-      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="Fullname"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <tree IterBinding="VwOrderView1Iterator" id="VwOrderView1">
-      <nodeDefinition DefName="falcon.view.VwOrderView" Name="VwOrderView10">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="Num"/>
-          <Item Value="Dat"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
   </bindings>
 </pageDefinition>

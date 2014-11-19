@@ -11,7 +11,7 @@
                         <f:facet name="first">
                             <af:panelStretchLayout id="psl1">
                                 <f:facet name="center">
-                                    <af:panelCollection id="pc1">
+                                    <af:panelCollection id="pc1" featuresOff="formatMenu statusBar">
                                         <f:facet name="menus">
                                             <af:menu text="Операции" id="m2">
                                                 <af:commandMenuItem actionListener="#{bindings.Delete.execute}"

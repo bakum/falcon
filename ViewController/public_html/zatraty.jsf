@@ -8,8 +8,8 @@
                 <f:facet name="body">
                     <af:panelStretchLayout id="psl1">
                         <f:facet name="center">
-                            <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="247"
-                                              positionedFromEnd="true">
+                            <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="254"
+                                              positionedFromEnd="true" collapsed="true">
                                 <f:facet name="first">
                                     <af:panelCollection id="pc1">
                                         <f:facet name="menus">

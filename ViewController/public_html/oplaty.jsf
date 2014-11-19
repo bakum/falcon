@@ -10,7 +10,7 @@
                         <f:facet name="first">
                             <af:panelStretchLayout id="psl1">
                                 <f:facet name="center">
-                                    <af:panelCollection id="pc1">
+                                    <af:panelCollection id="pc1" featuresOff="formatMenu statusBar">
                                         <f:facet name="menus"/>
                                         <f:facet name="toolbar">
                                             <af:toolbar id="t3">
@@ -44,7 +44,7 @@
                                                   selectedRowKeys="#{bindings.OplataIschodView1.collectionModel.selectedRow}"
                                                   selectionListener="#{bindings.OplataIschodView1.collectionModel.makeCurrent}"
                                                   rowSelection="single" id="t1" partialTriggers="::ctbDelete"
-                                                  binding="#{OplatyBeans.featureTable}">
+                                                  binding="#{OplatyBeans.featureTable}" autoHeightRows="0">
                                             <af:column sortProperty="#{bindings.OplataIschodView1.hints.Id.name}"
                                                        filterable="true" sortable="true"
                                                        headerText="#{bindings.OplataIschodView1.hints.Id.label}"
@@ -83,7 +83,7 @@
                                             <af:column headerText="#{bindings.OplataIschodView1.hints.OrdrId.label}"
                                                        id="c14" width="270"
                                                        sortProperty="#{bindings.OplataIschodView1.hints.OrdrId.name}"
-                                                       filterable="true" sortable="true">
+                                                       filterable="false" sortable="true">
                                                 <af:selectOneChoice value="#{row.bindings.OrdrId.inputValue}"
                                                                     label="#{row.bindings.OrdrId.label}"
                                                                     required="#{bindings.OplataIschodView1.hints.OrdrId.mandatory}"
@@ -91,17 +91,7 @@
                                                                     readOnly="true" id="soc8">
                                                     <f:selectItems value="#{row.bindings.OrdrId.items}" id="si8"/>
                                                 </af:selectOneChoice>
-                                                <f:facet name="filter">
-                                                    <af:selectOneChoice id="soc9" value="#{vs.filterCriteria.OrdrId}"
-                                                                        autoSubmit="true" label="Договор">
-                                                        <f:selectItem itemValue="" itemLabel="" id="si10"/>
-                                                        <af:forEach var="listrow"
-                                                                    items="#{bindings.VwOrderView1.rangeSet}">
-                                                            <f:selectItem id="si11" itemLabel="#{listrow.Num}"
-                                                                          itemValue="#{listrow.Id}"/>
-                                                        </af:forEach>
-                                                    </af:selectOneChoice>
-                                                </f:facet>
+                                                <f:facet name="filter"/>
                                             </af:column>
                                             <af:column sortProperty="#{bindings.OplataIschodView1.hints.KontragId.name}" sortable="true"
                                                        headerText="#{bindings.OplataIschodView1.hints.KontragId.label}"
@@ -155,18 +145,7 @@
                                                                     readOnly="true" id="soc4">
                                                     <f:selectItems value="#{row.bindings.DivisionId.items}" id="si4"/>
                                                 </af:selectOneChoice>
-                                                <f:facet name="filter">
-                                                    <af:selectOneChoice id="soc12"
-                                                                        value="#{vs.filterCriteria.DivisionId}"
-                                                                        autoSubmit="true" label="Подразделение">
-                                                        <f:selectItem itemValue="" itemLabel="" id="si15"/>
-                                                        <af:forEach var="listrow"
-                                                                    items="#{bindings.DivisionsView1.rangeSet}">
-                                                            <f:selectItem id="si16" itemLabel="#{listrow.Fullname}"
-                                                                          itemValue="#{listrow.Id}"/>
-                                                        </af:forEach>
-                                                    </af:selectOneChoice>
-                                                </f:facet>
+                                                <f:facet name="filter"/>
                                             </af:column>
                                             <af:column sortProperty="#{bindings.OplataIschodView1.hints.KassaId.name}"
                                                        filterable="true" sortable="true"

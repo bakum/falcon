@@ -7,7 +7,7 @@
     <iterator Binds="VwOrderView1" RangeSize="20" DataControl="AppModuleDataControl" id="VwOrderView1Iterator"/>
     <searchRegion Binds="VwOrderView1Iterator" Criteria=""
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="VwOrderView1Query"/>
-    <iterator Binds="OrdersTabPartOplatyView3" RangeSize="25" DataControl="AppModuleDataControl"
+    <iterator Binds="OrdersTabPartOplatyView3" RangeSize="20" DataControl="AppModuleDataControl"
               id="OrdersTabPartOplatyView3Iterator"/>
     <iterator Binds="AccCostView7" RangeSize="25" DataControl="AppModuleDataControl" id="AccCostView7Iterator"/>
     <taskFlow id="addDostavka1" taskFlowId="/WEB-INF/addDostavka.xml#addDostavka"
@@ -20,13 +20,6 @@
     <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
     <iterator Binds="OrdersTabPartOplatyView1" RangeSize="25" DataControl="AppModuleDataControl"
               id="OrdersTabPartOplatyView1Iterator"/>
-    <iterator Binds="DivisionsView1" RangeSize="-1" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
-    <iterator Binds="KonsultNameActiveView1" RangeSize="-1" DataControl="AppModuleDataControl"
-              id="KonsultNameActiveView1Iterator"/>
-    <iterator Binds="MontagNameActive1" RangeSize="-1" DataControl="AppModuleDataControl"
-              id="MontagNameActive1Iterator"/>
-    <iterator Binds="ZamerNameViewActive1" RangeSize="-1" DataControl="AppModuleDataControl"
-              id="ZamerNameViewActive1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="VwOrderView1Iterator" id="VwOrderView1">
@@ -221,37 +214,5 @@
         <Item Value="Summa"/>
       </AttrNames>
     </attributeValues>
-    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
-      <nodeDefinition DefName="falcon.view.DivisionsView" Name="DivisionsView10">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="Fullname"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <tree IterBinding="KonsultNameActiveView1Iterator" id="KonsultNameActiveView1">
-      <nodeDefinition DefName="falcon.view.KonsultNameActiveView" Name="KonsultNameActiveView10">
-        <AttrNames>
-          <Item Value="Name"/>
-          <Item Value="Id"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <tree IterBinding="MontagNameActive1Iterator" id="MontagNameActive1">
-      <nodeDefinition DefName="falcon.view.MontagNameActive" Name="MontagNameActive10">
-        <AttrNames>
-          <Item Value="Name"/>
-          <Item Value="Id"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <tree IterBinding="ZamerNameViewActive1Iterator" id="ZamerNameViewActive1">
-      <nodeDefinition DefName="falcon.view.ZamerNameViewActive" Name="ZamerNameViewActive10">
-        <AttrNames>
-          <Item Value="Name"/>
-          <Item Value="Id"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
   </bindings>
 </pageDefinition>
