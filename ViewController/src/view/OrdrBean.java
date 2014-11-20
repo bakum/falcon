@@ -1,11 +1,15 @@
 package view;
 
 import java.math.BigDecimal;
+
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import java.sql.Types;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
@@ -15,6 +19,8 @@ import javax.faces.application.Application;
 import javax.faces.context.FacesContext;
 
 import javax.faces.event.ActionEvent;
+
+import javax.faces.model.SelectItem;
 
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.DataControlFrame;
@@ -38,31 +44,32 @@ import oracle.jbo.ApplicationModule;
 import oracle.jbo.JboException;
 import oracle.jbo.Row;
 import oracle.jbo.server.ApplicationModuleImpl;
+import oracle.jbo.uicli.binding.JUCtrlHierBinding;
+import oracle.jbo.uicli.binding.JUCtrlValueBindingRef;
 
 
 public class OrdrBean {
     public OrdrBean() {
     }
-    
-    private String getSessionUser(){
-        ADFContext adfCtx = ADFContext.getCurrent();  
-        SecurityContext secCntx = adfCtx.getSecurityContext();  
-        String user = secCntx.getUserPrincipal().getName();  
+
+    private String getSessionUser() {
+        ADFContext adfCtx = ADFContext.getCurrent();
+        SecurityContext secCntx = adfCtx.getSecurityContext();
+        String user = secCntx.getUserPrincipal().getName();
         return user;
     }
-    
+
     protected static int NUMBER = Types.NUMERIC;
     /*  public static int DATE = Types.DATE;
     public static int VARCHAR2 = Types.VARCHAR; */
-    
+
     public BigDecimal getSessionUserId() {
-        BigDecimal _id = (BigDecimal)callStoredFunction(NUMBER, "GET_USERID(?)",
-                                          new Object[] { getSessionUser() });
-        if (_id.intValue()==0)
-                                 return new BigDecimal(1);
-                                 else
-        return _id;
-      }
+        BigDecimal _id = (BigDecimal)callStoredFunction(NUMBER, "GET_USERID(?)", new Object[] { getSessionUser() });
+        if (_id.intValue() == 0)
+            return new BigDecimal(1);
+        else
+            return _id;
+    }
 
     public BindingContainer getBindings() {
         return BindingContext.getCurrent().getCurrentBindingsEntry();
@@ -71,26 +78,26 @@ public class OrdrBean {
     public FacesContext getFacesContext() {
         return FacesContext.getCurrentInstance();
     }
-    
+
     public void beginNewTransaction() {
-     BindingContext context  = BindingContext.getCurrent();
-     String dataControlFrameName  = context.getCurrentDataControlFrame();
-     DataControlFrame  dcFrame  = context.findDataControlFrame(dataControlFrameName );
-     dcFrame.beginTransaction(new TransactionProperties());
+        BindingContext context = BindingContext.getCurrent();
+        String dataControlFrameName = context.getCurrentDataControlFrame();
+        DataControlFrame dcFrame = context.findDataControlFrame(dataControlFrameName);
+        dcFrame.beginTransaction(new TransactionProperties());
     }
-    
+
     public void commitTransaction() {
-     BindingContext context  = BindingContext.getCurrent();
-     String dataControlFrameName  = context.getCurrentDataControlFrame();
-     DataControlFrame  dcFrame  = context.findDataControlFrame(dataControlFrameName );
-     dcFrame.commit();
+        BindingContext context = BindingContext.getCurrent();
+        String dataControlFrameName = context.getCurrentDataControlFrame();
+        DataControlFrame dcFrame = context.findDataControlFrame(dataControlFrameName);
+        dcFrame.commit();
     }
-    
+
     public void rollbackTransaction() {
-     BindingContext context  = BindingContext.getCurrent();
-     String dataControlFrameName  = context.getCurrentDataControlFrame();
-     DataControlFrame  dcFrame  = context.findDataControlFrame(dataControlFrameName );
-     dcFrame.rollback();
+        BindingContext context = BindingContext.getCurrent();
+        String dataControlFrameName = context.getCurrentDataControlFrame();
+        DataControlFrame dcFrame = context.findDataControlFrame(dataControlFrameName);
+        dcFrame.rollback();
     }
 
     public Object resolveExpression(String expression) {
@@ -161,7 +168,7 @@ public class OrdrBean {
 
     public void ZakSummFetchListener(PopupFetchEvent popupFetchEvent) {
         //if (popupFetchEvent.getLaunchSourceClientId().contains("cbZakSumm")) {
-            beginNewTransaction();
+        beginNewTransaction();
         //}
     }
 
@@ -173,20 +180,21 @@ public class OrdrBean {
             BigDecimal id_user = getSessionUserId();
             BigDecimal id_ordr = (BigDecimal)r.getAttribute("Id");
             BigDecimal summ = (BigDecimal)r.getAttribute("ZakSumm");
-            if (summ.intValue()>=0) return;
+            if (summ.intValue() >= 0)
+                return;
             try {
-                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)", new Object[] { id_user,"ZakSumm",id_ordr,summ });
+                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)",
+                                    new Object[] { id_user, "ZakSumm", id_ordr, summ });
                 commitTransaction();
                 refreshOrders();
-                }
-            catch (Exception e) {
-              rollbackTransaction();  
+            } catch (Exception e) {
+                rollbackTransaction();
             }
         } else {
             rollbackTransaction();
         }
     }
-    
+
     public void ZamerDialogListener(DialogEvent dialogEvent) {
         if (dialogEvent.getOutcome().name().equals("ok")) {
             BindingContainer bindings = getBindings();
@@ -195,20 +203,21 @@ public class OrdrBean {
             BigDecimal id_user = getSessionUserId();
             BigDecimal id_ordr = (BigDecimal)r.getAttribute("Id");
             BigDecimal summ = (BigDecimal)r.getAttribute("Zamer");
-            if (summ.intValue()>=0) return;
+            if (summ.intValue() >= 0)
+                return;
             try {
-                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)", new Object[] { id_user,"Zamer",id_ordr,summ });
+                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)",
+                                    new Object[] { id_user, "Zamer", id_ordr, summ });
                 commitTransaction();
                 refreshOrders();
-                }
-            catch (Exception e) {
-              rollbackTransaction();  
+            } catch (Exception e) {
+                rollbackTransaction();
             }
         } else {
             rollbackTransaction();
         }
     }
-    
+
     public void KonsultDialogListener(DialogEvent dialogEvent) {
         if (dialogEvent.getOutcome().name().equals("ok")) {
             BindingContainer bindings = getBindings();
@@ -217,20 +226,21 @@ public class OrdrBean {
             BigDecimal id_user = getSessionUserId();
             BigDecimal id_ordr = (BigDecimal)r.getAttribute("Id");
             BigDecimal summ = (BigDecimal)r.getAttribute("Konsult");
-            if (summ.intValue()>=0) return;
+            if (summ.intValue() >= 0)
+                return;
             try {
-                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)", new Object[] { id_user,"Konsult",id_ordr,summ });
+                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)",
+                                    new Object[] { id_user, "Konsult", id_ordr, summ });
                 commitTransaction();
                 refreshOrders();
-                }
-            catch (Exception e) {
-              rollbackTransaction();  
+            } catch (Exception e) {
+                rollbackTransaction();
             }
         } else {
             rollbackTransaction();
         }
     }
-    
+
     public void MontagDialogListener(DialogEvent dialogEvent) {
         if (dialogEvent.getOutcome().name().equals("ok")) {
             BindingContainer bindings = getBindings();
@@ -239,20 +249,21 @@ public class OrdrBean {
             BigDecimal id_user = getSessionUserId();
             BigDecimal id_ordr = (BigDecimal)r.getAttribute("Id");
             BigDecimal summ = (BigDecimal)r.getAttribute("Montag");
-            if (summ.intValue()>=0) return;
+            if (summ.intValue() >= 0)
+                return;
             try {
-                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)", new Object[] { id_user,"Montag",id_ordr,summ });
+                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)",
+                                    new Object[] { id_user, "Montag", id_ordr, summ });
                 commitTransaction();
                 refreshOrders();
-                }
-            catch (Exception e) {
-              rollbackTransaction();  
+            } catch (Exception e) {
+                rollbackTransaction();
             }
         } else {
             rollbackTransaction();
         }
     }
-    
+
     public void DostavkaDialogListener(DialogEvent dialogEvent) {
         if (dialogEvent.getOutcome().name().equals("ok")) {
             BindingContainer bindings = getBindings();
@@ -261,20 +272,21 @@ public class OrdrBean {
             BigDecimal id_user = getSessionUserId();
             BigDecimal id_ordr = (BigDecimal)r.getAttribute("Id");
             BigDecimal summ = (BigDecimal)r.getAttribute("Dostavka");
-            if (summ.intValue()>=0) return;
+            if (summ.intValue() >= 0)
+                return;
             try {
-                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)", new Object[] { id_user,"Dostavka",id_ordr,summ });
+                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)",
+                                    new Object[] { id_user, "Dostavka", id_ordr, summ });
                 commitTransaction();
                 refreshOrders();
-                }
-            catch (Exception e) {
-              rollbackTransaction();  
+            } catch (Exception e) {
+                rollbackTransaction();
             }
         } else {
             rollbackTransaction();
         }
     }
-    
+
     public void BankDialogListener(DialogEvent dialogEvent) {
         if (dialogEvent.getOutcome().name().equals("ok")) {
             BindingContainer bindings = getBindings();
@@ -283,20 +295,21 @@ public class OrdrBean {
             BigDecimal id_user = getSessionUserId();
             BigDecimal id_ordr = (BigDecimal)r.getAttribute("Id");
             BigDecimal summ = (BigDecimal)r.getAttribute("Bank");
-            if (summ.intValue()>=0) return;
+            if (summ.intValue() >= 0)
+                return;
             try {
-                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)", new Object[] { id_user,"Bank",id_ordr,summ });
+                callStoredProcedure("OPLATA_ISCHOD_PKG.CREATEPAYMENT(?,?,?,?)",
+                                    new Object[] { id_user, "Bank", id_ordr, summ });
                 commitTransaction();
                 refreshOrders();
-                }
-            catch (Exception e) {
-              rollbackTransaction();  
+            } catch (Exception e) {
+                rollbackTransaction();
             }
         } else {
             rollbackTransaction();
         }
     }
-    
+
     public void ZakSummCancelListener(PopupCanceledEvent popupCanceledEvent) {
         rollbackTransaction();
     }
@@ -345,16 +358,16 @@ public class OrdrBean {
             iter.setCurrentRowWithKey(oldKey);
         } finally {
 
-        //DCIteratorBinding iterto = (DCIteratorBinding)bindings.get("VwTurnoverWeekView1Iterator");
-        // Refresh query
-        //iterto.executeQuery();
-        DCIteratorBinding iterdo = (DCIteratorBinding)bindings.get("DostavkaView1Iterator");
-        // Refresh query
-        iterdo.executeQuery();
-        DCIteratorBinding iterdolg = (DCIteratorBinding)bindings.get("DolgKontragents1Iterator");
-        // Refresh query
-        iterdolg.executeQuery();
-        return null;
+            //DCIteratorBinding iterto = (DCIteratorBinding)bindings.get("VwTurnoverWeekView1Iterator");
+            // Refresh query
+            //iterto.executeQuery();
+            DCIteratorBinding iterdo = (DCIteratorBinding)bindings.get("DostavkaView1Iterator");
+            // Refresh query
+            iterdo.executeQuery();
+            DCIteratorBinding iterdolg = (DCIteratorBinding)bindings.get("DolgKontragents1Iterator");
+            // Refresh query
+            iterdolg.executeQuery();
+            return null;
         }
     }
 
@@ -420,4 +433,28 @@ public class OrdrBean {
         }
     }
 
+    public List<SelectItem> onSuggest(String string) {
+        BindingContext bctx = BindingContext.getCurrent();
+        BindingContainer bindings = bctx.getCurrentBindingsEntry();
+        //set the bind variable value that is used to filter the View Object
+        //query of the suggest list. The View Object instance has a View
+        //Criteria assigned
+        OperationBinding setVariable = (OperationBinding)bindings.get("setSearchCriteria");
+        setVariable.getParamsMap().put("value", string);
+        setVariable.execute();
+
+        JUCtrlHierBinding hierBinding = (JUCtrlHierBinding)bindings.get("ZamerNameLookupVO1");
+        //re-query the list based on the new bind variable values
+        hierBinding.executeQuery();
+        //The rangeSet,  the list   of queries entries, is of type
+        //JUCtrlValueBndingRef.
+        List<JUCtrlValueBindingRef> displayDataList = hierBinding.getRangeSet();
+        ArrayList<SelectItem> selectItems = new ArrayList<SelectItem>();
+        for (JUCtrlValueBindingRef displayData : displayDataList) {
+            Row rw = displayData.getRow();
+            //populate the SelectItem list
+            selectItems.add(new SelectItem((BigDecimal)rw.getAttribute("Id"), (String)rw.getAttribute("Id")));
+        }
+        return selectItems;
+    }
 }

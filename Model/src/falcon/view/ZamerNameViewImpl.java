@@ -32,4 +32,6 @@ public class ZamerNameViewImpl extends FalconFiltersViewObjectImpl {
     public void setu_name(String value) {
         setNamedWhereClauseParam("u_name", value);
     }
+
+
 }

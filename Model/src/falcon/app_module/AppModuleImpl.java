@@ -23,6 +23,7 @@ import falcon.view.VwSalesReportViewImpl;
 import falcon.view.VwScalesViewImpl;
 import falcon.view.VwUdevordersViewImpl;
 import falcon.view.VwZatratyPerMonthViewImpl;
+import falcon.view.ZamerNameLookupVOImpl;
 import falcon.view.ZamerNameViewActiveImpl;
 import falcon.view.ZamerNameViewImpl;
 import falcon.view.ZatratyPostViewImpl;
@@ -1889,5 +1890,13 @@ public class AppModuleImpl extends ApplicationModuleImpl {
      */
     public ViewObjectImpl getSessionsView1() {
         return (ViewObjectImpl)findViewObject("SessionsView1");
+    }
+
+    /**
+     * Container's getter for ZamerNameLookupVO1.
+     * @return ZamerNameLookupVO1
+     */
+    public ZamerNameLookupVOImpl getZamerNameLookupVO1() {
+        return (ZamerNameLookupVOImpl)findViewObject("ZamerNameLookupVO1");
     }
 }

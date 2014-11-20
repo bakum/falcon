@@ -362,7 +362,8 @@
                                                                id="c39"
                                                                sortProperty="#{bindings.VwOrderView1.hints.ZamerId.name}"
                                                                sortable="true" width="110"
-                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}">
+                                                               inlineStyle="#{backingBeanScope.FalconBean.cellColor}"
+                                                               filterable="false">
                                                         <af:selectOneChoice value="#{row.bindings.ZamerId.inputValue}"
                                                                             label="#{row.bindings.ZamerId.label}"
                                                                             required="#{bindings.VwOrderView1.hints.ZamerId.mandatory}"

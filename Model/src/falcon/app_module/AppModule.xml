@@ -465,6 +465,13 @@
   <ViewUsage
     Name="SessionsView1"
     ViewObjectName="falcon.view.SessionsView"/>
+  <ViewUsage
+    Name="ZamerNameLookupVO1"
+    ViewObjectName="falcon.view.ZamerNameLookupVO">
+    <ViewCriteriaUsage
+      Name="filterByNameZamerName"
+      FullName="falcon.view.ZamerNameLookupVO.filterByNameZamerName"/>
+  </ViewUsage>
   <ViewLinkUsage
     Name="AccAccountingOstCurrenFk1Link1"
     ViewLinkObjectName="falcon.view.AccAccountingOstCurrenFk1Link"

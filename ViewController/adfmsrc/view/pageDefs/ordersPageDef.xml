@@ -20,6 +20,8 @@
     <page path="view.pageDefs.templateMainPageDef" id="ptb1" Refresh="ifNeeded"/>
     <iterator Binds="OrdersTabPartOplatyView1" RangeSize="25" DataControl="AppModuleDataControl"
               id="OrdersTabPartOplatyView1Iterator"/>
+    <iterator Binds="ZamerNameLookupVO1" RangeSize="10" DataControl="AppModuleDataControl"
+              id="ZamerNameLookupVO1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="VwOrderView1Iterator" id="VwOrderView1">

@@ -127,16 +127,6 @@
           <credentials>{903}hkgvg1RwM9jQdJU9QA0zxqBkVtYtGrrVfoBvWNc177U=</credentials>
         </user>
         <user>
-          <name>ER</name>
-          <display-name>Vakula Igor</display-name>
-          <credentials>{903}ZZ4xiBNbVu/5+0Oz+nSK0Vu2DlK5cUOxRhwo0lxtiHI=</credentials>
-        </user>
-        <user>
-          <name>ER1</name>
-          <display-name>Vakula Gennadiy</display-name>
-          <credentials>{903}wTd+ErCkc5FaSj9ksvP4ocf4U8Le+SuHJKW4xCXrsxg=</credentials>
-        </user>
-        <user>
           <name>FT</name>
           <display-name>Pilipeyko Alexey</display-name>
           <credentials>{903}jYRGT8GbmT/VAOQ/XZ8SvZM0GEM/nteEwZ34fhXhHrE=</credentials>
@@ -325,6 +315,26 @@
           <display-name>PupenaMishail</display-name>
           <credentials>{903}9O4IZnoO3PizZdXRbEY5NbUia7t0EZJx</credentials>
         </user>
+        <user>
+          <name>UCR</name>
+          <display-name>HolostyhSviatoslav</display-name>
+          <credentials>{903}Mcy9d/9j9gc673FqBwD9LE7QMVGJVaRK</credentials>
+        </user>
+        <user>
+          <name>UCR1</name>
+          <display-name>SecretereHolostyh</display-name>
+          <credentials>{903}zUYZQymGklET56L7ujq/GBx3h6vVwAh0</credentials>
+        </user>
+        <user>
+          <name>CPR</name>
+          <display-name>SafronukViktor</display-name>
+          <credentials>{903}MHAflz5bQa8rzrQPWGDsNGiSy6OzT2fM</credentials>
+        </user>
+        <user>
+          <name>CPR1</name>
+          <display-name>SecreterSafronuk</display-name>
+          <credentials>{903}gRRROInUTyTz4ZEYkdS82De5af9TsqWz</credentials>
+        </user>
       </users>
       <roles>
         <role>
@@ -357,10 +367,6 @@
             </member>
             <member>
               <type>user</type>
-              <name>ER1</name>
-            </member>
-            <member>
-              <type>user</type>
               <name>FT1</name>
             </member>
             <member>
@@ -390,6 +396,14 @@
             <member>
               <type>user</type>
               <name>FH</name>
+            </member>
+            <member>
+              <type>user</type>
+              <name>UCR1</name>
+            </member>
+            <member>
+              <type>user</type>
+              <name>CPR1</name>
             </member>
           </members>
         </role>
@@ -463,10 +477,6 @@
             <member>
               <type>user</type>
               <name>AE</name>
-            </member>
-            <member>
-              <type>user</type>
-              <name>ER</name>
             </member>
             <member>
               <type>user</type>
@@ -591,6 +601,14 @@
             <member>
               <type>user</type>
               <name>DBR</name>
+            </member>
+            <member>
+              <type>user</type>
+              <name>UCR</name>
+            </member>
+            <member>
+              <type>user</type>
+              <name>CPR</name>
             </member>
           </members>
         </role>
